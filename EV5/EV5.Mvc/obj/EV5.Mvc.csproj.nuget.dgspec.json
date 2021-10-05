@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc\\EV5.Mvc.csproj": {}
+  },
+  "projects": {
+    "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj",
+        "projectName": "EV5.Mvc.Shared",
+        "projectPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj",
+        "packagesPath": "C:\\Users\\peter.balogh.WIRECARD\\.nuget\\packages\\",
+        "outputPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\peter.balogh.WIRECARD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc\\EV5.Mvc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc\\EV5.Mvc.csproj",
+        "projectName": "EV5.Mvc",
+        "projectPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc\\EV5.Mvc.csproj",
+        "packagesPath": "C:\\Users\\peter.balogh.WIRECARD\\.nuget\\packages\\",
+        "outputPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\peter.balogh.WIRECARD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj": {
+                "projectPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
