@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = EV5.Mvc.Shared
-build_property.ProjectDir = C:\DEV\GitHubRepo\EV5.MVC\EV5\EV5.Mvc.Shared\
+build_property.ProjectDir = C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Shared\

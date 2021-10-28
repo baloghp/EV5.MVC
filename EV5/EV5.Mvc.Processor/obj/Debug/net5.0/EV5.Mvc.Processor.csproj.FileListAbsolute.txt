@@ -1,0 +1,15 @@
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\EV5.Mvc.Processor.deps.json
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\EV5.Mvc.Processor.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\ref\EV5.Mvc.Processor.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\EV5.Mvc.Processor.pdb
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\EV5.Mvc.Shared.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\bin\Debug\net5.0\EV5.Mvc.Shared.pdb
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.csproj.AssemblyReference.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.AssemblyInfoInputs.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.AssemblyInfo.cs
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.csproj.CoreCompileInputs.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.csproj.CopyComplete
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\ref\EV5.Mvc.Processor.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Mvc.Processor\obj\Debug\net5.0\EV5.Mvc.Processor.pdb

@@ -1,0 +1,5 @@
+C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc\obj\Debug\net5.0\EV5.Mvc.csproj.AssemblyReference.cache
+C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc\obj\Debug\net5.0\EV5.Mvc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc\obj\Debug\net5.0\EV5.Mvc.AssemblyInfoInputs.cache
+C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc\obj\Debug\net5.0\EV5.Mvc.AssemblyInfo.cs
+C:\Users\peter\Source\Repos\baloghp\EV5.MVC\EV5\EV5.Mvc\obj\Debug\net5.0\EV5.Mvc.csproj.CoreCompileInputs.cache

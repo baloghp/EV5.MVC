@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using System.IO;
 
-using System.Web.Mvc.Html;
 using EV5.Mvc.ViewEngine;
-//using System.Web.UI;
-//using EVE.Mvc.Providers;
-
+using EV5.Mvc.Extensions;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace EV5.Mvc
 {
@@ -174,13 +175,25 @@ namespace EV5.Mvc
         /// The HTML.
         /// </value>
         public HtmlHelper Html { get; internal set; }
+        IViewEngine IEmbeddedView.ViewEngine { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        HtmlHelper IEmbeddedView.Html => throw new NotImplementedException();
+
+        //ViewDataDictionary ViewData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string Path => throw new NotImplementedException();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedView{T}"/> class.
         /// </summary>
         public EmbeddedView()
         {
-            this.ViewData = new ViewDataDictionary();
+            this.ViewData = new ViewDataDictionary(null);
+        }
+
+        public Task RenderAsync(ViewContext context)
+        {
+            return new Task(() =>  Render(context));
         }
 
         /// <summary>
@@ -188,15 +201,23 @@ namespace EV5.Mvc
         /// </summary>
         /// <param name="viewContext">The view context.</param>
         /// <param name="writer">The writer object.</param>
-        public void Render(ViewContext viewContext, System.IO.TextWriter writer)
+        public void Render(ViewContext viewContext)
         {
 
             //HtmlDocument document;
 
             //init context sensitive fields
+            TextWriter writer = viewContext.Writer;
             this.ViewContext = viewContext;
             this.ViewData = viewContext.ViewData;
-            this.Html = new HtmlHelper(viewContext, this);
+            this.Html = new HtmlHelper(
+                                        ServicesExtensions.HtmlGenerator,         //IHtmlGenerator htmlGenerator,
+                                        ServicesExtensions.CompositeViewEngine,   //ICompositeViewEngine viewEngine,
+                                        ServicesExtensions.ModelMetadataProvider, //IModelMetadataProvider metadataProvider,
+                                        ServicesExtensions.ViewBufferScope,       //IViewBufferScope bufferScope,
+                                        ServicesExtensions.HtmlEncoder,       //HtmlEncoder htmlEncoder,
+                                        ServicesExtensions.UrlEncoder        //UrlEncoder urlEncoder
+                                        ) ;
 
             //if it has a master prepare that
             if (!string.IsNullOrWhiteSpace(MasterName))
@@ -206,7 +227,7 @@ namespace EV5.Mvc
             else
             {
                 //if there is no master page, we prepare the raw markup as the current document
-                var doc = DocumentHelperFactory.Factory.CreateDocument(); //new HtmlAgilityPack.HtmlDocument();
+                var doc = DocumentHelperFactory.Factory.CreateDocument();
                 if (!String.IsNullOrWhiteSpace(RawMarkup))
                     doc.LoadHtml(RawMarkup);
                 HtmlDocument = DocumentHelperFactory.Factory.CreateDocumentHelper(doc);
@@ -252,10 +273,15 @@ namespace EV5.Mvc
                 var partialModelPath = partialNode.GetAttributeValue(EveMarkupAttributes.PartialModel);
                 //eval the new partial model on the current one
                 if (Model != null && !string.IsNullOrWhiteSpace(partialModelPath))
-                    partialModel = DataBinder.Eval(Model, partialModelPath);
+                {
+                    //partialModel = DataBinder.Eval(Model, partialModelPath);
+                    var evalResult = ViewDataEvaluator.Eval(Model, partialModelPath);
+                    partialModel = evalResult.Value;
+                }
+
             }
            
-            MvcHtmlString partialString;
+            IHtmlContent partialString;
             if (!GetPartialViewStringFromthisEngine(this.ViewContext, partialName, out partialString, partialModel))
             {
                 //call partial MVC view process
@@ -265,8 +291,8 @@ namespace EV5.Mvc
                 partialString = this.Html.Partial(partialName, partialModel, viewData);
             }
 
-
-            return partialString.ToHtmlString();
+            return partialString.ToString();
+            //return partialString.ToString();
         }
 
         private void ProcessSections()
@@ -324,7 +350,7 @@ namespace EV5.Mvc
 
         private IDocument PrepareMasterPage()
         {
-            MvcHtmlString masterString;
+            IHtmlContent masterString;
             //let's see if our own view engine can give us the master view string
             if (!GetPartialViewStringFromthisEngine(this.ViewContext, MasterName, out masterString, Model))
             {
@@ -334,7 +360,7 @@ namespace EV5.Mvc
 
             //let's prepare that as our main doc
             var masterDoc = DocumentHelperFactory.Factory.CreateDocument();// new HtmlDocument();
-            masterDoc.LoadHtml(masterString.ToHtmlString());
+            masterDoc.LoadHtml(masterString.ToString());
 
             //let's see where to put the current view
             var renderBodyNode = masterDoc.SelectSingleNode(EveMarkupAttributes.GetAttributeQuery(EveMarkupAttributes.RenderBody));
@@ -350,9 +376,9 @@ namespace EV5.Mvc
             return masterDoc;
         }
 
-        private bool GetPartialViewStringFromthisEngine(ViewContext viewContext, string viewName, out MvcHtmlString result, object model = null)
+        private bool GetPartialViewStringFromthisEngine(ViewContext viewContext, string viewName, out IHtmlContent result, object model = null)
         {
-            ViewEngineResult viewResult = this.ViewEngine.FindView(viewContext, viewName, null, true);
+            ViewEngineResult viewResult = this.ViewEngine.FindView(viewContext, viewName, true);
             result = null;
             if (viewResult.View == null) return false;
 
@@ -361,14 +387,18 @@ namespace EV5.Mvc
             {
                 using (StreamWriter tw = new StreamWriter(ms))
                 {
+                    var ev = viewResult.View as EmbeddedView;
                     if (model != null)
                     {
-                        var ev = viewResult.View as IEmbeddedView;
+                        
                         ev.SetModel(model);
 
                     }
-                    
-                    viewResult.View.Render(viewContext, tw);
+                    //need to do the switcheroo as now the write is attached to the context
+                    TextWriter old = viewContext.Writer;
+                    viewContext.Writer = tw;
+                    ev.Render(viewContext);
+                    viewContext.Writer = old;
 
                     using (StreamReader sr = new StreamReader(ms))
                     {
@@ -378,7 +408,7 @@ namespace EV5.Mvc
             }
             if (String.IsNullOrWhiteSpace(rawHtml)) return false;
 
-            result = new MvcHtmlString(rawHtml);
+            result = new HtmlString(rawHtml);
             return true;
 
         }
@@ -413,10 +443,8 @@ namespace EV5.Mvc
 
         }
 
+       
 
-
-        
-
-        
+       
     }
 }

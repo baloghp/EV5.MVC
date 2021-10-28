@@ -1,8 +1,11 @@
-﻿using EV5.Mvc.ViewEngine;
+﻿using EV5.Mvc.Extensions;
+using EV5.Mvc.ViewEngine;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 //using EVE.Mvc.ViewEngine.Providers;
 using System;
 using System.Reflection;
-using System.Web.Mvc;
+
 
 namespace EV5.Mvc
 {
@@ -21,43 +24,16 @@ namespace EV5.Mvc
         /// </value>
         public string ViewNamePrefix { get; set; }
 
-        ///// <summary>
-        ///// Gets the markup provider, of the view engine
-        ///// </summary>
-        ///// <value>
-        ///// The markup provider.
-        ///// </value>
-        //public BaseMarkupProvider MarkupProvider { get; private set; }
-        ///// <summary>
-        ///// Gets view class provider
-        ///// </summary>
-        //public BaseViewClassProvider ViewClassProvider { get; private set; }
+       
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedViewEngine"/> class.
         /// </summary>
         /// <param name="viewNamePrefix">The view name prefix.</param>
-        /// <param name="markupProvider">The markup provider.</param>
         public EmbeddedViewEngine(string viewNamePrefix = ""
-            //,BaseMarkupProvider markupProvider = null,
-            //BaseViewClassProvider viewClassProvider = null
             )
         {
-            //if (markupProvider == null)
-            //{
-            //    if (ViewEngine.Providers.MarkupProvider.CurrentProvider == null)
-            //        throw new ArgumentNullException("Markup provider is not specified");
-            //    markupProvider = ViewEngine.Providers.MarkupProvider.CurrentProvider;
-            //}
-            //this.MarkupProvider = markupProvider;
-
-            //if (viewClassProvider == null)
-            //{
-            //    if (ViewEngine.Providers.ViewClassProvider.CurrentProvider == null)
-            //        throw new ArgumentNullException("ViewClass provider is not specified");
-            //    viewClassProvider = ViewEngine.Providers.ViewClassProvider.CurrentProvider;
-            //}
-            //this.ViewClassProvider = viewClassProvider;
+           
             ViewNamePrefix = viewNamePrefix;
 
         }
@@ -77,9 +53,9 @@ namespace EV5.Mvc
             if (view != null)
             {
                 view.ViewName = partialViewName;
-                return new ViewEngineResult(view, this);
+                return ViewEngineResult.Found(partialViewName, view);
             }
-            return new ViewEngineResult(new string[] { partialViewName });
+            return ViewEngineResult.NotFound(partialViewName,new string[] { partialViewName });
         }
 
         /// <summary>
@@ -92,23 +68,23 @@ namespace EV5.Mvc
         /// <returns>
         /// The page view.
         /// </returns>
-        public ViewEngineResult FindView(ControllerContext controllerContext, string viewName, string masterName, bool useCache)
-        {
-            IEmbeddedView view = GetView(viewName);
-            if (view != null)
-            {
-                view.ViewName = viewName;
-                //set master name only if there is one specified,
-                //otherwise let the view try to figure out by its attributes
-                if (!string.IsNullOrWhiteSpace(masterName))
-                {
-                    view.MasterName = masterName;
-                }
+        //public ViewEngineResult FindView(ControllerContext controllerContext, string viewName, string masterName, bool useCache)
+        //{
+        //    IEmbeddedView view = GetView(viewName);
+        //    if (view != null)
+        //    {
+        //        view.ViewName = viewName;
+        //        //set master name only if there is one specified,
+        //        //otherwise let the view try to figure out by its attributes
+        //        if (!string.IsNullOrWhiteSpace(masterName))
+        //        {
+        //            view.MasterName = masterName;
+        //        }
 
-                return new ViewEngineResult(view, this);
-            }
-            return new ViewEngineResult(new string[] { masterName, viewName });
-        }
+        //        return new ViewEngineResult(view, this);
+        //    }
+        //    return new ViewEngineResult(new string[] { masterName, viewName });
+        //}
         /// <summary>
         /// So! A typical view is made up of an EmbeddedView class and a pice of markup string.
         /// First we look for the class and then pass the markup to it. 
@@ -165,6 +141,7 @@ namespace EV5.Mvc
 
         private string FindMarkup(string viewName, IEmbeddedView view)
         {
+            var markupProvider = ServicesExtensions.MarkupProvider;
 
             if (view != null)
             {
@@ -172,21 +149,19 @@ namespace EV5.Mvc
                 var viewAttribute = view.GetType().GetCustomAttribute<MarkupNameAttribute>();
                 if (viewAttribute != null && !String.IsNullOrWhiteSpace(viewAttribute.MarkupName))
                 {
-                    string result = MarkupProvider.GetResource(viewAttribute.MarkupName, view);
+                    string result = markupProvider.GetResource(viewAttribute.MarkupName, view);
                     if (!String.IsNullOrWhiteSpace(result)) return result;
                 }
             }
 
 
-            return MarkupProvider.GetResource(viewName, view);
+            return markupProvider.GetResource(viewName, view);
         }
 
         private IEmbeddedView FindEmbeddedViewClass(string viewName)
         {
             return ViewClassProvider.GetEmbeddedViewClass(viewName);
         }
-
-
 
         /// <summary>
         /// Releases the specified view by using the specified controller context.
@@ -202,6 +177,66 @@ namespace EV5.Mvc
             }
             //not too sure if we need this!
             //GC.Collect();
+        }
+        //
+        // Summary:
+        //     Finds the view with the given viewName using view locations and information from
+        //     the context.
+        //
+        // Parameters:
+        //   context:
+        //     The Microsoft.AspNetCore.Mvc.ActionContext.
+        //
+        //   viewName:
+        //     The name or path of the view that is rendered to the response.
+        //
+        //   isMainPage:
+        //     Determines if the page being found is the main page for an action.
+        //
+        // Returns:
+        //     The Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult of locating the view.
+        //
+        // Remarks:
+        //     Use Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine.GetView(System.String,System.String,System.Boolean)
+        //     when the absolute or relative path of the view is known.
+        public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
+        {
+            IEmbeddedView view = GetView(viewName);
+            if (view != null)
+            {
+                view.ViewName = viewName;
+                //set master name only if there is one specified,
+                //otherwise let the view try to figure out by its attributes
+                //if (!string.IsNullOrWhiteSpace(masterName))
+                //{
+                //    view.MasterName = masterName;
+                //}
+
+                return ViewEngineResult.Found(viewName, view);
+            }
+            return ViewEngineResult.NotFound(viewName, new string[] { viewName });
+
+        }
+        //
+        // Summary:
+        //     Gets the view with the given viewPath, relative to executingFilePath unless viewPath
+        //     is already absolute.
+        //
+        // Parameters:
+        //   executingFilePath:
+        //     The absolute path to the currently-executing view, if any.
+        //
+        //   viewPath:
+        //     The path to the view.
+        //
+        //   isMainPage:
+        //     Determines if the page being found is the main page for an action.
+        //
+        // Returns:
+        //     The Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult of locating the view.
+        public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
+        {
+            throw new NotImplementedException();
         }
     }
 

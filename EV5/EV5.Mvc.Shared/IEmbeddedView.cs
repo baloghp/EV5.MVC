@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿//using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 namespace EV5.Mvc.ViewEngine
 {
 
@@ -7,7 +11,7 @@ namespace EV5.Mvc.ViewEngine
     /// Interface of EmbeddedView to establish non generic based MEF export. Also here is listed all necessary parts of an EmbeddedView.
     /// Plus it has all necessary View related ancestor interfaces.
     /// </summary>
-    public interface IEmbeddedView : IView, IViewDataContainer
+    public interface IEmbeddedView : IView//, IViewDataContainer
     {
 
         IViewEngine ViewEngine { get; set; }
@@ -17,7 +21,7 @@ namespace EV5.Mvc.ViewEngine
         /// <value>
         /// The HTML.
         /// </value>
-        System.Web.Mvc.HtmlHelper Html { get; }
+        HtmlHelper Html { get; }
         /// <summary>
         /// Gets the HTML document.
         /// </summary>
@@ -43,7 +47,7 @@ namespace EV5.Mvc.ViewEngine
         /// Override this in your view to process the view's document.
         /// </summary>
         /// <param name="viewContext">The view context.</param>
-        void ProcessView(System.Web.Mvc.ViewContext viewContext);
+        void ProcessView(ViewContext viewContext);
         /// <summary>
         /// Gets the list of sections defined in the markup.
         /// </summary>

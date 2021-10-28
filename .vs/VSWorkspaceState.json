@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EV5",
+    "\\EV5\\EV5.Mvc",
+    "\\EV5\\EV5.Mvc\\ViewEngine"
   ],
+  "SelectedNode": "\\EV5\\EV5.Mvc\\ViewEngine\\EmbeddedView.cs",
   "PreviewInSolutionExplorer": false
 }

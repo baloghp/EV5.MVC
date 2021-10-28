@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj": {}
+    "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj": {}
   },
   "projects": {
-    "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj": {
+    "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj",
         "projectName": "EV5TestWebApp",
-        "projectPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj",
-        "packagesPath": "C:\\Users\\peter.balogh.WIRECARD\\.nuget\\packages\\",
-        "outputPath": "C:\\DEV\\GitHubRepo\\EV5.MVC\\EV5\\EV5TestWebApp\\obj\\",
+        "projectPath": "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5TestWebApp\\EV5TestWebApp.csproj",
+        "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5TestWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\peter.balogh.WIRECARD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -60,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -6,9 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EV5.HtmlAgility\EV5.HtmlAgility.csproj" />
+    <ProjectReference Include="..\EV5.Mvc.Processor\EV5.Mvc.Processor.csproj" />
+    <ProjectReference Include="..\EV5.Mvc.Services\EV5.Mvc.Services.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Shared\EV5.Mvc.Shared.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,17 @@
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.csproj.AssemblyReference.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.AssemblyInfoInputs.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.AssemblyInfo.cs
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.csproj.CoreCompileInputs.cache
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.HtmlAgility.deps.json
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.HtmlAgility.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\ref\EV5.HtmlAgility.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.HtmlAgility.pdb
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.Mvc.Services.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.Mvc.Shared.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.Mvc.Services.pdb
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\bin\Debug\net5.0\EV5.Mvc.Shared.pdb
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.csproj.CopyComplete
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\ref\EV5.HtmlAgility.dll
+C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.HtmlAgility\obj\Debug\net5.0\EV5.HtmlAgility.pdb
