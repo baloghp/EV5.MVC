@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EV5.HtmlAgility\EV5.HtmlAgility.csproj" />
+    <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Processor\EV5.Mvc.Processor.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Services\EV5.Mvc.Services.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Shared\EV5.Mvc.Shared.csproj" />

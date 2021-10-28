@@ -160,7 +160,7 @@ namespace EV5.Mvc
 
         private IEmbeddedView FindEmbeddedViewClass(string viewName)
         {
-            return ViewClassProvider.GetEmbeddedViewClass(viewName);
+            return ServicesExtensions.ViewClassProvider.GetEmbeddedViewClass(viewName);
         }
 
         /// <summary>

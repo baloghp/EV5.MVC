@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
+    <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,7 @@
 //using EV5.Mvc.Extensions;
+using EV5.Mvc;
+using EV5.Mvc.Extensions;
+using EV5.Mvc.MEF;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,9 +28,10 @@ namespace EV5TestWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddEV5DefaultServices();
+            services.AddEV5DefaultServices();
+            services.AddEV5MefServices(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory,"EV5*.dll"));
             services.AddRazorPages()
-                //.AddViewOptions(o => o.ViewEngines.Insert())
+                .AddViewOptions(o => o.ViewEngines.Insert(0, new EmbeddedViewEngine("EV5-")))
                 ;
         }
 

@@ -1,4 +1,5 @@
 ﻿using EV5.Mvc.HtmlAgility;
+using EV5.Mvc.MEF;
 using EV5.Mvc.Services;
 using EV5.Mvc.ViewEngine.Providers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -26,7 +27,7 @@ namespace EV5.Mvc.Extensions
 
             services.AddSingleton<IDocumentHelperFactory>(new HADocumentHelperFactory());
             services.AddTransient<IMarkupProvider, EmbeddedMarkupProvider>();
-            services.AddTransient<IViewClassProvider, >();
+            services.AddSingleton<IViewClassProvider>(new MEFViewClassProvider());
 
             return services;
         }
@@ -37,7 +38,8 @@ namespace EV5.Mvc.Extensions
         public static IViewBufferScope ViewBufferScope { get => ServiceProvider.GetService<IViewBufferScope>(); }
         public static HtmlEncoder HtmlEncoder { get => ServiceProvider.GetService<HtmlEncoder>(); }
         public static UrlEncoder UrlEncoder { get => ServiceProvider.GetService<UrlEncoder>(); }
-         public static IMarkupProvider MarkupProvider { get => ServiceProvider.GetService<IMarkupProvider>(); }
+        public static IMarkupProvider MarkupProvider { get => ServiceProvider.GetService<IMarkupProvider>(); }
+        public static IViewClassProvider ViewClassProvider { get => ServiceProvider.GetService<IViewClassProvider>(); }
     }
 
     public static class DocumentHelperFactory
