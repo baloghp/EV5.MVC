@@ -2,7 +2,9 @@
 using EV5.Mvc.MEF;
 using EV5.Mvc.Services;
 using EV5.Mvc.ViewEngine.Providers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
@@ -28,18 +30,18 @@ namespace EV5.Mvc.Extensions
             services.AddSingleton<IDocumentHelperFactory>(new HADocumentHelperFactory());
             services.AddTransient<IMarkupProvider, EmbeddedMarkupProvider>();
             services.AddSingleton<IViewClassProvider>(new MEFViewClassProvider());
-
+            
+            
             return services;
         }
 
-        public static IHtmlGenerator HtmlGenerator { get => ServiceProvider.GetService<IHtmlGenerator>();  }
-        public static IModelMetadataProvider ModelMetadataProvider { get => ServiceProvider.GetService<IModelMetadataProvider>(); }
-        public static ICompositeViewEngine CompositeViewEngine { get => ServiceProvider.GetService<ICompositeViewEngine>(); }
-        public static IViewBufferScope ViewBufferScope { get => ServiceProvider.GetService<IViewBufferScope>(); }
-        public static HtmlEncoder HtmlEncoder { get => ServiceProvider.GetService<HtmlEncoder>(); }
-        public static UrlEncoder UrlEncoder { get => ServiceProvider.GetService<UrlEncoder>(); }
+
         public static IMarkupProvider MarkupProvider { get => ServiceProvider.GetService<IMarkupProvider>(); }
         public static IViewClassProvider ViewClassProvider { get => ServiceProvider.GetService<IViewClassProvider>(); }
+
+        public static IHtmlHelper HtmlHelper { get => ServiceProvider.GetService<IHtmlHelper>(); }
+
+        public static IActionDescriptorCollectionProvider ActionDescriptorCollectionProvider { get => ServiceProvider.GetService<IActionDescriptorCollectionProvider>(); }
     }
 
     public static class DocumentHelperFactory

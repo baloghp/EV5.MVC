@@ -98,26 +98,7 @@ namespace EV5.Mvc
             return value;
         }
 
-       /// <summary>
-       /// Extracts and saves an embedded resource to the combined path of basePath and modulepath
-       /// </summary>
-       /// <param name="resourceName">name of the resource</param>
-       /// <param name="assemblyName"> name of the assembly</param>
-       /// <param name="basePath">base part of the path to save the resource</param>
-       /// <param name="modulePath">module part of the path to save te resource</param>
-       [Obsolete]
-        public static void ExtractResource(string resourceName, string assemblyName, string basePath, string modulePath)
-        {
-            string path = Path.Combine(basePath, modulePath);
-            using (var f = File.Create(path))
-            {
-                using (StreamWriter sw  = new StreamWriter(f))
-                {
-                    sw.Write(LoadResourceString(resourceName , assemblyName));
-                    sw.Flush();
-                }
-            }
-        }
+      
        
     }
 }

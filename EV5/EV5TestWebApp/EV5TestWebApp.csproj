@@ -7,6 +7,9 @@
   <ItemGroup>
     <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
+    <ProjectReference Include="..\EV5.Samples.Embedded\EV5.Samples.Embedded.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

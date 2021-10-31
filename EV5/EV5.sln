@@ -12,13 +12,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc", "EV5.Mvc\EV5.Mvc.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.Shared", "EV5.Mvc.Shared\EV5.Mvc.Shared.csproj", "{F890CAB1-4290-4AC0-83DE-9674DA5540E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.Services", "EV5.Mvc.Services\EV5.Mvc.Services.csproj", "{C933D497-FCC6-4EA0-8D95-5E778CDE2D67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.Services", "EV5.Mvc.Services\EV5.Mvc.Services.csproj", "{C933D497-FCC6-4EA0-8D95-5E778CDE2D67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.HtmlAgility", "EV5.HtmlAgility\EV5.HtmlAgility.csproj", "{8BD73F74-7931-4261-B527-12BDF402A00E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.HtmlAgility", "EV5.HtmlAgility\EV5.HtmlAgility.csproj", "{8BD73F74-7931-4261-B527-12BDF402A00E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.Processor", "EV5.Mvc.Processor\EV5.Mvc.Processor.csproj", "{FA3CFC59-1851-49A3-BAFD-F9E9549EAADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.Processor", "EV5.Mvc.Processor\EV5.Mvc.Processor.csproj", "{FA3CFC59-1851-49A3-BAFD-F9E9549EAADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.MEF", "EV5.Mvc.MEF\EV5.Mvc.MEF.csproj", "{42AA43AF-8C02-4664-948E-B85873319843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.MEF", "EV5.Mvc.MEF\EV5.Mvc.MEF.csproj", "{42AA43AF-8C02-4664-948E-B85873319843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Samples.Embedded", "EV5.Samples.Embedded\EV5.Samples.Embedded.csproj", "{34757002-45FD-4576-AB44-A50FAE83A7B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{42AA43AF-8C02-4664-948E-B85873319843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42AA43AF-8C02-4664-948E-B85873319843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42AA43AF-8C02-4664-948E-B85873319843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34757002-45FD-4576-AB44-A50FAE83A7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34757002-45FD-4576-AB44-A50FAE83A7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34757002-45FD-4576-AB44-A50FAE83A7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34757002-45FD-4576-AB44-A50FAE83A7B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

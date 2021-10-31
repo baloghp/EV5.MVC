@@ -35,6 +35,7 @@ namespace EV5.Mvc
 
         #region Model
         private T _model;
+
         /// <summary>
         /// Gets or sets the model.
         /// </summary>
@@ -42,13 +43,12 @@ namespace EV5.Mvc
         /// The model.
         /// </value>
         /// <exception cref="System.ApplicationException"></exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
 
         public T Model
         {
             get
             {
-                if (EqualityComparer<T>.Default.Equals(_model, default(T)))
+                if (EqualityComparer<T>.Default.Equals(_model, default))
                 {
                     SetModel(this.ViewData.Model);
                     //if (this.ViewData.Model != null && !(this.ViewData.Model is T))
@@ -74,8 +74,8 @@ namespace EV5.Mvc
             }
             else
             {
-                if (Model is T)
-                _model = (T)Model;
+                if (Model is T t)
+                _model = t;
             }
             
         }
@@ -130,8 +130,7 @@ namespace EV5.Mvc
 
         private string DiscoverMasterNameFromAttribute()
         {
-            var masterViewAttribute = this.GetType().GetCustomAttributes(typeof(MasterViewAttribute), true).FirstOrDefault() as MasterViewAttribute;
-            if (masterViewAttribute != null)
+            if (this.GetType().GetCustomAttributes(typeof(MasterViewAttribute), true).FirstOrDefault() is MasterViewAttribute masterViewAttribute)
             {
                 return masterViewAttribute.MasterViewName;
             }
@@ -151,7 +150,7 @@ namespace EV5.Mvc
         {
             get
             {
-                return _sections ?? (_sections = new List<ISection>());
+                return _sections ??= new List<ISection>();
             }
         }
         #endregion
@@ -174,7 +173,7 @@ namespace EV5.Mvc
         /// <value>
         /// The HTML.
         /// </value>
-        public HtmlHelper Html { get; internal set; }
+        public IHtmlHelper Html { get; internal set; }
         IViewEngine IEmbeddedView.ViewEngine { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         HtmlHelper IEmbeddedView.Html => throw new NotImplementedException();
@@ -191,9 +190,9 @@ namespace EV5.Mvc
             this.ViewData = new ViewDataDictionary(null);
         }
 
-        public Task RenderAsync(ViewContext context)
+        public async  Task RenderAsync(ViewContext context)
         {
-            return new Task(() =>  Render(context));
+            await Task.Run(()=> Render(context));
         }
 
         /// <summary>
@@ -210,14 +209,7 @@ namespace EV5.Mvc
             TextWriter writer = viewContext.Writer;
             this.ViewContext = viewContext;
             this.ViewData = viewContext.ViewData;
-            this.Html = new HtmlHelper(
-                                        ServicesExtensions.HtmlGenerator,         //IHtmlGenerator htmlGenerator,
-                                        ServicesExtensions.CompositeViewEngine,   //ICompositeViewEngine viewEngine,
-                                        ServicesExtensions.ModelMetadataProvider, //IModelMetadataProvider metadataProvider,
-                                        ServicesExtensions.ViewBufferScope,       //IViewBufferScope bufferScope,
-                                        ServicesExtensions.HtmlEncoder,       //HtmlEncoder htmlEncoder,
-                                        ServicesExtensions.UrlEncoder        //UrlEncoder urlEncoder
-                                        ) ;
+            this.Html = ServicesExtensions.HtmlHelper;
 
             //if it has a master prepare that
             if (!string.IsNullOrWhiteSpace(MasterName))
@@ -317,7 +309,7 @@ namespace EV5.Mvc
                 foreach (var item in sectionDefinitions)
                 {
                     string sectionName = item.GetAttributeValue(EveMarkupAttributes.SectionDefinition);
-                    if (Sections.Where(s => s.Name == sectionName).Count() > 0)
+                    if (Sections.Count(s => s.Name == sectionName) > 0)
                         throw new ApplicationException(String.Format("Duplicate section definition: {0}", sectionName));
 
                     ISection section = new Section()
@@ -436,8 +428,7 @@ namespace EV5.Mvc
         /// </summary>
         public void CleanUp()
         {
-            var documentHelper = this.HtmlDocument as IDocumentHelper<IDocument>;
-            if (documentHelper != null) documentHelper.CleanUp();
+            if (this.HtmlDocument is IDocumentHelper<IDocument> documentHelper) documentHelper.CleanUp();
 
             this.HtmlDocument = null;
 

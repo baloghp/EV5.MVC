@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eq8WWg2UWy5GHG14Q1y1M5IYqJiGyfcyNnY1jWmc2RAnKjgMRi0jGRod3YvUMBL9IhpldBmKw/PEa1gZGWElCQ==",
+  "dgSpecHash": "LMofQdqhtjCDHybo3xmujMKXJdkeuFQYKDEutF4LVgENQ7Nth4VzeVqXf5S5SEMs08AlbS1TZpP4nvtZi8S3TQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\peter\\Source\\Repos\\baloghp\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj",
+  "projectFilePath": "C:\\Users\\peter\\source\\repos\\baloghp\\EV5.MVC\\EV5\\EV5.Mvc.Shared\\EV5.Mvc.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\peter\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\peter\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",
