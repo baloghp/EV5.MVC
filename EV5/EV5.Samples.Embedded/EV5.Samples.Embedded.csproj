@@ -6,7 +6,8 @@
 
   
   <ItemGroup>
-    <EmbeddedResource Include="Assets\**\*.PNG;Assets\**\*.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Assets\**\*.PNG; Assets\**\*.html; Assets\**\*.jpg; Assets\**\*.ico; Assets\**\*.svg; Assets\**\*.css; Assets\**\*.js " 
+                      Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,16 +6,12 @@ using EV5.Mvc.MEF;
 using EV5.Samples.Embedded;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EV5TestWebApp
@@ -47,7 +43,7 @@ namespace EV5TestWebApp
             services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(SamplesEmbeddedPlugin).Assembly));
             //mark the composite providers preferably not one by one, but together at once
             var webOriginalProvider = _env.WebRootFileProvider;
-            var embeddedProvider = new EmbeddedFileProvider(typeof(SamplesEmbeddedPlugin).Assembly);
+            var embeddedProvider = new EV5EmbeddedFileProvider(typeof(SamplesEmbeddedPlugin).Assembly, "EV5.Samples-");
             var webCompositeProvider = new CompositeFileProvider(webOriginalProvider, embeddedProvider);
             _env.WebRootFileProvider= webCompositeProvider;
 
@@ -87,7 +83,9 @@ namespace EV5TestWebApp
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
             });
-            
+
+            // Open the Electron-Window here
+            Task.Run(async () => await ElectronNET.API.Electron.WindowManager.CreateWindowAsync());
         }
     }
 }
