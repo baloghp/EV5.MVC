@@ -33,40 +33,34 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Setting up the Embedded File System and retrieving an image.</h2>
+                   
 
+                    <p>
+                        Open visual studio and create a Class Library Project.
+                        <img src="/EV5.Samples-Assets.Tutorial.EFS.Setup.newproject.png" />
+                    </p>
+                    <p>
+                        You need to download and add the static content you would like to host in the embedded file system.
+                        <br />
+                        <img src="/EV5.Samples-Assets.Tutorial.EFS.Setup.AssetFolder.jpg" />
+                        <br />
+                        As a convention it is a good practice to store the files under the folder named: Assets
+                        <br />
+                        You can use the following line in your project file to embedd multiple files:
+                        <br/>
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&nbsp;</span>
+<span style="color:gray;">&nbsp;&nbsp;&lt;</span><span style="color:#569cd6;">ItemGroup</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6;">EmbeddedResource</span><span style="color:gray;">&nbsp;</span><span style="color:#92caf4;">Include</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">Assets\**\*.PNG;&nbsp;Assets\**\*.html;&nbsp;Assets\**\*.jpg;&nbsp;Assets\**\*.ico;&nbsp;Assets\**\*.svg;&nbsp;Assets\**\*.css;&nbsp;Assets\**\*.js&nbsp;</span><span style="color:gray;">&quot;</span><span style="color:gray;">&nbsp;</span>
+<span style="color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#92caf4;">Exclude</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)</span><span style="color:gray;">&quot;</span><span style="color:gray;">&nbsp;/&gt;</span>
+<span style="color:gray;">&nbsp;&nbsp;&lt;/</span><span style="color:#569cd6;">ItemGroup</span><span style="color:gray;">&gt;</span></pre>
+                    </p>
+                    <p>
+                        In your web application use the following code in your startup class to create a simulated file system that points to the Assets library in your Class Library project.
 
-            <div class="text-center">
-                <h1 class="display-4">Setting up the Embedded File System and retrieving an image.</h1>
-
-            </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading">Starting with a simple library project</div>
-                <div class="panel-body">
-                    Open visual studio and create a Class Library Project.
-                    <img src="/EV5.Samples-Assets.Tutorial.EFS.Setup.newproject.png" />
-                </div>
-            </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading">Bootstrap Landing Page</div>
-                <div class="panel-body">
-                   You need to download and add the static content you would like to host in the embedded file system.
-                    <br />
-                    <img src="/EV5.Samples-Assets.Tutorial.EFS.Setup.AssetFolder.jpg" />
-                    <br />
-                    As a convention it is a good practice to store the files under the folder named: Assets
-                    <br />
-                    <img src="/EV5.Samples-Assets.Tutorial.EFS.EmbeddedHtmlResult.Controller.PNG" />
-                </div>
-            </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading">Criating Embedded File System</div>
-                <div class="panel-body">
-                    In your web application use the following code in your startup class to create a simulated file system that points to the Assets library in your Class Library project.
-
-                    <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#57a64a;">//mark&nbsp;the&nbsp;composite&nbsp;providers&nbsp;preferably&nbsp;not&nbsp;one&nbsp;by&nbsp;one,&nbsp;but&nbsp;together&nbsp;at&nbsp;once</span>
+                        <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#57a64a;">//mark&nbsp;the&nbsp;composite&nbsp;providers&nbsp;preferably&nbsp;not&nbsp;one&nbsp;by&nbsp;one,&nbsp;but&nbsp;together&nbsp;at&nbsp;once</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">webOriginalProvider</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:gainsboro;">_env</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">WebRootFileProvider</span><span style="color:gainsboro;">;</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">embeddedProvider</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:gainsboro;">EV5EmbeddedFileProvider</span><span style="color:gainsboro;">(</span><span style="color:#569cd6;">typeof</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">SamplesEmbeddedPlugin</span><span style="color:gainsboro;">)</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Assembly</span><span style="color:gainsboro;">,</span>&nbsp;<span style="color:#d69d85;">&quot;EV5.Samples-&quot;</span><span style="color:gainsboro;">);</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">webCompositeProvider</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:gainsboro;">CompositeFileProvider</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">webOriginalProvider</span><span style="color:gainsboro;">,</span>&nbsp;<span style="color:gainsboro;">embeddedProvider</span><span style="color:gainsboro;">);</span>
@@ -76,26 +70,25 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">contentCompositeProvider</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:gainsboro;">CompositeFileProvider</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">contentOriginalProvider</span><span style="color:gainsboro;">,</span>&nbsp;<span style="color:gainsboro;">embeddedProvider</span><span style="color:gainsboro;">);</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">_env</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ContentRootFileProvider</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:gainsboro;">contentCompositeProvider</span><span style="color:gainsboro;">;</span></pre>
 
-                    Here you are specifying that the "EV5.Samples-" prefix will refer to the embedded resources inside your dll.
-                </div>
-            </div>
-            <div class="panel panel-info">
-                <div class="panel-heading">Link Image or other resources from the embedded file system.</div>
-                <div class="panel-body">
-                    To create a link to an embedded resource, such as an image file, you have to start with the registered path: "/EVE.Mvc.Samples.Embedded/Assets" and then follow with the file location inside the Assets folder in your project : "/LandingPage/img/ipad.png".
-                    Here is the link code to this image:
-                    <a href="/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg">
-                        <img src="/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg" style="height: 30px;">
-                    </a>
-                    <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg&quot;</span>&nbsp;<span style="color:#9cdcfe;">style</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;</span><span style="color:#9cdcfe;">height</span>:&nbsp;<span style="color:#c8c8c8;">30px</span>;<span style="color:#c8c8c8;">&quot;</span><span style="color:gray;">&gt;</span>
+                        Here you are specifying that the "EV5.Samples-" prefix will refer to the embedded resources inside your dll.
+                    </p>
+                    <p>
+                        To create a link to an embedded resource, such as an image file, you have to start with the registered path: "/EVE.Mvc.Samples.Embedded/Assets" and then follow with the file location inside the Assets folder in your project : "/LandingPage/img/ipad.png".
+                        Here is the link code to this image:
+                        <a href="/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg">
+                            <img src="/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg" style="height: 30px;">
+                        </a>
+                        <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.img.team.1.jpg&quot;</span>&nbsp;<span style="color:#9cdcfe;">style</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;</span><span style="color:#9cdcfe;">height</span>:&nbsp;<span style="color:#c8c8c8;">30px</span>;<span style="color:#c8c8c8;">&quot;</span><span style="color:gray;">&gt;</span>
 </pre>
+                    </p>
                 </div>
             </div>
+
 
             <hr />
         </main>
         <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
+            <p>&copy; 2021 - EV5.Mvc</p>
         </footer>
     </div>
 
