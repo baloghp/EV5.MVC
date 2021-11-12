@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.Processor", "EV5.Mv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.MEF", "EV5.Mvc.MEF\EV5.Mvc.MEF.csproj", "{42AA43AF-8C02-4664-948E-B85873319843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Samples.Embedded", "EV5.Samples.Embedded\EV5.Samples.Embedded.csproj", "{34757002-45FD-4576-AB44-A50FAE83A7B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Samples.Embedded", "EV5.Samples.Embedded\EV5.Samples.Embedded.csproj", "{34757002-45FD-4576-AB44-A50FAE83A7B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

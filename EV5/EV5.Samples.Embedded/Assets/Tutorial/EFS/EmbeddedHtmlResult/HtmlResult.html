@@ -3,156 +3,110 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVE.Mvc Tutorial 2 - Controller &Aacute; HtmlResult</title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
-
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EV5TestWebApp</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">EV5TestWebApp</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="/">EVE.Mvc</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-
-                    <li><a href="/Home/Contact">Contact</a></li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-
-
-
-        <div class="jumbotron">
-            <br />
-            <p class="lead">Creating a Controller in you project and Returning an embedded Html as ActionResult</p>
-        </div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Create a controller and an Action</div>
-            <div class="panel-body">
-                In your Class Library project you can create a Controller and the corresponding Action.
-                <br />
-                <img src="/EVE.Mvc.Samples.Embedded/Assets/Tutorial/EFS/EmbeddedHtmlResult/Controller.PNG" />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SamplesController</span>&nbsp;:&nbsp;<span style="color:#4ec9b0;">Controller</span>
-&nbsp;&nbsp;&nbsp;{
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RetrieveHtmlResult()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedHtmlStringResult</span>(<span style="color:#d69d85;">&quot;EVE.Mvc.Samples.Embedded.Assets.LandingPage.index2.html&quot;</span>,&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>GetType()<span style="color:#b4b4b4;">.</span>Assembly);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;}</pre>
-
-                We're going to return an ActionResult here that contains the html for the Landing Page, but first we need to prepare the web applicaiton to be able to find this controller, and the landing page html to referr to the embedded file system for resoures.
-            </div>
-        </div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Change links in the Landing page to point to the Embedded File system</div>
-            <div class="panel-body">
-                You need to modify the follwoing links in the Index.html of the Landing Page to refer to the Embedded File system.
-                <div class="row">
-                    <div class="col-md-6">
-                        Original
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Core&nbsp;CSS&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;css/bootstrap.min.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Custom&nbsp;CSS&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;css/landing-page.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Custom&nbsp;Fonts&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;font_awesome/css/font-awesome.min.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;text/css&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img/ipad.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img/dog.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img/phones.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;jQuery&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;js/jquery.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Core&nbsp;JavaScript&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;js/bootstrap.min.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
-</pre>
-                    </div>
-                    <div class="col-md-6">
-                        Modified
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Core&nbsp;CSS&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/css/bootstrap.min.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Custom&nbsp;CSS&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/css/landing-page.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Custom&nbsp;Fonts&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/font_awesome/css/font-awesome.min.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;text/css&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/img/ipad.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/img/dog.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;img-responsive&quot;</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/img/phones.png&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span><span style="color:gray;">&gt;</span>
-</pre>
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;jQuery&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/js/jquery.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Core&nbsp;JavaScript&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/js/bootstrap.min.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
-</pre>
-                    </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
+    </header>
+    <div class="container ">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Creating a Controller in you project and Returning an embedded Html as ActionResult</h2>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">Register your controller in your Web application</div>
-            <div class="panel-body">
-                To register the new controller in your web project to a particular route use the following code:
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;">routes<span style="color:#b4b4b4;">.</span>MapRoute(<span style="color:#d69d85;">&quot;EVE.Mvc.Samples.Embedded&quot;</span>,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d69d85;">&quot;Plugins/EmbeddedSample/{controller}/{action}&quot;</span>,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">new</span>&nbsp;{&nbsp;controller&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;Samples&quot;</span>,&nbsp;action&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;RetrieveHtmlResult&quot;</span>&nbsp;},
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">new</span>[]&nbsp;{&nbsp;<span style="color:#d69d85;">&quot;&nbsp;EVE.Mvc.Samples.Embedded.Controllers&quot;</span>&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</pre>
-            </div>
-        </div>
+                    <h3>Create a controller and an Action</h3>
+                    <p>
+                        In your Class Library project you can create a Controller and the corresponding Action.
+                        <br/>
+                        <img src="/EV5.Samples-Assets/Tutorial/EFS/EmbeddedHtmlResult/Controller.PNG" />
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EV5<span style="color:#b4b4b4;">.</span>Samples<span style="color:#b4b4b4;">.</span>Embedded<span style="color:#b4b4b4;">.</span>Controllers
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SamplesController</span>&nbsp;:&nbsp;Controller
+&nbsp;&nbsp;&nbsp;&nbsp;{
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;ActionResult&nbsp;<span style="color:#dcdcaa;">RetrieveHtmlResult</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;EmbeddedHtmlStringResult(<span style="color:#d69d85;">&quot;EV5.Samples.Embedded.Assets.LandingPage.index2.html&quot;</span>,&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>GetType()<span style="color:#b4b4b4;">.</span>Assembly);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;ActionResult&nbsp;<span style="color:#dcdcaa;">RetrieveSimpleRazor</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;/EV5.Samples.Embedded/Views/Sample/index.cshtml&quot;</span>);
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+}
+</pre>
+                        We're going to return an ActionResult here that contains the html for the Landing Page, but first we need to prepare the web applicaiton to be able to find this controller, and the landing page html to referr to the embedded file system for resoures.
+                    </p>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">Use EmbeddedHtmlStringResult in your action</div>
-            <div class="panel-body">
-                In order to retrieve an embedded html as an ActionResult use the EmbeddedHtmlResult class. You have to pass the Assembly or the FullName of the Assembly that contains the html, and the resource name that refers to the html.
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RetrieveHtmlResult()
+
+                    <h3>Register your controller in your Web application</h3>
+                    <p>
+                        To register the new controller in your web project to a particular route use the following code in the CConfigureServices method of the Startup class:
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">services<span style="color:#b4b4b4;">.</span>AddControllers()<span style="color:#b4b4b4;">.</span>PartManager<span style="color:#b4b4b4;">.</span>ApplicationParts<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;AssemblyPart(<span style="color:#569cd6;">typeof</span>(SamplesEmbeddedPlugin)<span style="color:#b4b4b4;">.</span>Assembly));
+</pre>
+                    </p>
+                    <h3>Change links in the Landing page to point to the Embedded File system</h3>
+                    <p>
+                        You need to modify the asset reference links in the Index.html of the Landing Page to refer to the Embedded File system.
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;Favicon--&gt;</span>
+&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;image/x-icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.favicon.ico&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;<span style="color:#57a64a;">&lt;!--&lt;link&nbsp;rel=&quot;icon&quot;&nbsp;type=&quot;image/x-icon&quot;&nbsp;href=&quot;assets/favicon.ico&quot;&nbsp;/&gt;--&gt;</span></pre>
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.css.styles.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&lt;link&nbsp;href=&quot;css/styles.css&quot;&nbsp;rel=&quot;stylesheet&quot;&nbsp;/&gt;--&gt;</span>
+</pre>
+                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.img.navbar-logo.svg&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;...&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;<span style="color:#57a64a;">&lt;!--&lt;img&nbsp;src=&quot;assets/img/navbar-logo.svg&quot;&nbsp;alt=&quot;...&quot;&nbsp;/&gt;--&gt;</span>
+</pre>
+                        Etc... the same way for all referenced resources
+                    </p>
+
+                    <h3>Use EmbeddedHtmlStringResult in your action</h3>
+                    <p>
+                        In order to retrieve an embedded html as an ActionResult use the EmbeddedHtmlResult class. You have to pass the Assembly or the FullName of the Assembly that contains the html, and the resource name that refers to the html.
+                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RetrieveHtmlResult()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedHtmlStringResult</span>(<span style="color:#d69d85;">&quot;EVE.Mvc.Samples.Embedded.Assets.LandingPage.index2.html&quot;</span>,&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>GetType()<span style="color:#b4b4b4;">.</span>Assembly);
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
 
-                The following link will invoke this controller action: 
-                <a href="/Plugins/EmbeddedSample/Samples/RetrieveHtmlResult">/Plugins/EmbeddedSample/Samples/RetrieveHtmlResult</a>
+                        The following link will invoke this controller action:
+                        <a href="/Samples/RetrieveHtmlResult">/Samples/RetrieveHtmlResult</a>
+                    </p>
+                </div>
             </div>
-        </div>
-        
+        </main>
 
         <hr />
         <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
+            <p>&copy; 2021 - EV5.Mvc</p>
         </footer>
     </div>
 
-    <script src="/Scripts/jquery-2.1.4.js"></script>
-
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/js/site.js" asp-append-version="true"></script>
 
 
 

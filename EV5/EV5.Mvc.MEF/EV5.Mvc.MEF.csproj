@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Composition.AttributedModel" Version="5.0.1" />
-    <PackageReference Include="System.Composition.Convention" Version="5.0.1" />
-    <PackageReference Include="System.Composition.Hosting" Version="5.0.1" />
-    <PackageReference Include="System.Composition.Runtime" Version="5.0.1" />
-    <PackageReference Include="System.Composition.TypedParts" Version="5.0.1" />
+    <PackageReference Include="System.Composition.AttributedModel" Version="6.0.0" />
+    <PackageReference Include="System.Composition.Convention" Version="6.0.0" />
+    <PackageReference Include="System.Composition.Hosting" Version="6.0.0" />
+    <PackageReference Include="System.Composition.Runtime" Version="6.0.0" />
+    <PackageReference Include="System.Composition.TypedParts" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

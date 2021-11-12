@@ -4,6 +4,14 @@
     ViewData["Title"] = "Home page";
 }
 
+<style type="text/css">
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+        text-decoration: line-through;
+        
+    }
+</style>
 <div class="text-center">
     <h1 class="display-4">Welcome to EV5.Mvc</h1>
    
@@ -34,10 +42,10 @@
             The landing page is provided by <a href="http://startbootstrap.com/template-overviews/landing-page/">StartBootstrap</a>.
         </p>
         <p>
-            The sample app will show how to create a plugin (EVE.Mvc.Samples.Embedded) via EVE.Mvc that includes only 1 dll and it is able to show the landing page similar to a static html.
+            The sample app will show how to create a plugin (EV5.Mvc.Samples.Embedded) via EV5.Mvc that includes only 1 dll and it is able to show the landing page similar to a static html.
         </p>
         <p>
-            The EVE.Mvc.Samples.ViewEngine plugin project shows the same landing page, but this time using the EmbeddedViewEngine.
+            The EV5.Mvc.Samples.ViewEngine plugin project shows the same landing page, but this time using the EmbeddedViewEngine.
             Actual MVC views are used, which have a master page and are using partial views for specific parts of the page.
         </p>
     </div>
@@ -51,7 +59,7 @@
         <ul class="nav nav-stacked" style="display: block;">
             <li><a href="/Tutorial/RetrieveHtml">1. Setting up the Embedded File System and retrieving an image.</a></li>
             <li><a href="/Tutorial/HtmlResult">2. Retrieve an HTML using the Embedded File system, or EmbeddedHtmlStringResult</a></li>
-            <li><a href="/Tutorial/RazorResult">3. Using embedded Razor views</a></li>
+            <li><a href="/Tutorial/RazorResult" class="not-active">3. Using embedded Razor views</a></li>
         </ul>
 
     </div>
@@ -61,9 +69,9 @@
             Create a drag and drop plugin.
         </p>
         <ul class="nav nav-stacked" style="display: block;">
-            <li><a href="/Tutorial/CreatePlugin">4. Creating EmbeddedPlugins using IEmbeddedPlugin interface </a></li>
-            <li><a href="/Tutorial/InitializePlugin">5. Initializing plugins for your application</a></li>
-            <li><a href="/Tutorial/MEFCatalog">6. Application MEF catalog</a></li>
+            <li><a href="/Tutorial/CreatePlugin" class="not-active">4. Creating EmbeddedPlugins using IEmbeddedPlugin interface </a></li>
+            <li><a href="/Tutorial/InitializePlugin" class="not-active">5. Initializing plugins for your application</a></li>
+            <li><a href="/Tutorial/MEFCatalog" class="not-active">6. Application MEF catalog</a></li>
 
         </ul>
 
@@ -110,7 +118,7 @@
             <div class="col-md-6">
                 <ul class="nav nav-stacked navblock" style="display: block;">
                     <li ><a href="/EmbeddedServices/GetActions">1. Get All available actions in the application</a></li>
-                    <li ><a href="/EmbeddedServices/GetContentRootDirectoryContents">2. Get ContentRootFileProvider Files</a></liclass="navblock">
+                    <li ><a href="/EmbeddedServices/GetContentRootDirectoryContents">2. Get ContentRootFileProvider Files</a></li class="navblock">
                     <li ><a href="/EmbeddedServices/GetWebRootDirectoryContents">3. Get WebRootFileProvider Files</a></li>
                 </ul>
             </div>

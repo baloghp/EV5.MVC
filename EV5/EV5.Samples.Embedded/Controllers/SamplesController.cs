@@ -13,13 +13,13 @@ namespace EV5.Samples.Embedded.Controllers
 
         public ActionResult RetrieveHtmlResult()
         {
-            return new EmbeddedHtmlStringResult("EV5.Samples.Embedded.Assets.LandingPage.index2.html", this.GetType().Assembly);
+            return new EmbeddedHtmlStringResult("EV5.Samples.Embedded.Assets.LandingPage.index.html", this.GetType().Assembly);
         }
 
         public ActionResult RetrieveSimpleRazor()
         {
 
-            return View("/EV5.Samples.Embedded/Views/Sample/index.cshtml");
+            return View("EV5.Samples-Views.Sample.Index.cshtml");
 
         }
     }

@@ -201,6 +201,10 @@ namespace EV5.Mvc
         //     when the absolute or relative path of the view is known.
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
         {
+            if (!String.IsNullOrEmpty(ViewNamePrefix))
+            {
+                if (!viewName.StartsWith(ViewNamePrefix)) return ViewEngineResult.NotFound(viewName, new string[] { viewName });
+            }
             IEmbeddedView view = GetView(viewName);
             if (view != null)
             {
@@ -236,7 +240,24 @@ namespace EV5.Mvc
         //     The Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult of locating the view.
         public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
         {
-            throw new NotImplementedException();
+            if (!String.IsNullOrEmpty(viewPath))
+            {
+                if (!viewPath.StartsWith(ViewNamePrefix)) return ViewEngineResult.NotFound(viewPath, new string[] { viewPath });
+            }
+            IEmbeddedView view = GetView(viewPath);
+            if (view != null)
+            {
+                view.ViewName = viewPath;
+                //set master name only if there is one specified,
+                //otherwise let the view try to figure out by its attributes
+                //if (!string.IsNullOrWhiteSpace(masterName))
+                //{
+                //    view.MasterName = masterName;
+                //}
+
+                return ViewEngineResult.Found(viewPath, view);
+            }
+            return ViewEngineResult.NotFound(viewPath, new string[] { viewPath });
         }
     }
 
