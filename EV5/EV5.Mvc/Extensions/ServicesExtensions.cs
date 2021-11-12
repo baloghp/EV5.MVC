@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,19 +26,20 @@ namespace EV5.Mvc.Extensions
 
         public static IServiceCollection AddEV5DefaultServices(this IServiceCollection services)
         {
-            ServiceProvider = services.BuildServiceProvider();
 
+           
             services.AddSingleton<IDocumentHelperFactory>(new HADocumentHelperFactory());
             services.AddTransient<IMarkupProvider, EmbeddedMarkupProvider>();
             services.AddSingleton<IViewClassProvider>(new MEFViewClassProvider());
-            
-            
+
+            ServiceProvider = services.BuildServiceProvider();
+
             return services;
         }
 
 
         public static IMarkupProvider MarkupProvider { get => ServiceProvider.GetService<IMarkupProvider>(); }
-        public static IViewClassProvider ViewClassProvider { get => ServiceProvider.GetService<IViewClassProvider>(); }
+        public static IViewClassProvider ViewClassProvider { get => ServiceProvider.GetRequiredService<IViewClassProvider>(); }
 
         public static IHtmlHelper HtmlHelper { get => ServiceProvider.GetService<IHtmlHelper>(); }
 

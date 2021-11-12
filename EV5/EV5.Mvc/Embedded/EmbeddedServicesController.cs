@@ -32,10 +32,11 @@ namespace EV5.Mvc.Embedded
        
 
         [HttpGet]
-        public ActionResult<List<IFileInfo>> GetContentRootDirectoryContents()
+        public JsonResult GetContentRootDirectoryContents()
         {
             var contents = _env.ContentRootFileProvider.GetDirectoryContents(string.Empty);
-            return contents.ToList();
+            return new JsonResult(contents);
+            
             
         }
         public ActionResult<List<IFileInfo>> GetWebRootDirectoryContents()

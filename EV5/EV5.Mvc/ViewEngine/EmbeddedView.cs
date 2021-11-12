@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace EV5.Mvc
 {
@@ -180,14 +181,15 @@ namespace EV5.Mvc
 
         //ViewDataDictionary ViewData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string Path => throw new NotImplementedException();
+        public string Path => "";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedView{T}"/> class.
         /// </summary>
         public EmbeddedView()
         {
-            this.ViewData = new ViewDataDictionary(null);
+            
+            //this.ViewData = new ViewDataDictionary<dynamic>(null, new { });
         }
 
         public async  Task RenderAsync(ViewContext context)
@@ -206,6 +208,11 @@ namespace EV5.Mvc
             //HtmlDocument document;
 
             //init context sensitive fields
+            var syncIOFeature = viewContext.HttpContext.Features.Get<IHttpBodyControlFeature>();
+            if (syncIOFeature != null)
+            {
+                syncIOFeature.AllowSynchronousIO = true;
+            }
             TextWriter writer = viewContext.Writer;
             this.ViewContext = viewContext;
             this.ViewData = viewContext.ViewData;

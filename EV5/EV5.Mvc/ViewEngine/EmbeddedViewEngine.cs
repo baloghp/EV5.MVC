@@ -1,4 +1,5 @@
 ﻿using EV5.Mvc.Extensions;
+using EV5.Mvc.Services;
 using EV5.Mvc.ViewEngine;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
@@ -22,18 +23,16 @@ namespace EV5.Mvc
         /// <value>
         /// The view name prefix.
         /// </value>
-        public string ViewNamePrefix { get; set; }
+        public readonly string ViewNamePrefix;
 
-       
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedViewEngine"/> class.
         /// </summary>
         /// <param name="viewNamePrefix">The view name prefix.</param>
-        public EmbeddedViewEngine(string viewNamePrefix = ""
-            )
+        public EmbeddedViewEngine( string viewNamePrefix = "")
         {
-           
+            
             ViewNamePrefix = viewNamePrefix;
 
         }
@@ -248,6 +247,7 @@ namespace EV5.Mvc
             if (view != null)
             {
                 view.ViewName = viewPath;
+                
                 //set master name only if there is one specified,
                 //otherwise let the view try to figure out by its attributes
                 //if (!string.IsNullOrWhiteSpace(masterName))

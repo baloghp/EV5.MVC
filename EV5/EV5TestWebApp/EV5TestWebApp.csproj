@@ -64,6 +64,7 @@
     <ProjectReference Include="..\EV5.Samples.Embedded\EV5.Samples.Embedded.csproj">
       <Private>true</Private>
     </ProjectReference>
+    <ProjectReference Include="..\EV5.Samples.ViewEngine\EV5.Samples.ViewEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">

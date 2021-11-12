@@ -12,6 +12,8 @@ namespace EV5.Mvc
         IEnumerable<IDocumentNode> SelectNodes(string xpath);
         IDocumentNode SelectSingleNode(string xpath);
         void Save(TextWriter writer);
+        Task SaveAsync(TextWriter writer);
+
         void LoadHtml(string v);
     }
 }

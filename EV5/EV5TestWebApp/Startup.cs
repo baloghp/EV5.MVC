@@ -4,6 +4,7 @@ using EV5.Mvc.Embedded;
 using EV5.Mvc.Extensions;
 using EV5.Mvc.MEF;
 using EV5.Samples.Embedded;
+using EV5.Samples.ViewEngine;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -31,28 +32,32 @@ namespace EV5TestWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEV5DefaultServices();
-            services.AddEV5CompositionServices(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory,"EV5*.dll"));
+            
             services.AddRazorPages()
-                .AddViewOptions(o => o.ViewEngines.Insert(0, new EmbeddedViewEngine("EV5-")))
+                .AddViewOptions(o => o.ViewEngines.Insert(0, new EmbeddedViewEngine("eve-")))
                 ;
-            //all the changes needed to do once we make plugins
-            //register EV5 services
-            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(EmbeddedViewEngine).Assembly));
-
+           
+            //plugins
             services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(SamplesEmbeddedPlugin).Assembly));
+            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(SamplesViewEnginePlugin).Assembly));
             //mark the composite providers preferably not one by one, but together at once
             var webOriginalProvider = _env.WebRootFileProvider;
-            var embeddedProvider = new EV5EmbeddedFileProvider(typeof(SamplesEmbeddedPlugin).Assembly, "EV5.Samples-");
-            var webCompositeProvider = new CompositeFileProvider(webOriginalProvider, embeddedProvider);
+            var samplesembeddedProvider = new EV5EmbeddedFileProvider(typeof(SamplesEmbeddedPlugin).Assembly, "EV5.Samples-");
+            var samplesViewengineProvider = new EV5EmbeddedFileProvider(typeof(SamplesViewEnginePlugin).Assembly, "EV5.VE-");
+            var webCompositeProvider = new CompositeFileProvider(webOriginalProvider, samplesembeddedProvider, samplesViewengineProvider);
             _env.WebRootFileProvider= webCompositeProvider;
 
             var contentOriginalProvider = _env.ContentRootFileProvider;
-            var contentCompositeProvider = new CompositeFileProvider(contentOriginalProvider, embeddedProvider);
+            var contentCompositeProvider = new CompositeFileProvider(contentOriginalProvider, samplesembeddedProvider, samplesViewengineProvider);
             _env.ContentRootFileProvider = contentCompositeProvider;
 
-
+            //all the changes needed to do once we make plugins
+            //register EV5 services
+            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(EmbeddedViewEngine).Assembly));
             services.AddSingleton<IFileProvider>(_env.WebRootFileProvider);
+            services.AddEV5DefaultServices();
+            services.AddEV5CompositionServices(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory, "EV5*.dll"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

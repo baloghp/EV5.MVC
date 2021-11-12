@@ -92,6 +92,11 @@ namespace EV5.Mvc.HtmlAgility
         {
             base.Save(writer);
         }
+        public Task SaveAsync(TextWriter writer)
+        {
+            return Task.Run(() => base.Save(writer));
+            
+        }
 
         public IEnumerable<IDocumentNode> SelectNodes(string xpath)
         {

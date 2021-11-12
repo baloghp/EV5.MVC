@@ -17,10 +17,11 @@ namespace EV5.Mvc.MEF
 
         public static IServiceCollection AddEV5CompositionServices(this IServiceCollection services,  ICompositionHostFactory compositionHostFactory)
         {
-            ServiceProvider = services.BuildServiceProvider();
+           
 
             services.AddSingleton<ICompositionHostFactory>(compositionHostFactory);
             CompositionHost = compositionHostFactory.CreateCompositionHost();
+            ServiceProvider = services.BuildServiceProvider();
             return services;
         }
     }
