@@ -1,47 +1,108 @@
 ﻿
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EV5TestWebApp</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" href="/">EV5TestWebApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container ">
-        <main role="main" class="pb-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Creating a Controller in you project and Returning an embedded Html as ActionResult</h2>
 
-                    <h3>Create a controller and an Action</h3>
-                    <p>
-                        In your Class Library project you can create a Controller and the corresponding Action.
-                        <br/>
-                        <img src="/EV5.Samples-Assets/Tutorial/EFS/EmbeddedHtmlResult/Controller.PNG" />
-                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EV5<span style="color:#b4b4b4;">.</span>Samples<span style="color:#b4b4b4;">.</span>Embedded<span style="color:#b4b4b4;">.</span>Controllers
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Inner Page - Arsha Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha - v4.3.0
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">EV5.MVC</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a class="active nav-link scrollto" href="/index#hero">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#about">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#tutorials">Turorial</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#demos">Demos</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="getstarted scrollto" href="/index#about">Get Started</a>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <ol>
+                    <li><a href="/index">Home</a></li>
+                    <li>Creating a Controller in you project and Returning an embedded Html as ActionResult</li>
+                </ol>
+                <h2>Creating a Controller in you project and Returning an embedded Html as ActionResult</h2>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Create a controller and an Action</h3>
+                        <p>
+                            In your Class Library project you can create a Controller and the corresponding Action.
+                            <br />
+                            <img src="/EV5.Samples-Assets/Tutorial/EFS/EmbeddedHtmlResult/Controller.PNG" />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EV5<span style="color:#b4b4b4;">.</span>Samples<span style="color:#b4b4b4;">.</span>Embedded<span style="color:#b4b4b4;">.</span>Controllers
 {
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SamplesController</span>&nbsp;:&nbsp;Controller
 &nbsp;&nbsp;&nbsp;&nbsp;{
@@ -61,54 +122,102 @@
  
 }
 </pre>
-                        We're going to return an ActionResult here that contains the html for the Landing Page, but first we need to prepare the web applicaiton to be able to find this controller, and the landing page html to referr to the embedded file system for resoures.
-                    </p>
+                            We're going to return an ActionResult here that contains the html for the Landing Page, but first we need to prepare the web applicaiton to be able to find this controller, and the landing page html to referr to the embedded file system for resoures.
+                        </p>
 
 
-                    <h3>Register your controller in your Web application</h3>
-                    <p>
-                        To register the new controller in your web project to a particular route use the following code in the CConfigureServices method of the Startup class:
-                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">services<span style="color:#b4b4b4;">.</span>AddControllers()<span style="color:#b4b4b4;">.</span>PartManager<span style="color:#b4b4b4;">.</span>ApplicationParts<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;AssemblyPart(<span style="color:#569cd6;">typeof</span>(SamplesEmbeddedPlugin)<span style="color:#b4b4b4;">.</span>Assembly));
+                        <h3>Register your controller in your Web application</h3>
+                        <p>
+                            To register the new controller in your web project to a particular route use the following code in the CConfigureServices method of the Startup class:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">services<span style="color:#b4b4b4;">.</span>AddControllers()<span style="color:#b4b4b4;">.</span>PartManager<span style="color:#b4b4b4;">.</span>ApplicationParts<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;AssemblyPart(<span style="color:#569cd6;">typeof</span>(SamplesEmbeddedPlugin)<span style="color:#b4b4b4;">.</span>Assembly));
 </pre>
-                    </p>
-                    <h3>Change links in the Landing page to point to the Embedded File system</h3>
-                    <p>
-                        You need to modify the asset reference links in the Index.html of the Landing Page to refer to the Embedded File system.
-                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;Favicon--&gt;</span>
+                        </p>
+                        <h3>Change links in the Landing page to point to the Embedded File system</h3>
+                        <p>
+                            You need to modify the asset reference links in the Index.html of the Landing Page to refer to the Embedded File system.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#57a64a;">&lt;!--&nbsp;Favicon--&gt;</span>
 &nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;image/x-icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.favicon.ico&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;<span style="color:#57a64a;">&lt;!--&lt;link&nbsp;rel=&quot;icon&quot;&nbsp;type=&quot;image/x-icon&quot;&nbsp;href=&quot;assets/favicon.ico&quot;&nbsp;/&gt;--&gt;</span></pre>
-                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.css.styles.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&lt;link&nbsp;href=&quot;css/styles.css&quot;&nbsp;rel=&quot;stylesheet&quot;&nbsp;/&gt;--&gt;</span>
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.css.styles.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&lt;link&nbsp;href=&quot;css/styles.css&quot;&nbsp;rel=&quot;stylesheet&quot;&nbsp;/&gt;--&gt;</span>
 </pre>
-                        <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.img.navbar-logo.svg&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;...&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;<span style="color:#57a64a;">&lt;!--&lt;img&nbsp;src=&quot;assets/img/navbar-logo.svg&quot;&nbsp;alt=&quot;...&quot;&nbsp;/&gt;--&gt;</span>
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">img</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.Samples-Assets.LandingPage.assets.img.navbar-logo.svg&quot;</span>&nbsp;<span style="color:#9cdcfe;">alt</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;...&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>&nbsp;<span style="color:#57a64a;">&lt;!--&lt;img&nbsp;src=&quot;assets/img/navbar-logo.svg&quot;&nbsp;alt=&quot;...&quot;&nbsp;/&gt;--&gt;</span>
 </pre>
-                        Etc... the same way for all referenced resources
-                    </p>
+                            Etc... the same way for all referenced resources
+                        </p>
 
-                    <h3>Use EmbeddedHtmlStringResult in your action</h3>
-                    <p>
-                        In order to retrieve an embedded html as an ActionResult use the EmbeddedHtmlResult class. You have to pass the Assembly or the FullName of the Assembly that contains the html, and the resource name that refers to the html.
-                        <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RetrieveHtmlResult()
+                        <h3>Use EmbeddedHtmlStringResult in your action</h3>
+                        <p>
+                            In order to retrieve an embedded html as an ActionResult use the EmbeddedHtmlResult class. You have to pass the Assembly or the FullName of the Assembly that contains the html, and the resource name that refers to the html.
+                            <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RetrieveHtmlResult()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedHtmlStringResult</span>(<span style="color:#d69d85;">&quot;EVE.Mvc.Samples.Embedded.Assets.LandingPage.index2.html&quot;</span>,&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>GetType()<span style="color:#b4b4b4;">.</span>Assembly);
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
 
-                        The following link will invoke this controller action:
-                        <a href="/Samples/RetrieveHtmlResult">/Samples/RetrieveHtmlResult</a>
-                    </p>
+                            The following link will invoke this controller action:
+                            <a href="/Samples/RetrieveHtmlResult">/Samples/RetrieveHtmlResult</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </main>
+        </section>
 
-        <hr />
-        <footer>
-            <p>&copy; 2021 - EV5.Mvc</p>
-        </footer>
-    </div>
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3><strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright
+                <strong><span>Arsha</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+                Designed by
+                <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
 
-    <script src="/lib/jquery/dist/jquery.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/js/site.js" asp-append-version="true"></script>
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+    <!-- Vendor JS Files -->
+    <script src="/vendor/aos/aos.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/vendor/php-email-form/validate.js"></script>
+    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/vendor/waypoints/noframework.waypoints.js"></script>
 
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
 
 </body>
+
 </html>

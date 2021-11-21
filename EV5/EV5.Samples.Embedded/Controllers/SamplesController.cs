@@ -16,12 +16,7 @@ namespace EV5.Samples.Embedded.Controllers
             return new EmbeddedHtmlStringResult("EV5.Samples.Embedded.Assets.LandingPage.index.html", this.GetType().Assembly);
         }
 
-        public ActionResult RetrieveSimpleRazor()
-        {
-
-            return View("EV5.Samples-Views.Sample.Index.cshtml");
-
-        }
+        
     }
 
 }

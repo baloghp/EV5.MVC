@@ -23,7 +23,7 @@
     </div>
 </section>
 <!-- End Hero -->
-<!-- ======= About Us Section ======= -->
+<!-- ======= About Section ======= -->
 <section id="about" class="about">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
@@ -61,7 +61,7 @@
                         <i class="ri-check-double-line"></i>Opt-in view processing
                     </li>
                 </ul>
-                <a href="#" class="btn-learn-more">Learn More</a>
+                @*<a href="#" class="btn-learn-more">Learn More</a>*@
             </div>
         </div>
     </div>
@@ -75,40 +75,43 @@
                 <div class="content">
                     <h3>Main Features of <strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                        EV5.Mvc is trying to promote a clean transparent apporach to constructung the html markup, where only the necessary processing is happening. It is easy to deploy to and extend web applications without interfiering with existing code, thus it is ideal for quick prototyping and fast project setup.
                     </p>
                 </div>
-                <div class="accordion-list">
+                <div class="accordion-list" id="featuresAcc1">
                     <ul>
                         <li>
                             <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Extending an existing MVC app <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-1" class="collapse show content" data-bs-parent="#featuresAcc1">
                                 <p>
-                                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                                    Extedning an existing ASP.NET MVC application with EV5.Mvc is easy, and it will not need any static file deployment. Adding new functionality and endpoints to an existing MVC app can be as easy as a dll drop.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Full separation + Full application control <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-2" class="collapse content" data-bs-parent="#featuresAcc1">
                                 <p>
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                                    It is important to defend your applications from any dll to be loaded to the application domain. Thus EV5.Mvc contains the necessary hooks and API for you to make sure only calid and securely signed code. It is still your responsibility ti use these features, but safety first is EV5.Mvc's primary concern too.
+                                    While EV5.Mvc can extend your application in a very encapsulated manner, it is always the main application that is in control to choose which parts to use.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Rendering HTML simply <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-3" class="collapse content" data-bs-parent="#featuresAcc1">
                                 <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                    For most modern applications HTML markup needs litle modification and processing. Client side javascript libraries are fully adept at manipulating the UI from client side.
+                                    Thus the initial markup rendering needs to be simple and effective. EV5.Mvc still uses the notion of master page, partial views and sections, but these are location independent. 
+                                    No special markup folder or file structure is needed, you are free to place markup templates to any location within your project.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span> Templates without spaghetti code <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-4" class="collapse content" data-bs-parent="#featuresAcc1">
                                 <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                    EV5.Mvc markup templates are well formed XMLs files, partial HTML code. No mix of imparative code and declarative markup is needed. Markup files are processed and understood as what they are: HTML snippets, nothing less and nothing more.
                                 </p>
                             </div>
                         </li>
@@ -119,44 +122,49 @@
         </div>
     </div>
 </section>
-<section id="skills" class="why-us section-bg">
+<section id="features2" class="why-us section-bg">
     <div class="container-fluid" data-aos="fade-up">
         <div class="row">
             <div class="col-lg-5 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
                 <img src="/img/skills.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-7 pt-4 pt-lg-0  order-2 order-lg-1" data-aos="fade-left" data-aos-delay="100">
-                <div class="accordion-list">
+                <div class="accordion-list" id="featuresAcc2">
                     <ul>
                         <li>
                             <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-5"><span>05</span> True to designer output <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-5" class="collapse show" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-5" class="collapse show content" data-bs-parent="#featuresAcc2">
                                 <p>
-                                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                                    Web designer output is usually nicely structured, however due to the processing needs and required folder structures it is often disected to unrecognizable pieces in the web applications.
+                                    EV5.Mvc markup templates can and should fully conform to the designer page sections, without even the need to mix them with imparative code. 
+                                    Original designer markup is only decorated with extra attributes to guide processing where needed.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-6" class="collapsed"><span>06</span> Access HTML as HTML <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-6" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-6" class="collapse content" data-bs-parent="#featuresAcc2">
                                 <p>
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                                    Whenever server processing of the view is needed the view is accessed and understood as HTML and not as an object structure, thus eliveating the need of serializations and additional formatting.
+                                    Debugging of the EV5.Mvc views is simple as the processing code sees the same content as the browser.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-7" class="collapsed"><span>07</span> Opt-in view processing<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-7" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-7" class="collapse content" data-bs-parent="#featuresAcc2">
                                 <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                    EV5.Mvc is not an all knowing view-engine, that would spend time on analysing the and modifying the view for every possible current and future feature, such as data-binding, localization, custom extensions etc...
+                                    With the fast evolution of client side javasript UI libaries many of these features are not needed. In EV5.Mvc you have to opt-in to features your views will use, thus you can optimize the perfromance, clean your code and use only what is needed during your processing.
+
                                 </p>
                             </div>
                         </li>
                         <li>
                             <a data-bs-toggle="collapse" data-bs-target="#accordion-list-8" class="collapsed"><span>08</span>Allow extensibility by an easy pattern<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-8" class="collapse" data-bs-parent=".accordion-list">
+                            <div id="accordion-list-8" class="collapse content" data-bs-parent="#featuresAcc2">
                                 <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                    Adding new view processing capablities is easily done via <a href="https://msdn.microsoft.com/en-gb/library/bb383977.aspx" target="_blank" style="display:inline; padding:unset">Extension Methods</a> and <a href="https://en.wikipedia.org/wiki/Fluent_interface#C.23" target="_blank" style="display: inline; padding: unset">fluent interfaces</a>.
                                 </p>
                             </div>
                         </li>
@@ -167,24 +175,23 @@
     </div>
 </section>
 <!-- End Features Section -->
-<!-- ======= Pricing Section ======= -->
+<!-- ======= Tutorials Section ======= -->
 <section id="tutorials" class="pricing">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
             <h2>Tutorials</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>Here you can find the tutorials and articles describing EV5.Mvc. For samples please download the source code.</p>
         </div>
         <div class="row">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="box">
+                <div class="box featured">
                     <h3>Embedded File System</h3>
                     <ul>
 
                         <li><i class="bx bx-check"></i> <a href="/Tutorial/RetrieveHtml">1. Setting up the Embedded File System and retrieving an image.</a></li>
                         <li><i class="bx bx-check"></i> <a href="/Tutorial/HtmlResult">2. Retrieve an HTML using the Embedded File system, or EmbeddedHtmlStringResult</a></li>
-                        <li class="na"><i class="bx bx-check"></i> <a href="/Tutorial/RazorResult" class="not-active">3. Using embedded Razor views</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
             <div class="col-lg-6 mt-6 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
@@ -195,38 +202,38 @@
                         <li><i class="bx bx-check"></i><a href="/Tutorial/InitializePlugin" class="not-active">5. Initializing plugins for your application</a></li>
                         <li><i class="bx bx-check"></i><a href="/Tutorial/MEFCatalog" class="not-active">6. Application MEF catalog</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 mt-6 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
-                <div class="box">
+                <div class="box featured">
                     <h3>View Engine</h3>
                     <ul>
                         <li><i class="bx bx-check"></i><a href="/Tutorial/RegisterViewEngine">7. Register the Embedded View Engine</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/SimpleHtml">8. Simple html view</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/SimpleMaster">9. Simple html view with a MasterPage</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/SimpleMasterAndPartial">10. Simple html view with MasterPage and Partial Views</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/Sections">11. Sections</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/Bundles">12. Bundles</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/TypedViews">13. Typed views</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/DataBinding">14. DataBinding</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/Localization">15. Handling UI resources</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/EveAttributes">16. EVE html attributes</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/ExtendingEve">17. Extending view functionality</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/Tutorial/ShortViewNames">18. Short ViewNames</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/SimpleHtml">8. Simple html view</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/SimpleMaster">9. Simple html view with a MasterPage</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/SimpleMasterAndPartial">10. Simple html view with MasterPage and Partial Views</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/Sections">11. Sections</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/Bundles">12. Bundles</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/TypedViews">13. Typed views</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/DataBinding">14. DataBinding</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/Localization">15. Handling UI resources</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/EveAttributes">16. EVE html attributes</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/ExtendingEve">17. Extending view functionality</a></li>
+                        <li><i class="bx bx-check"></i><a href="/Tutorial/ShortViewNames">18. Short ViewNames</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
             <div class="col-lg-6 mt-6 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-                <div class="box">
+                <div class="box featured">
                     <h3>API and Utilities</h3>
                     <ul>
                         <li><i class="bx bx-check"></i><a href="/EmbeddedServices/GetActions">1. Get All available actions in the application</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/EmbeddedServices/GetContentRootDirectoryContents">2. Get ContentRootFileProvider Files</a></li>
-                        <li><i class="bx bx-check" ></i><a href="/EmbeddedServices/GetWebRootDirectoryContents">3. Get WebRootFileProvider Files</a></li>
+                        <li><i class="bx bx-check"></i><a href="/EmbeddedServices/GetContentRootDirectoryContents">2. Get ContentRootFileProvider Files</a></li>
+                        <li><i class="bx bx-check"></i><a href="/EmbeddedServices/GetWebRootDirectoryContents">3. Get WebRootFileProvider Files</a></li>
                     </ul>
 
                 </div>
@@ -236,8 +243,8 @@
 
     </div>
 </section>
-<!-- End Pricing Section -->
-
+<!-- End Tutorials Section -->
+<!-- ======= Demos Section ======= -->
 <section id="demos" class="portfolio">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
@@ -353,7 +360,7 @@
         </div>
     </div>
 </section>
-<!-- End Portfolio Section -->
+<!-- End Demos Section -->
 <!-- ======= Frequently Asked Questions Section ======= -->
 <!--<section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
@@ -408,11 +415,11 @@
     </div>
 </section>-->
 <!-- End Frequently Asked Questions Section -->
-<!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
+<!-- ======= Download Section ======= -->
+<section id="download" class="contact">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
-            <h2>Contact</h2>
+            <h2>Download</h2>
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
     </div>

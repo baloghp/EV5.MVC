@@ -11,7 +11,7 @@ namespace EV5.Mvc.MEF
 {
     public  static class EV5MefCompositionHost
     {
-        public static IServiceProvider ServiceProvider = null;
+        //public static IServiceProvider ServiceProvider = null;
 
         public static CompositionHost CompositionHost;
 
@@ -21,7 +21,7 @@ namespace EV5.Mvc.MEF
 
             services.AddSingleton<ICompositionHostFactory>(compositionHostFactory);
             CompositionHost = compositionHostFactory.CreateCompositionHost();
-            ServiceProvider = services.BuildServiceProvider();
+            //ServiceProvider = services.BuildServiceProvider();
             return services;
         }
     }

@@ -9,16 +9,6 @@
     <EmbeddedResource Include="Assets\**\*.PNG; Assets\**\*.html; Assets\**\*.jpg; Assets\**\*.ico; Assets\**\*.svg; Assets\**\*.css; Assets\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
-  
-  <ItemGroup>
-    <None Remove="Views\Sample\Index.cshtml" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Sample\Index.cshtml" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj">
       <Private>false</Private>
