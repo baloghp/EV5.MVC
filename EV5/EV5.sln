@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Mvc.MEF", "EV5.Mvc.MEF\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Samples.Embedded", "EV5.Samples.Embedded\EV5.Samples.Embedded.csproj", "{34757002-45FD-4576-AB44-A50FAE83A7B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Samples.ViewEngine", "EV5.Samples.ViewEngine\EV5.Samples.ViewEngine.csproj", "{E9C00E04-2BA4-417A-81B3-E2557B1F9A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Samples.ViewEngine", "EV5.Samples.ViewEngine\EV5.Samples.ViewEngine.csproj", "{E9C00E04-2BA4-417A-81B3-E2557B1F9A80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.Plugin", "EV5.Mvc.Plugin\EV5.Mvc.Plugin.csproj", "{2BAE94E0-E0ED-485B-8432-5F2748ED8D2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +68,10 @@ Global
 		{E9C00E04-2BA4-417A-81B3-E2557B1F9A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9C00E04-2BA4-417A-81B3-E2557B1F9A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9C00E04-2BA4-417A-81B3-E2557B1F9A80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAE94E0-E0ED-485B-8432-5F2748ED8D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAE94E0-E0ED-485B-8432-5F2748ED8D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAE94E0-E0ED-485B-8432-5F2748ED8D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAE94E0-E0ED-485B-8432-5F2748ED8D2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

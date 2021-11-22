@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EV5.Mvc.Plugin\EV5.Mvc.Plugin.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Shared\EV5.Mvc.Shared.csproj" />
   </ItemGroup>
 

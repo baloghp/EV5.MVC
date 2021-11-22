@@ -15,6 +15,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Composition.Hosting;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,12 +23,10 @@ namespace EV5TestWebApp
 {
     public class Startup
     {
-        IWebHostEnvironment _env;
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+       
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _env = env;
-            
         }
 
         public IConfiguration Configuration { get; }
@@ -35,37 +34,27 @@ namespace EV5TestWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            //register the EmbeddedViewEngine, with a prefix as the first ViewEngine.
+            //If a viewname will mathc to multiple across viewengines this one will win.
+            //Prefix ensures that any viewname without that prefix will be quickly passed forward without further examination
+            //when using prefixes always make sure that the views in the plugins are aware of them
             services.AddRazorPages()
-                .AddViewOptions(o => o.ViewEngines.Insert(0, new EmbeddedViewEngine("eve-")))
-                ;
-           
-            //plugins
-            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(SamplesEmbeddedPlugin).Assembly));
-            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(SamplesViewEnginePlugin).Assembly));
-            //mark the composite providers preferably not one by one, but together at once
-            var webOriginalProvider = _env.WebRootFileProvider;
-            var samplesembeddedProvider = new EV5EmbeddedFileProvider(typeof(SamplesEmbeddedPlugin).Assembly, "EV5.Samples-");
-            var samplesViewengineProvider = new EV5EmbeddedFileProvider(typeof(SamplesViewEnginePlugin).Assembly, "EV5.VE-");
-            var webCompositeProvider = new CompositeFileProvider(webOriginalProvider, samplesembeddedProvider, samplesViewengineProvider);
-            _env.WebRootFileProvider= webCompositeProvider;
-
-            var contentOriginalProvider = _env.ContentRootFileProvider;
-            var contentCompositeProvider = new CompositeFileProvider(contentOriginalProvider, samplesembeddedProvider, samplesViewengineProvider);
-            _env.ContentRootFileProvider = contentCompositeProvider;
-
-            //all the changes needed to do once we make plugins
-            //register EV5 services
-            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(EmbeddedViewEngine).Assembly));
-            services.AddSingleton<IFileProvider>(_env.WebRootFileProvider);
+                .AddViewOptions(o => o.ViewEngines.Insert(0, new EmbeddedViewEngine("eve-")));
+            
+            //this call sets up the default EV5 Services
             services.AddEV5DefaultServices();
-            services.AddEV5CompositionServices(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory, "EV5*.dll"));
 
-            //Render view from custom location.
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(new CustomViewLocationExpander());
-            });
+
+            //This method will discover all exported IEmbeddedPlugins in the provided CompositionHostFactory
+            //It will then use the information in these objects to set up the web components and.
+            //Unfortunately the 
+            services.UseEmbeddedPlugins(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory, "EV5*.dll"));
+
+            
+            //Always call this last. The internal EV5 ServiceProvider will be registered at this point,
+            //It will only be able to find services registered so far
+            services.RegisterEV5ServiceProvider();
+           
 
         }
 
@@ -75,13 +64,18 @@ namespace EV5TestWebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                //The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // this call will configure the embedded filesystems used by the plugins
+            app.ConfigureEmbeddedPlugins(env);
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -103,17 +97,5 @@ namespace EV5TestWebApp
         }
     }
 
-    internal class CustomViewLocationExpander : IViewLocationExpander
-    {
-        public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
-        {
-            return viewLocations.Union(new List<string> { "EV5.Samples-Views.Sample.{0}.cshtml" });
-            //return viewLocations;
-        }
-
-        public void PopulateValues(ViewLocationExpanderContext context)
-        {
-            
-        }
-    }
+   
 }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
@@ -16,16 +15,12 @@ namespace EV5.Mvc.Embedded
     
     public class EmbeddedServicesController : Controller
     {
-        private readonly IFileProvider fileprovider;
+        
         private readonly IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
-        private readonly IHostingEnvironment _env;
-        public EmbeddedServicesController(IFileProvider fileprovider, 
-            IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
-            //cannot get IWebHostEnvironment being recognized here, although its partner is available,
-            //this function will be deprecated once this type disappears
-            IHostingEnvironment env)
+        private readonly IWebHostEnvironment _env;
+        public EmbeddedServicesController( IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
+            IWebHostEnvironment env)
         {
-            this.fileprovider = fileprovider;
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
         }
@@ -41,7 +36,7 @@ namespace EV5.Mvc.Embedded
         }
         public ActionResult<List<IFileInfo>> GetWebRootDirectoryContents()
         {
-            var contents = this.fileprovider.GetDirectoryContents(string.Empty);
+            var contents = this._env.WebRootFileProvider.GetDirectoryContents(string.Empty);
             return contents.ToList();
 
         }

@@ -1,4 +1,5 @@
-﻿using EV5.Mvc.ViewEngine;
+﻿using EV5.Mvc.Plugin;
+using EV5.Mvc.ViewEngine;
 using System;
 using System.Collections.Generic;
 using System.Composition.Convention;
@@ -28,7 +29,8 @@ namespace EV5.Mvc.MEF
         {
             var conventions = new ConventionBuilder();
             conventions.ForTypesDerivedFrom<IEmbeddedView>().Export<IEmbeddedView>().Shared();
-            
+            conventions.ForTypesDerivedFrom<IEmbeddedPlugin>().Export<IEmbeddedPlugin>().Shared();
+
             //    .ForTypesDerivedFrom<IPlugin>()
             //    .Export<IPlugin>()
             //    .Shared();
