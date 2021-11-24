@@ -82,11 +82,13 @@ namespace EV5.Mvc.Embedded
             int cutout = 0;
             if (subpath.StartsWith("/", StringComparison.Ordinal))
             {
+                if (!subpath.StartsWith("/"+_prefix)) return new NotFoundFileInfo(subpath);
                 cutout = 1 + _prefix.Length;
                 
             }
             else
             {
+                if (!subpath.StartsWith(_prefix)) return new NotFoundFileInfo(subpath);
                 cutout = 0 + _prefix.Length;
             }
             builder.Append(subpath, cutout, subpath.Length - cutout);
