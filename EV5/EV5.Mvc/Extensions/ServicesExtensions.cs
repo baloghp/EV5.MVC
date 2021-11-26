@@ -72,7 +72,7 @@ namespace EV5.Mvc.Extensions
             return services;
         }
 
-        public static IApplicationBuilder ConfigureEmbeddedPlugins(this IApplicationBuilder app, IWebHostEnvironment env,
+        public static IWebHostEnvironment ConfigureEmbeddedPlugins(this IWebHostEnvironment env,
             Action<IFileProvider> OnCompositeFileProviderPrepared = null,
             Func<IEnumerable<IEmbeddedPlugin>, IEnumerable<IEmbeddedPlugin>> BeforePluginsInitialized = null
             )
@@ -89,7 +89,7 @@ namespace EV5.Mvc.Extensions
             env.WebRootFileProvider = compositeProvider;
             env.ContentRootFileProvider = compositeProvider;
 
-            return app;
+            return env;
         }
     }
 

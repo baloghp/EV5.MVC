@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace EV5.Mvc.Plugin
 {
-    [InheritedExport(typeof(IEmbeddedPlugin))]
+
     public interface IEmbeddedPlugin
     {
         Assembly WebPartsAssembly { get; }
