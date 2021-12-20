@@ -1,4 +1,6 @@
 //using EV5.Mvc.Extensions;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using EV5.Mvc;
 using EV5.Mvc.Embedded;
 using EV5.Mvc.Extensions;
@@ -92,7 +94,26 @@ namespace EV5TestWebApp
             });
 
             // Open the Electron-Window here
-            Task.Run(async () => await ElectronNET.API.Electron.WindowManager.CreateWindowAsync());
+            ElectronBootstrap();
+        }
+
+        public async void ElectronBootstrap()
+        {
+            if (HybridSupport.IsElectronActive)
+            {
+
+                var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+                {
+                    Width = 1152,
+                    Height = 940,
+                    Show = false
+                });
+
+                await browserWindow.WebContents.Session.ClearCacheAsync();
+
+                browserWindow.OnReadyToShow += () => browserWindow.Show();
+                browserWindow.SetTitle("Electron.NET API Demos");
+            }
         }
     }
 

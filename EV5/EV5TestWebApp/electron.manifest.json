@@ -1,7 +1,7 @@
 {
   "executable": "EV5TestWebApp",
   "splashscreen": {
-    "imageFile": ""
+    "imageFile": "/wwwroot/img/skills.png"
   },
   "name": "EV5TestWebApp",
   "author": "",
