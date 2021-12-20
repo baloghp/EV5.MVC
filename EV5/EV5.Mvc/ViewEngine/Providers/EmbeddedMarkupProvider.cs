@@ -1,6 +1,7 @@
 ﻿using EV5.Mvc.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace EV5.Mvc.ViewEngine.Providers
     public class EmbeddedMarkupProvider : IMarkupProvider
     {
         IFileProvider _fileprovider;
-        public EmbeddedMarkupProvider(IWebHostEnvironment env )
+        public EmbeddedMarkupProvider(IHostEnvironment env )
         {
             _fileprovider = env.ContentRootFileProvider;
         }

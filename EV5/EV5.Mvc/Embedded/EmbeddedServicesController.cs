@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Hosting;
 
 namespace EV5.Mvc.Embedded
 {
@@ -17,12 +17,14 @@ namespace EV5.Mvc.Embedded
     {
         
         private readonly IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
-        private readonly IWebHostEnvironment _env;
+        private readonly IHostEnvironment _env;
+        
         public EmbeddedServicesController( IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
-            IWebHostEnvironment env)
+            IHostEnvironment env)
         {
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
+            
         }
        
 
@@ -34,12 +36,12 @@ namespace EV5.Mvc.Embedded
             
             
         }
-        public ActionResult<List<IFileInfo>> GetWebRootDirectoryContents()
-        {
-            var contents = this._env.WebRootFileProvider.GetDirectoryContents(string.Empty);
-            return contents.ToList();
+        //public ActionResult<List<IFileInfo>> GetServicedFileProviderContents()
+        //{
+        //   // var contents = this._servicedProvider.GetDirectoryContents(string.Empty);
+        //   // return contents.ToList();
 
-        }
+        //}
 
         public IActionResult GetActions()
         {

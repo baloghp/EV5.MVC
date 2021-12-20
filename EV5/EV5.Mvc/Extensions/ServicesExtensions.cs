@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Composition.Hosting;
@@ -72,7 +73,7 @@ namespace EV5.Mvc.Extensions
             return services;
         }
 
-        public static IWebHostEnvironment ConfigureEmbeddedPlugins(this IWebHostEnvironment env,
+        public static IHostEnvironment CreateEV5FileProvider(this IHostEnvironment env, IFileProvider webRootFileProvider, out IFileProvider EV5FileProvider, 
             Action<IFileProvider> OnCompositeFileProviderPrepared = null,
             Func<IEnumerable<IEmbeddedPlugin>, IEnumerable<IEmbeddedPlugin>> BeforePluginsInitialized = null
             )
@@ -82,14 +83,13 @@ namespace EV5.Mvc.Extensions
             if (BeforePluginsInitialized != null)
                 plugins = BeforePluginsInitialized(plugins);
             
-            var fileproviders = plugins.Select(p => p.FileProvider).Union(new List<IFileProvider> { env.WebRootFileProvider, env.ContentRootFileProvider });
+            var fileproviders = plugins.Select(p => p.FileProvider).Union(new List<IFileProvider> { webRootFileProvider, env.ContentRootFileProvider });
             CompositeFileProvider compositeProvider = new CompositeFileProvider(fileproviders.ToArray());
             if (OnCompositeFileProviderPrepared != null)
                 OnCompositeFileProviderPrepared(compositeProvider);
-            env.WebRootFileProvider = compositeProvider;
             env.ContentRootFileProvider = compositeProvider;
-
-            return env;
+            EV5FileProvider = compositeProvider;
+           return env;
         }
     }
 
