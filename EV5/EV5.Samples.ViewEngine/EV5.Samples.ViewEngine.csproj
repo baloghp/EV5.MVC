@@ -9,11 +9,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <EmbeddedResource Include="Assets\**\*.PNG; Assets\**\*.html; Assets\**\*.jpg; Assets\**\*.ico; Assets\**\*.svg; Assets\**\*.css; Assets\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Assets\Sample\SimpleMaster\LandingPage.html" />
+    <None Remove="Assets\Sample\SimpleMaster\LandingPageMaster.html" />
   </ItemGroup>
   
   <ItemGroup>
@@ -29,10 +35,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\Sample\" />
   </ItemGroup>
 
 </Project>

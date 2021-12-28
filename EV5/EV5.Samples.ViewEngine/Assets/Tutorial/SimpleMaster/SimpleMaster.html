@@ -1,5 +1,327 @@
 ﻿
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>EV5.Mvc Tutorial 8 - Simple HTML in Embedded View Engine</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha - v4.3.0
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">EV5.MVC</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a class="active nav-link scrollto" href="/index#hero">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#about">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#tutorials">Turorial</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#demos">Demos</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="getstarted scrollto" href="/index#about">Get Started</a>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <ol>
+                    <li><a href="/index">Home</a></li>
+                    <li> Simple Page with a Master view</li>
+                </ol>
+                <h2> Simple Page with a Master view</h2>
+
+            </div>
+        </section>
+        <!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="panel-heading">Master View and Page View</h3>
+
+                        <p>
+                            You see how you can render any HTML en-block to the browser.
+                            In a web application the pages usually contain common elements, that define the basic structure and the frame of every page.
+                            These elements that frame each page can be abstracted  out and re-used commonly among many pages.
+                            This helps to maintain better resource economy and change management.
+                            <br />
+                            <img src="/EV5.VE-Assets.Tutorial.ViewStructure.Slide1.PNG" />
+                            <br />
+                            Please take a look at the sample's result now, and we will observe how it is assembled.
+                            <br />
+                            <a href="/Sample/ShowSimpleMasterHtml">See the results in action by clicking here.</a>
+
+                        </p>
+
+
+                        <h3 class="panel-heading">Cutting the HTML to Master and View parts</h3>
+                        <p>
+                            First we have to separate the common parts that is going to be our Master view and the content part that may be changing, this is going to be the page view.
+                            Here are the two files:
+                            <br />
+                            <img src="/EV5.VE-Assets.Tutorial.SimpleMaster.Markups.PNG" />
+                            <br />
+                            The Master HTML only contains the , the head element, the navigation section, the footer and the script references.
+                            <ol>
+                                <li>
+                                    The opening and closing html tags
+                                </li>
+                                <li>
+                                    The head Element and its content
+                                </li>
+                                <li>
+                                    The Navigation section
+                                </li>
+                                <li>
+                                    The Footer section
+                                </li>
+                                <li>
+                                    The script references
+                                </li>
+
+                            </ol>
+                            <img src="/EV5.VE-Assets.Tutorial.SimpleMaster.MasterHtml.png" />
+                            <br />
+                            The element with the <b>"eve-renderbody"</b> attribute marks the place where the page content part should be placed.
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-renderbody</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span><span style="color:gray;">&gt;</span>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+</pre>
+
+
+                            <br />
+
+                            The page part contains the rest of the content, the sections for:
+                            <ol>
+                                <li>
+                                    The header part
+                                </li>
+                                <li>
+                                    The About Section
+                                </li>
+                                <li>
+                                    The Services section
+                                </li>
+                                <li>
+                                    The Portfolio section
+                                </li>
+                                <li>
+                                    The Call To Action section
+                                </li>
+                                <li>
+                                    The contact section
+                                </li>
+                            </ol>
+                            <img src="/EV5.VE-Assets.Tutorial.SimpleMaster.PageHtml.png" />
+                            <br />
+                        </p>
+
+                        <h3 class="panel-heading">View Classes for Master View and Page View</h3>
+                        <p>
+                            Now that the markups are separated, let's create the view classes for both the master and page views.
+                            <br />
+                            <img src="/EV5.VE-Assets.Tutorial.SimpleMaster.Markups.PNG" />
+                            <br />
+                            First we have to establish which master page is used for this page. here is the code for the page view:
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Samples</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ViewEngine</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Views</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SimpleMaster</span>
+<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">MasterView</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;eve-SimpleMaster.LandingPageMaster&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">MarkupName</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;EV5.VE-Assets.Sample.SimpleMaster.LandingPage.html&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">EmbeddedView</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;SimpleMaster.LandingPage&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">LandingPageView</span>&nbsp;<span style="color:gainsboro;">:</span>&nbsp;<span style="color:gainsboro;">EmbeddedView</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">ProcessView</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">ViewContext</span>&nbsp;<span style="color:#9cdcfe;">viewContext</span><span style="color:gainsboro;">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SelectSingleNode</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;//h1&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;<span style="color:gainsboro;">(</span><span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span><span style="color:gainsboro;">)</span>&nbsp;&nbsp;<span style="color:gainsboro;">node</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">InnerHtml</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;Changed&nbsp;in&nbsp;the&nbsp;Page&nbsp;view&quot;</span><span style="color:gainsboro;">;</span>
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//*[@id=&quot;page-top&quot;]/footer/div/div</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SelectSingleNode</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;&nbsp;//footer/div/div&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;<span style="color:gainsboro;">(</span><span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span><span style="color:gainsboro;">)</span>&nbsp;<span style="color:gainsboro;">node</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">InnerHtml</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;Changed&nbsp;in&nbsp;the&nbsp;Page&nbsp;view&quot;</span><span style="color:gainsboro;">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+<span style="color:gainsboro;">}</span></pre>
+                            The new element here is the <b>"MasterView"</b> Attribute that is denoting the master view to be used for this page.
+                            <br />
+
+                            The code for the master view is:
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Samples</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ViewEngine</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Views</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SimpleMaster</span>
+<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">MarkupName</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;EV5.VE-Assets.Sample.SimpleMaster.LandingPageMaster.html&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">EmbeddedView</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;SimpleMaster.LandingPageMaster&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">LandingPageMasterView</span>&nbsp;<span style="color:gainsboro;">:</span>&nbsp;<span style="color:gainsboro;">EmbeddedView</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">ProcessView</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">ViewContext</span>&nbsp;<span style="color:#9cdcfe;">viewContext</span><span style="color:gainsboro;">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SelectSingleNode</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;//h1&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;<span style="color:gainsboro;">(</span><span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span><span style="color:gainsboro;">)</span>&nbsp;<span style="color:gainsboro;">node</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">InnerHtml</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;Changed&nbsp;in&nbsp;the&nbsp;Master&nbsp;view&quot;</span><span style="color:gainsboro;">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SelectSingleNode</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;//*[@id=\&quot;mainNav\&quot;]/div/a&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;<span style="color:gainsboro;">(</span><span style="color:gainsboro;">node</span>&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span><span style="color:gainsboro;">)</span>&nbsp;<span style="color:gainsboro;">node</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">InnerHtml</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;Changed&nbsp;in&nbsp;the&nbsp;Master&nbsp;view&quot;</span><span style="color:gainsboro;">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+<span style="color:gainsboro;">}</span></pre>
+
+                        </p>
+
+                        <h3 class="panel-heading">Processing the Master View and Page View</h3>
+                        <p>
+                            In the above implementations you can see that the navigation header and the Header Section text. 
+                            While the navigation header is part of the master markup, the Header section is not.
+                            <br />
+                            Also the page view is trying to modify the Header section, and the footer. Here the footer is not part of the page's markup.
+                            <br />
+                            If you click on the <a href="/Sample/ShowSimpleMasterHtml">result</a> you can see that the header section and the footer is successfully modified by the Page view.
+                            While the master page could only modify the navigation header.
+                            <br />
+                            During the processing of the views the master page is always evaluated first, at that moment the Page content is not available yet.
+                            Whereas the page view is always evaluated last, thus it has access to the html that is produced by the master view.
+
+                        </p>
+                    </div>
+                </div>
+               </div>
+        </section>
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3><strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright
+                <strong><span>Arsha</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+                Designed by
+                <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/vendor/aos/aos.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/vendor/php-email-form/validate.js"></script>
+    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/vendor/waypoints/noframework.waypoints.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,7 +356,7 @@
         </div>
     </div>
     <div class="container body-content">
-   <div class="jumbotron">
+        <div class="jumbotron">
             <br />
             <p class="lead">Simple Page with a Master view</p>
         </div>
@@ -42,9 +364,9 @@
         <div class="panel panel-info">
             <div class="panel-heading">Introducing Master page</div>
             <div class="panel-body">
-               We're going to separate elements of the Landing page that can occur on other pages, and place it in a Master view. 
-               This Master page/view can then be referenced by other page views. 
-               I'm going to use the same master view in this example and the next although the page views will be separate.
+                We're going to separate elements of the Landing page that can occur on other pages, and place it in a Master view.
+                This Master page/view can then be referenced by other page views.
+                I'm going to use the same master view in this example and the next although the page views will be separate.
                 <br />
                 First, let's separate out the Master and page. We'll do it first on markup then on code level.
                 <br />
@@ -73,11 +395,11 @@
 &nbsp;&nbsp;&nbsp;}</pre>
             </div>
         </div>
-        
+
         <div class="panel panel-info">
             <div class="panel-heading">Defining the Master page</div>
             <div class="panel-body">
-                You have basically two choices to define a page's master view. 
+                You have basically two choices to define a page's master view.
                 As you can see above you can define it on the code part of the page view by using the MasterView attribute.
                 <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;">&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#4ec9b0;">MasterView</span>(<span style="color:#d69d85;">&quot;eve-Assets.Views.Sample.SimpleMaster.LandingMaster.html&quot;</span>)]
 </pre>
@@ -92,27 +414,27 @@
  
 </pre>
 
-                
+
             </div>
         </div>
 
         <div class="panel panel-info">
             <div class="panel-heading">Defining the place of Page view inside Master page</div>
             <div class="panel-body">
-The View Engine will look for a tag in the Master View's markup with the attribute "eve-renderbody". Inside this tag will the page view be inserted by default.
+                The View Engine will look for a tag in the Master View's markup with the attribute "eve-renderbody". Inside this tag will the page view be inserted by default.
                 <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-renderbody</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span><span style="color:gray;">&gt;</span>
  
 <span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span></pre>
                 <br />
                 The modifier "eve-renderinstead" changes the behavior so that the page view is rendered in place of the tag.
-                
+
             </div>
         </div>
-     
+
         <div class="panel panel-info">
             <div class="panel-heading">Accessing MasterPage in Page views</div>
             <div class="panel-body">
-                TAlways the code for the Master page is run first, 
+                TAlways the code for the Master page is run first,
                 that means that when the page's code is running the html for the Master page is available in the page's code view.
                 <br />
                 <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;">[<span style="color:#4ec9b0;">MasterView</span>(<span style="color:#d69d85;">&quot;eve-Assets.Views.Sample.SimpleMaster.LandingMaster.html&quot;</span>)]

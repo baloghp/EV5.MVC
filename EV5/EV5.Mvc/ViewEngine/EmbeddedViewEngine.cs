@@ -101,7 +101,7 @@ namespace EV5.Mvc
         {
             string realViewName = UnprefixViewName(viewName);
             if (string.IsNullOrWhiteSpace(realViewName)) return null;
-            IEmbeddedView view = FindEmbeddedViewClass(viewName);
+            IEmbeddedView view = FindEmbeddedViewClass(realViewName);
 
             string markup = FindMarkup(realViewName, view);
             if (view != null)

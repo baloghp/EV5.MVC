@@ -175,7 +175,7 @@ namespace EV5.Mvc
         /// The HTML.
         /// </value>
         public IHtmlHelper Html { get; internal set; }
-        IViewEngine IEmbeddedView.ViewEngine { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        IViewEngine IEmbeddedView.ViewEngine { get => _viewEngine; set => _viewEngine=value; }
 
         HtmlHelper IEmbeddedView.Html => throw new NotImplementedException();
 
@@ -354,7 +354,11 @@ namespace EV5.Mvc
             if (!GetPartialViewStringFromthisEngine(this.ViewContext, MasterName, out masterString, Model))
             {
                 //get the html for the master view, by calling MVC view resolution
-                masterString = this.Html.Partial(MasterName, Model, this.ViewData);
+                //this is not nice as Html.Partial is falling out of favor now, but I could not find better way
+                (this.Html as IViewContextAware).Contextualize(ViewContext);
+                var task = Task.Run(async () => await this.Html.PartialAsync(MasterName, Model, this.ViewData));
+                task.Wait();
+                masterString = task.Result;
             }
 
             //let's prepare that as our main doc
@@ -385,8 +389,8 @@ namespace EV5.Mvc
             using (MemoryStream ms = new MemoryStream())
             {
                 using (StreamWriter tw = new StreamWriter(ms))
-                {
-                    var ev = viewResult.View as EmbeddedView;
+            {
+                var ev = viewResult.View as EmbeddedView;
                     if (model != null)
                     {
                         
@@ -394,15 +398,18 @@ namespace EV5.Mvc
 
                     }
                     //need to do the switcheroo as now the write is attached to the context
+                    //this part is very much not nice, we have to find another way to be abel to render to writers outside of viewcontext
                     TextWriter old = viewContext.Writer;
                     viewContext.Writer = tw;
                     ev.Render(viewContext);
+                    rawHtml = ev.HtmlDocument.Document.OuterHtml;
+                    tw.Flush();
                     viewContext.Writer = old;
-
-                    using (StreamReader sr = new StreamReader(ms))
-                    {
-                        rawHtml = sr.ReadToEnd();
-                    }
+                    
+                    //using (StreamReader sr = new StreamReader(ms))
+                    //{
+                    //    rawHtml = sr.ReadToEnd();
+                    //}
                 }
             }
             if (String.IsNullOrWhiteSpace(rawHtml)) return false;

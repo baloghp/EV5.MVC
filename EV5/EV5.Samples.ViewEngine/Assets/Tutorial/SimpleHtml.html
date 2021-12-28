@@ -1,125 +1,315 @@
 ﻿
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>EVE.Mvc Tutorial 8 - Simple HTML in Embedded View Engine</title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
+    <title>EV5.Mvc Tutorial 8 - Simple HTML in Embedded View Engine</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha - v4.3.0
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">EVE.Mvc</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
 
-                    <li><a href="/Home/Contact">Contact</a></li>
+            <h1 class="logo me-auto"><a href="index.html">EV5.MVC</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a class="active nav-link scrollto" href="/index#hero">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#about">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#tutorials">Turorial</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#demos">Demos</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="getstarted scrollto" href="/index#about">Get Started</a>
+                    </li>
                 </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <ol>
+                    <li><a href="/index">Home</a></li>
+                    <li> Simple HTML in Embedded View Engine</li>
+                </ol>
+                <h2> Simple HTML in Embedded View Engine</h2>
 
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+        </section>
+        <!-- End Breadcrumbs -->
 
-
-
-        <div class="jumbotron">
-            <br />
-            <p class="lead">Simple HTML content from the Embedded View Engine</p>
-        </div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Simple Html from markup</div>
-            <div class="panel-body">
-                If you have read the previous article it will be familiar that you can render a simple HTML by passing its resource name as view name.
-                <br />
-                NOTE: This is only true when the default markup provider is used.
-                <br />
-                You can use the following code to retrieve an embedded html:
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;ShowHtml()&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;eve-Assets.Views.Sample.SimpleHtml.LandingPage.html&quot;</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
-                <br />
-                So what happened to the view class part that we mentioned before? When the view class does not exist that should have the same view name, a generic "empty" class is used. Here it is:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EVE<span style="color:#b4b4b4;">.</span>Mvc<span style="color:#b4b4b4;">.</span>ViewEngine
-{
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SimpleResourceView</span>:&nbsp;<span style="color:#4ec9b0;">EmbeddedView</span>
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="panel-heading">Calling the Embedded Views</h3>
+                        <p>
+                            Once the ViewEngine is registered you can start referring to the controllers and views by their viewname:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SampleController</span>&nbsp;:&nbsp;Controller
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;ProcessView(<span style="color:#4ec9b0;">ViewContext</span>&nbsp;viewContext)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;ActionResult&nbsp;<span style="color:#dcdcaa;">ShowResourceHtml</span>()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//do&nbsp;nothing</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;eve-EV5.VE-Assets.Sample.SimpleHtml.index.html&quot;</span>);
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;}
-}</pre>
-                <br />
-                <a href="/Plugins/ViewEngineSample/Sample/ShowResourceHtml">Click here to see the view in action.</a>
-              <br />
-
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Simple Html from view class</div>
-            <div class="panel-body">
-             So this is what happens when no view class is defined. This example will show you how to just deal with a view class without the markup.
-                One nice thing here is since we're not using markup the markup provider plays no role.
-                <br />
-                Let's create a view class that says "Hello world!!!":
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EVE<span style="color:#b4b4b4;">.</span>Mvc<span style="color:#b4b4b4;">.</span>Samples<span style="color:#b4b4b4;">.</span>ViewEngine<span style="color:#b4b4b4;">.</span>Views<span style="color:#b4b4b4;">.</span>Sample
-{
-&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#4ec9b0;">EmbeddedView</span>(<span style="color:#d69d85;">&quot;Just.Code.Simple.Html.View&quot;</span>)]
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SimpleHtmlView</span>&nbsp;:&nbsp;<span style="color:#4ec9b0;">EmbeddedView</span>
-&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;ProcessView(System<span style="color:#b4b4b4;">.</span>Web<span style="color:#b4b4b4;">.</span>Mvc<span style="color:#b4b4b4;">.</span><span style="color:#4ec9b0;">ViewContext</span>&nbsp;viewContext)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument<span style="color:#b4b4b4;">.</span>Document<span style="color:#b4b4b4;">.</span>LoadHtml(<span style="color:#d69d85;">@&quot;&lt;html&gt;</span>
-<span style="color:#d69d85;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;body&gt;</span>
-<span style="color:#d69d85;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;World!!!</span>
-<span style="color:#d69d85;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/body&gt;</span>
-<span style="color:#d69d85;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/html&gt;</span>
-<span style="color:#d69d85;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;}
-}</pre>
-                <br />
-                Note the <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;">&nbsp;[<span style="color:#4ec9b0;">EmbeddedView</span>(<span style="color:#d69d85;">&quot;Just.Code.Simple.Html.View&quot;</span>)]
 </pre>
-                this will define our view name for this class.
-                <br />
-                In the ProcessView method we're creating the html document from scratch.
-                <a href="/Plugins/ViewEngineSample/Sample/ShowCodeHtml">Here is the result</a> 
+                            Views consist of 2 parts:
+                            <ol>
+                                <li>HTML markup that is usually stored as an embedded file, thus available by the embedded file system.</li>
+                                <li>An optional view class, which gives the availability to manipulate the HTML string further on the server side.</li>
+                            </ol>
+                            The view name can refer to either an embedded html file, or a view class. In the above example we refer to an embedded html file.
+                            Here is the breakdown of the name for tis example:
+                            <ol>
+                                <li>
+                                    <b>"eve-"</b>: is the ViewEngine prefix, so essentially, we are explicitly asking this view to be processed by the ViewEngine we registered earlier.
+                                </li>
+                                <li>
+                                    <b>"EV5.VE-"</b>: is the reference to the embedded file system that we are using, this has been defied in the plugin interface for this EV5 module. See the previous article about creating plugins.
+                                </li>
 
+                                <li>
+                                    <b>"Assets.Sample.SimpleHtml.index.html"</b>: is the embedded path to the html file of our sample.
+                                </li>
+                            </ol>
+                            <br />
+                            <a href="/Sample/ShowResourceHtml">Click here to see the view in action.</a>
+                            <br />
+                            <br />
+                        </p>
+
+
+                        <h3 class="panel-heading">Simple Html resource from view class</h3>
+                        <p>
+                            In the above case a dummy view class is generated without any implementation in the background, and the ViewEngine just renders the embedded html string. You can however implement the corresponding view class for this embedded resource.
+
+
+                            <br />
+                            Here is an example of a view class that serves as a code behind.
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">MEF</span><span style="color:gainsboro;">;</span>
+<span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ViewEngine</span><span style="color:gainsboro;">;</span>
+<span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">Microsoft</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">AspNetCore</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Rendering</span><span style="color:gainsboro;">;</span>
+ 
+<span style="color:#569cd6;">namespace</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Samples</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ViewEngine</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Views</span>
+<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">EmbeddedView</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;View.and.Markup.Simple.Html.View&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">MarkupName</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;EV5.VE-Assets.Sample.SimpleHtml.index.html&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">ViewAndMarkupSimpleResourceView</span>&nbsp;<span style="color:gainsboro;">:</span>&nbsp;<span style="color:gainsboro;">EmbeddedView</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">ProcessView</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">ViewContext</span>&nbsp;<span style="color:#9cdcfe;">viewContext</span><span style="color:gainsboro;">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">SelectSingleNode</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;//h1&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">node</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">InnerHtml</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;This&nbsp;is&nbsp;new&nbsp;generated&nbsp;content&quot;</span><span style="color:gainsboro;">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+<span style="color:gainsboro;">}</span></pre>
+                            <br />
+                            There are four key elements that the view implementation contains.
+                            <ol>
+                                <li>
+                                    <b>
+                                        Class derived from EmbeddedView
+                                    </b>
+                                    <br />
+                                    <p>
+                                        Inheriting from EmbeddedView class ensure that the class has the ProcessView method that enables further processing of the HTML.
+                                    </p>
+                                </li>
+                                <li>
+                                    <b>
+                                        EmbeddedView Attribute defines the viewname of the view.
+                                    </b>
+                                    The ViewEngine will look first for a class with a specified viewname, this attributes marks the viewname for this class. If viewname is not defined for a view class the ViewEngine will never instantiate it.
+                                </li>
+                                <li>
+                                    <b>
+                                        MarkupName Attribute define the embedded resource markup file
+                                    </b>
+                                    The MarkupName attribute should contain the resource name for the html snippet corresponding to this view. This attribute is optional. If it is not defined the ViewEngine will use the viewname defined in the EmbeddedView attribute. If that is not found, and empty string will be used.
+                                </li>
+                                <li>
+                                    <b>
+                                        Implementing the ProcessView method
+                                    </b>
+                                    The ProcessView method is responsible to change the markup on the server side as needed. In this implementation the h1 content is changed in the code behind. You can use the various document helper functions to access and modify the markup content.
+                                </li>
+                            </ol>
+                            The coresponding controller implementaiton:
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:gainsboro;">ActionResult</span>&nbsp;<span style="color:#dcdcaa;">ShowViewAndMarkupSimpleResourceHtml</span><span style="color:gainsboro;">()</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;<span style="color:gainsboro;">View</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;eve-View.and.Markup.Simple.Html.View&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span></pre>
+
+                            <br />
+                            <a href="/Sample/ShowViewAndMarkupSimpleResourceHtml">Click here to see the view in action.</a>
+                            <br />
+                            <br />
+                        </p>
+
+                        <h3 class="panel-heading">Simple Html from view class only</h3>
+                        <p>
+                            It is also possible not use any markup and rely only on the view class to define the HTML content.
+                            <br />
+                            Here is a basic hello world example:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:gainsboro;">;</span>
+<span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">MEF</span><span style="color:gainsboro;">;</span>
+<span style="color:#569cd6;">using</span>&nbsp;<span style="color:gainsboro;">Microsoft</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">AspNetCore</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Mvc</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Rendering</span><span style="color:gainsboro;">;</span>
+ 
+<span style="color:#569cd6;">namespace</span>&nbsp;<span style="color:gainsboro;">EV5</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Samples</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">ViewEngine</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Views</span>
+<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">[</span><span style="color:gainsboro;">EmbeddedView</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;eve-Just.Code.Simple.Html.View&quot;</span><span style="color:gainsboro;">)]</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SimpleHtmlView</span>&nbsp;<span style="color:gainsboro;">:</span>&nbsp;<span style="color:gainsboro;">EmbeddedView</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">ProcessView</span><span style="color:gainsboro;">(</span><span style="color:gainsboro;">ViewContext</span>&nbsp;<span style="color:#9cdcfe;">viewContext</span><span style="color:gainsboro;">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">HtmlDocument</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">Document</span><span style="color:#b4b4b4;">.</span><span style="color:gainsboro;">LoadHtml</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">@&quot;&lt;html&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;body&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;World!!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/html&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span><span style="color:gainsboro;">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gainsboro;">}</span>
+<span style="color:gainsboro;">}</span>
+</pre>
+                            <br />
+                            The MarkupName attribute is omitted, thus the view will contain an empty document, but you can re-create it from code and parse your own content into it.
+                            <br />
+                            Here is the corresponding Controller action:
+                            <pre style="font-family:Consolas;font-size:13px;color:#dadada;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:gainsboro;">ActionResult</span>&nbsp;<span style="color:#dcdcaa;">ShowCodeHtml</span><span style="color:gainsboro;">()</span>
+<span style="color:gainsboro;">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;<span style="color:gainsboro;">View</span><span style="color:gainsboro;">(</span><span style="color:#d69d85;">&quot;eve-Just.Code.Simple.Html.View&quot;</span><span style="color:gainsboro;">);</span>
+<span style="color:gainsboro;">}</span></pre>
+
+
+                            <br />
+                            <a href="/Sample/ShowCodeHtml">Click here to see the view in action.</a>
+                            <br />
+                            <br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <hr />
-        <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
-        </footer>
-    </div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3><strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright
+                <strong><span>Arsha</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+                Designed by
+                <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
 
-    <script src="/Scripts/jquery-2.1.4.js"></script>
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/vendor/aos/aos.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/vendor/php-email-form/validate.js"></script>
+    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/vendor/waypoints/noframework.waypoints.js"></script>
 
-
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
 
 </body>
+
 </html>
+
+

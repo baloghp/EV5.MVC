@@ -14,9 +14,12 @@ namespace EV5.Samples.ViewEngine.Controllers
     {
         public ActionResult ShowResourceHtml()
         {
-            return View("eve-Assets.Views.Sample.SimpleHtml.LandingPage.html");
+            return View("eve-EV5.VE-Assets.Sample.SimpleHtml.index.html");
         }
-
+        public ActionResult ShowViewAndMarkupSimpleResourceHtml()
+        {
+            return View("eve-View.and.Markup.Simple.Html.View");
+        }
         public ActionResult ShowCodeHtml()
         {
             return View("eve-Just.Code.Simple.Html.View");
@@ -24,11 +27,12 @@ namespace EV5.Samples.ViewEngine.Controllers
 
         public ActionResult ShowSimpleMasterHtml()
         {
-            return View("eve-Assets.Views.Sample.SimpleMaster.LandingPage.html");
+            return View("eve-SimpleMaster.LandingPage");
         }
 
         public ActionResult ShowSimpleMasterAndPartial()
         {
+            
             return View("eve-Assets.Views.Sample.MasterAndPartials.LandingPage.html");
         }
 

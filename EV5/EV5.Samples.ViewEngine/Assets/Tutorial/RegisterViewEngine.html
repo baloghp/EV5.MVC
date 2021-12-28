@@ -88,7 +88,7 @@
 
             </div>
         </section>
-    <!-- End Breadcrumbs -->
+        <!-- End Breadcrumbs -->
 
         <section class="inner-page">
             <div class="container">
@@ -110,11 +110,6 @@
 
                         </p>
 
-                        <h3 class="panel-heading">Calling the Embedded Views</h3>
-                        <p>
-                            Once the ViewEngine is registered 
-
-                        </p>
 
                         <h3 class="panel-heading">Auto Discovering and registering the web parts of plugins</h3>
                         <p>
@@ -137,7 +132,9 @@
                             You can use this version of the configure method to access the IWebHostEnvironment:
                             <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">Configure</span>(IApplicationBuilder&nbsp;<span style="color:#9cdcfe;">app</span>,&nbsp;IWebHostEnvironment&nbsp;<span style="color:#9cdcfe;">env</span>)
 </pre>
+                        </p>
 
+                        
                     </div>
                 </div>
             </div>
@@ -211,156 +208,3 @@
 
 
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVE.Mvc Tutorial 7 - Register the Embedded View Engine</title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
-
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
-
-
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">EVE.Mvc</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-
-                    <li><a href="/Home/Contact">Contact</a></li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-
-
-
-        <div class="jumbotron">
-            <br />
-            <p class="lead">Registering the Embedded View Engine</p>
-        </div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Registering a View Engine</div>
-            <div class="panel-body">
-                If you want to use the Embedded View Engine you have to register it to the MVC runtime first.
-                <br />
-                Usually it goes like this:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">0</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>());
-</pre>
-                <br />
-                Obviously this code should go the the application startup code, that is either the global.asax or the Startup class.
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Registering Embedded View Engine with view name prefixes</div>
-            <div class="panel-body">
-                The main purpose of View engines is to find and instantiate view classes. In ASP.NET MVC you have the option to register multiple engines, if the view resolution fails in one of them the execution continues with the next one.
-                For the embedded view engine you have a shortcut to quickly signal to the MVC runtime if a view name is not intended to be resolved by this engine instance.
-                <br />
-                For example take the following code:
-                <br />
-
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RegisterViewEngine()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;Assets.Views.Tutorial.RegisterViewEngine.html&quot;</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
-                <br />
-                When MVC is searching for this view it will use all the registered view engines, such as the Embedded View Engine, the RAZOR View Engine, and the ASPX View engine.
-                <br />
-                But we know that this view belongs to the Embedded View Engine only.
-                What we can do is to try and order the View engines in the ViewEngines.Engines collection in such a way that the most used engines come first.
-                However the EmbeddedViewEngine ha another option as well. You can define a prefix for the view names that the view engine accepts.
-                This way the Embedded View Engine can quickly decide if a view is under its jurisdiction and pass the execution to others if it is not.
-                <br />
-                Here is how you register the view engine with a prefix:
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">0</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>(<span style="color:#d69d85;">&quot;eve-&quot;</span>));
-</pre>
-                <br />
-                Here is how you call the view for this engine:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#4ec9b0;">ActionResult</span>&nbsp;RegisterViewEngine()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;eve-Assets.Views.Tutorial.RegisterViewEngine.html&quot;</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
-                <br />
-
-                It may be that your different plugin projects require different prefixes for view names.
-                In this case you just have to register an engine for each prefix.
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">0</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>(<span style="color:#d69d85;">&quot;samples-&quot;</span>));
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">1</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>(<span style="color:#d69d85;">&quot;tutorials-&quot;</span>));</pre>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">How does the EMbedded View Engine work</div>
-            <div class="panel-body">
-                The EMbedded View Engine operates according to the following logic:
-                <br />
-                Every view has two parts.
-                <br />
-                <b>A Markup part that is a piece of string containing html, or snippets of html.</b>
-                <br />
-                <b>
-                    The other part is a view class, this view class has the option to manipulate the markup in a structured DOM like fashion.
-                </b>
-                <br />
-                <b>
-                    Both the Markup and the view class parts MUST BE identifiable by ONE view name.
-                </b>
-                I will show you later how to use attributes on the view class to define its view name. However to identify the markup piece a provider pattern is in place.
-                By default we use the embedded resource's name as view name in the default provider. You can override this provider to your specific needs.
-            </div>
-        </div>
-
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Defining Markup Provider</div>
-            <div class="panel-body">
-                The name of the View Engine is Embedded, this suggests that we're going to operate on embedded resources.
-                In reality only the default implementation of the View engine uses embedded resources to retrieve markup.
-                There is a provider pattern in place where the web application can declare the default markup provider:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&nbsp;&nbsp;&lt;</span><span style="color:#569cd6;">EveProviders</span><span style="color:gray;">&gt;</span>
-<span style="color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6;">catalogProvider</span><span style="color:gray;">&nbsp;</span><span style="color:#92caf4;">name</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">bindirCatalogProvider</span><span style="color:gray;">&quot;</span><span style="color:gray;">&nbsp;</span><span style="color:#92caf4;">type</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">EVE.Mvc.TestWebApp.Providers.SampleEveCatalogProvider,&nbsp;EVE.Mvc.TestWebApp,&nbsp;Version=1.0.0.0,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=null</span><span style="color:gray;">&quot;</span><span style="color:gray;">/&gt;</span>
-<span style="color:gray;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6;">markupProvider</span><span style="color:gray;">&nbsp;</span><span style="color:#92caf4;">name</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">defaultMarkupProvider</span><span style="color:gray;">&quot;</span><span style="color:gray;">&nbsp;</span><span style="color:#92caf4;">type</span><span style="color:gray;">=</span><span style="color:gray;">&quot;</span><span style="color:#c8c8c8;">EVE.Mvc.ViewEngine.EmbeddedMarkupProvider,&nbsp;EVE.Mvc,&nbsp;Version=1.0.0.0,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=null</span><span style="color:gray;">&quot;</span><span style="color:gray;">/&gt;</span>
-<span style="color:gray;">&nbsp;&nbsp;&lt;/</span><span style="color:#569cd6;">EveProviders</span><span style="color:gray;">&gt;</span></pre>
-
-                <br />
-                Also there is a way to define a markup provider for each of your registered view engines:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">0</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>(<span style="color:#d69d85;">&quot;samples-&quot;</span>));&nbsp;<span style="color:#57a64a;">//&nbsp;default&nbsp;markup&nbsp;provider</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">ViewEngines</span><span style="color:#b4b4b4;">.</span>Engines<span style="color:#b4b4b4;">.</span>Insert(<span style="color:#b5cea8;">1</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">EmbeddedViewEngine</span>(<span style="color:#d69d85;">&quot;tutorials-&quot;</span>,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">TutorialsMarkupProvider</span>()));</pre>
-            </div>
-        </div>
-        <hr />
-        <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
-        </footer>
-    </div>
-
-    <script src="/Scripts/jquery-2.1.4.js"></script>
-
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
-
-
-
-</body>
-</html>
