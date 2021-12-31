@@ -33,20 +33,17 @@ namespace EV5.Samples.ViewEngine.Controllers
         public ActionResult ShowSimpleMasterAndPartial()
         {
             
-            return View("eve-Assets.Views.Sample.MasterAndPartials.LandingPage.html");
+            return View("eve-MasterAndPartials.LandingPage");
         }
 
         public ActionResult Sections()
         {
-            return View("eve-Assets.Views.Sample.Sections.LandingPage.html");
+            return View("eve-Sections.LandingPage");
         }
-        public ActionResult Bundles()
-        {
-            return View("eve-Assets.Views.Sample.Bundles.LandingPage.html");
-        }
+       
         public ActionResult Typed()
         {
-            return View("eve-Assets.Views.Sample.Typed.LandingPage.html", Models.LandingPageModel.GetSample());
+            return View("eve-Typed.LandingPage", Models.LandingPageModel.GetSample());
         }
         public ActionResult DataBinding()
         {

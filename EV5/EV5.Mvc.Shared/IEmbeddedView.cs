@@ -67,5 +67,6 @@ namespace EV5.Mvc.ViewEngine
         void CleanUp();
 
         void SetModel(object Model);
+        void Render(ViewContext viewContext);
     }
 }

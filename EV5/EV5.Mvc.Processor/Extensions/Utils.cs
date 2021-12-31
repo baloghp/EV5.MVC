@@ -22,10 +22,17 @@ namespace EV5.Mvc
             string attributeName, Func<IDocumentNode, string> getValue,
             bool removeAttribute = true) where T : IDocument
         {
+            documentHelper.Document.ProcessNodesWithAttribute(attributeName, getValue, removeAttribute);
+        }
+
+        public static void ProcessNodesWithAttribute(this IDocument document,
+           string attributeName, Func<IDocumentNode, string> getValue,
+           bool removeAttribute = true)
+        {
             // first we deal with  nodes that are not renderinsteads in parallel fashion
 
             //var nodes = documentHelper.Document.DocumentNode.SelectNodes(EveMarkupAttributes.GetAttributeQuery(attributeName));
-            var nodes = documentHelper.Document.SelectNodes(EveMarkupAttributes.GetAttributeQuery(attributeName));
+            var nodes = document.SelectNodes(EveMarkupAttributes.GetAttributeQuery(attributeName));
             if (nodes != null)
             {
                 var nodesAndResult = nodes
@@ -44,21 +51,26 @@ namespace EV5.Mvc
                     if (removeAttribute)
                         //item.Node.Attributes.Remove(attributeName);
                         item.Node.RemoveAttribute(attributeName);
-                       
+
                 }
             }
             // then we take the renderinsteads in sequence
             //var node = documentHelper.Document.DocumentNode.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
-            var node = documentHelper.Document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
+            var node = document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
             while (node != null)
             {
                 node.RenderValue(getValue(node));
                 if (removeAttribute)
                     node.RemoveAttribute(attributeName);
-                node = documentHelper.Document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
+                node = document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
             }
 
         }
+
+
+
+
+
         /// <summary>
         /// Adds a value to nodes with a specific attribute. Value is calculated by Func parameter, single thread implementation
         /// </summary>
@@ -70,7 +82,15 @@ namespace EV5.Mvc
             string attributeName, Func<IDocumentNode, string> getValue,
             bool removeAttribute = true) where T : IDocument
         {
-            var nodes = documentHelper.Document.SelectNodes(EveMarkupAttributes.GetAttributeQuery(attributeName));
+            documentHelper.Document.ProcessNodesWithAttributeSequential(attributeName, getValue, removeAttribute);
+
+        }
+
+        public static void ProcessNodesWithAttributeSequential(this IDocument document,
+            string attributeName, Func<IDocumentNode, string> getValue,
+            bool removeAttribute = true) 
+        {
+            var nodes = document.SelectNodes(EveMarkupAttributes.GetAttributeQuery(attributeName));
             if (nodes == null || nodes.Count() == 0) return;
             var notRInodes = nodes.Where(n => !n.IsRenderInstead());
             foreach (var item in notRInodes)
@@ -80,13 +100,13 @@ namespace EV5.Mvc
                 if (removeAttribute)
                     item.RemoveAttribute(attributeName);
             }
-            var node = documentHelper.Document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
+            var node = document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
             while (node != null)
             {
                 node.RenderValue(getValue(node));
                 if (removeAttribute)
                     node.RemoveAttribute(attributeName);
-                node = documentHelper.Document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
+                node = document.SelectSingleNode(EveMarkupAttributes.GetAttributeQueryWithRenderInstead(attributeName));
             }
 
         }

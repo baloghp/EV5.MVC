@@ -274,7 +274,7 @@ namespace EV5.Mvc
                 if (Model != null && !string.IsNullOrWhiteSpace(partialModelPath))
                 {
                     //partialModel = DataBinder.Eval(Model, partialModelPath);
-                    var evalResult = ViewDataEvaluator.Eval(Model, partialModelPath);
+                    var evalResult = ViewDataEvaluator.Eval(Model, partialModelPath.Trim());
                     partialModel = evalResult.Value;
                 }
 
@@ -390,7 +390,7 @@ namespace EV5.Mvc
             {
                 using (StreamWriter tw = new StreamWriter(ms))
             {
-                var ev = viewResult.View as EmbeddedView;
+                var ev = viewResult.View as IEmbeddedView;
                     if (model != null)
                     {
                         

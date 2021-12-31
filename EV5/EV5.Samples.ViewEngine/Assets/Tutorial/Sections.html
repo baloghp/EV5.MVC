@@ -1,131 +1,285 @@
 ﻿
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVE.Mvc Tutorial 11 - Sections</title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
+    <title>EV5.Mvc Tutorial 8 - Simple HTML in Embedded View Engine</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha - v4.3.0
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">EVE.Mvc</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
 
-                    <li><a href="/Home/Contact">Contact</a></li>
+            <h1 class="logo me-auto"><a href="index.html">EV5.MVC</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a class="active nav-link scrollto" href="/index#hero">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#about">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#tutorials">Turorial</a>
+                    </li>
+                    <li>
+                        <a class="nav-link   scrollto" href="/index#demos">Demos</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/index#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="getstarted scrollto" href="/index#about">Get Started</a>
+                    </li>
                 </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <ol>
+                    <li><a href="/index">Home</a></li>
+                    <li> Sections</li>
+                </ol>
+                <h2> Sections</h2>
 
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+        </section>
+        <!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="panel-heading">Sections</h3>
+                        <p>
+                            You can define named placeholders called sections in the markup of any view. Subsequently any view can also define a content for them.
+                            This is particularly useful if partial view needs a particular css, font or javascript resource.
+                            In this case, the partial view can define their needs, thus encapsulating the responsibilities, and the master page, or an encapsulating view can offer the right placement for these resources.
+                            <br />
+                            <img src="/EV5.VE-Assets.Tutorial.ViewStructure.Slide5.PNG" />
+                            <br />
 
 
+                        </p>
 
-        <div class="jumbotron">
-            <br />
-            <p class="lead">Sections</p>
-        </div>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">Sections</div>
-            <div class="panel-body">
-              You can define sections in your markup. These are named placeholders. 
-                In other parts of the markup such as page views or partial views you can define tags that serve as content for these sections. 
-                Before the rendering of the page finishes all such placeholders get evaluated, and their accumulated contents get rendered in place of the placeholder tag.
-                <br />
-                Let's say just like in Razor, we want to mark the place for extra scripts in the Masterpage, we're using this code for placeholder:
-
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-section</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+                        <h3 class="panel-heading">Section related attributes</h3>
+                        <p>
+                            On any htnl element you can define the following attribute to make them a section. It is advised to use div for this.
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td>Attribute</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-section</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>
 </pre>
-                <br />
-                In the LandingPage here's how we define one script to include in this section.
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;">&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;jQuery&nbsp;--&gt;</span>
-<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/js/jquery.js&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span></pre>
-                <br />
-
-                In the Contents partial view here's how to define to include another line:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderonlycontent</span><span style="color:gray;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Core&nbsp;JavaScript&nbsp;--&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EVE.Mvc.Samples.Embedded/Assets/LandingPage/js/bootstrap.min.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
-<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span></pre>
-                <br />
-
-                Here are the meanings of the relevant attributes:
-                <br />
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Attribute</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-section</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>
-</pre></td>
-                            <td>
-                                Defines a named section for the page.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>
+                                        </td>
+                                        <td>
+                                            Defines a named section for the page.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>
 </pre>
-                            </td>
-                            <td>
-                                Defines a content for a named section.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderonlycontent</span>
+                                        </td>
+                                        <td>
+                                            Defines a content for a named section.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderonlycontent</span>
 </pre>
-                            </td>
-                            <td>
-                                Defines that only the inner content of a given tag is considered as a content for a named section.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                        </td>
+                                        <td>
+                                            Defines that only the inner content of a given tag is considered as a content for a named section.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p>
 
-                <br />
+                        <h3 class="panel-heading">Sections Tutorial </h3>
+                        <p>
+                            Please observe the source files for this tutorial to follow along.
+                            <br />
+                            All the view markups are under the EV5.Samples.ViewEngine/Assets/Sample/Sections folder.
+                            Similarly the view classes are in the EV5.Samples.ViewEngine/Views/Sections folder.
+                            <br />
+                            The master page contains two sections, one for the scripts and another for the css classes.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-section</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
 
-                <a href="/Plugins/ViewEngineSample/Sample/Sections">Here is the result of the above example.</a>   Open source and examine scripts at the bottom.
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;core&nbsp;JS--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Core&nbsp;theme&nbsp;JS--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.VE-Assets.Sample.SimpleHtml.js.scripts.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">body</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">html</span><span style="color:gray;">&gt;</span>
+</pre>
+
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">head</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">meta</span>&nbsp;<span style="color:#9cdcfe;">charset</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;utf-8&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">meta</span>&nbsp;<span style="color:#9cdcfe;">name</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;viewport&quot;</span>&nbsp;<span style="color:#9cdcfe;">content</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;width=device-width,&nbsp;initial-scale=1,&nbsp;shrink-to-fit=no&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">meta</span>&nbsp;<span style="color:#9cdcfe;">name</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;description&quot;</span>&nbsp;<span style="color:#9cdcfe;">content</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">meta</span>&nbsp;<span style="color:#9cdcfe;">name</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;author&quot;</span>&nbsp;<span style="color:#9cdcfe;">content</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">title</span><span style="color:gray;">&gt;</span>Creative&nbsp;-&nbsp;Start&nbsp;Bootstrap&nbsp;Theme<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">title</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Favicon--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;image/x-icon&quot;</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;assets/favicon.ico&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Bootstrap&nbsp;Icons--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Google&nbsp;fonts--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:#9cdcfe;">type</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;text/css&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Core&nbsp;theme&nbsp;CSS&nbsp;(includes&nbsp;Bootstrap)--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;/EV5.VE-Assets.Sample.SimpleHtml.css.styles.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-section</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;class&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">head</span><span style="color:gray;">&gt;</span>
+</pre>
+                            <br />
+                            The portfolio section is part of the Content partial view that is using the lightbox.js, hence it defines the contents for these script and classes.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderonlycontent</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;SimpleLightbox&nbsp;plugin&nbsp;JS--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;class&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderonlycontent</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;SimpleLightbox&nbsp;plugin&nbsp;CSS--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">link</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css&quot;</span>&nbsp;<span style="color:#9cdcfe;">rel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;stylesheet&quot;</span>&nbsp;<span style="color:gray;">/&gt;</span>
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+</pre>
+                            <br />
+                            The contact partial view is using the SB Forms JS thus it defines additional content for this script reference.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-sectioncontentfor</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;scripts&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderonlycontent</span><span style="color:gray;">&gt;</span>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;*&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SB&nbsp;Forms&nbsp;JS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;*&nbsp;*&nbsp;Activate&nbsp;your&nbsp;form&nbsp;at&nbsp;https://startbootstrap.com/solution/contact-forms&nbsp;*&nbsp;*--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*--&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">script</span>&nbsp;<span style="color:#9cdcfe;">src</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;https://cdn.startbootstrap.com/sb-forms-latest.js&quot;</span><span style="color:gray;">&gt;&lt;/</span><span style="color:#569cd6;">script</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+</pre>
+                            <br />
+                            <a href="/Sample/Sections">Click here to see the view in action.</a>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <hr />
-        <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
-        </footer>
-    </div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3><strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright
+                <strong><span>Arsha</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+                Designed by
+                <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
 
-    <script src="/Scripts/jquery-2.1.4.js"></script>
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/vendor/aos/aos.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/vendor/php-email-form/validate.js"></script>
+    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/vendor/waypoints/noframework.waypoints.js"></script>
 
-
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
 
 </body>
+
 </html>
