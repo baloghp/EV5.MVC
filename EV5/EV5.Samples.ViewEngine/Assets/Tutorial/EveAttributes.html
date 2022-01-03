@@ -43,7 +43,8 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            eve-renderbody
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderbody</span>
+</pre>
                                         </td>
                                         <td>
                                             Applicable only in Master view. Defines the place for the page view inside the master view.
@@ -51,7 +52,8 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            eve-renderinstead
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderinstead</span>
+</pre>
                                         </td>
                                         <td>
                                             Defines that the content should be placed in place of the tag.
@@ -59,7 +61,8 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            eve-renderinto
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderinto</span>
+</pre>
                                         </td>
                                         <td>
                                             Defines that the content should be placed at the end of the current tag content.
@@ -67,28 +70,41 @@
                                     </tr>
 
                                     <tr>
-                                        <td>eve-partial</td>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-partial</span>
+</pre>
+                                        </td>
                                         <td>Defines tha partial view names that should be rendered for the tag.</td>
                                     </tr>
                                     <tr>
-                                        <td>eve-partialmodel</td>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-partialmodel</span>
+</pre>
+                                        </td>
                                         <td>Defines the databinding path on the current view's model, that should be passed for the partial view. Applicable only with the eve-partial attribute.</td>
                                     </tr>
                                     <tr>
-                                        <td>eve-section </td>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-section</span>
+</pre>
+                                        </td>
                                         <td>
                                             Defines a placeholder for a section content.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>eve-sectioncontentfor</td>
+                                        <td>
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-sectioncontentfor</span>
+</pre>
+                                        </td>
                                         <td>
                                             Defines that the current tag (or its conent, see below) is a content for a section.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            eve-renderonlycontent
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-renderonlycontent</span>
+</pre>
                                         </td>
                                         <td>
                                             Defines that only the content of the current tag should be rendered as section content. Applicable only for sections.
@@ -106,61 +122,44 @@
                                     <tr>
                                         <td>Attribute</td>
                                         <td>Description</td>
-                                        <td>Opt-in method</td>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            eve-renderbody
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-eval</span>
+</pre>
                                         </td>
                                         <td>
-                                            Applicable only in Master view. Defines the place for the page view inside the master view.
+                                           Databinding of the model's value to the html tag. The value is determined based on the attribute value as a path to the object's structure. Opt-in:
+                                       
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;IDocument&nbsp;<span style="color:#dcdcaa;">ProcessEvals</span>(<span style="color:#569cd6;">this</span>&nbsp;IDocument&nbsp;<span style="color:#9cdcfe;">document</span>,&nbsp;<span style="color:#569cd6;">object</span>&nbsp;<span style="color:#9cdcfe;">Model</span>)
+</pre>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            eve-renderinstead
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-viewbag</span>
+</pre>
                                         </td>
                                         <td>
-                                            Defines that the content should be placed in place of the tag.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            eve-renderinto
-                                        </td>
-                                        <td>
-                                            Defines that the content should be placed at the end of the current tag content.
-                                        </td>
-                                    </tr>
+                                            Databinding of the ViewBag's value to the html tag. The value is determined based on the attribute value as a path to the object's structure. Opt-in:
 
-                                    <tr>
-                                        <td>eve-partial</td>
-                                        <td>Defines tha partial view names that should be rendered for the tag.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>eve-partialmodel</td>
-                                        <td>Defines the databinding path on the current view's model, that should be passed for the partial view. Applicable only with the eve-partial attribute.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>eve-section </td>
-                                        <td>
-                                            Defines a placeholder for a section content.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>eve-sectioncontentfor</td>
-                                        <td>
-                                            Defines that the current tag (or its conent, see below) is a content for a section.
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#dcdcaa;">ProcessViewBag</span>&lt;<span style="color:#b8d7a3;">T</span>&gt;(<span style="color:#569cd6;">this</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#9cdcfe;">documentHelper</span>,&nbsp;ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)&nbsp;<span style="color:#569cd6;">where</span>&nbsp;T&nbsp;:&nbsp;IDocument
+</pre>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            eve-renderonlycontent
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#9cdcfe;">eve-local</span>
+</pre>
                                         </td>
                                         <td>
-                                            Defines that only the content of the current tag should be rendered as section content. Applicable only for sections.
+                                            inserts the localized value of a string from the defined resource manager. Localization key is the attribute's value. Opt-in:
+
+                                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#dcdcaa;">ProcessLocals</span>&lt;<span style="color:#b8d7a3;">T</span>&gt;(<span style="color:#569cd6;">this</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#9cdcfe;">documentHelper</span>,&nbsp;ResourceManager&nbsp;<span style="color:#9cdcfe;">resourceManager</span>,&nbsp;CultureInfo&nbsp;<span style="color:#9cdcfe;">culture</span>)&nbsp;<span style="color:#569cd6;">where</span>&nbsp;T&nbsp;:&nbsp;IDocument
+</pre>
                                         </td>
                                     </tr>
                                 </tbody>
