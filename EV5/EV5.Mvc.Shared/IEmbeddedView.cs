@@ -68,5 +68,8 @@ namespace EV5.Mvc.ViewEngine
 
         void SetModel(object Model);
         void Render(ViewContext viewContext);
+
+        IEmbeddedView Parent { get; set; }
+        
     }
 }

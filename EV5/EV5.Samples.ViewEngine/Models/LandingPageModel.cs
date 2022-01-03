@@ -10,8 +10,7 @@ namespace EV5.Samples.ViewEngine.Models
     {
         public Header Header { get; set; }
         public IList<Content> Contents { get; set; }
-       
-        internal static object GetSample()
+        internal static LandingPageModel GetSample()
         {
             return new LandingPageModel()
             {
@@ -34,10 +33,7 @@ namespace EV5.Samples.ViewEngine.Models
                        Heading = "::Content 3 Heading from Model",
                         Lead = "::Content 3 Lead from Model"
                     },
-
                 },
-               
-
             };
         }
     }

@@ -1,79 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Head.html" eve-renderinstead>
 
-    <title>EV5.Mvc Tutorial 8 - Simple HTML in Embedded View Engine</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="/img/favicon.png" rel="icon">
-    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: Arsha - v4.3.0
-    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-</head>
+</div>
 
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top header-inner-pages">
-        <div class="container d-flex align-items-center">
+    <div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Header.html" eve-renderinstead>
 
-            <h1 class="logo me-auto"><a href="index.html">EV5.MVC</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li>
-                        <a class="active nav-link scrollto" href="/index#hero">Home</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto" href="/index#about">About</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto" href="/index#features">Features</a>
-                    </li>
-                    <li>
-                        <a class="nav-link   scrollto" href="/index#tutorials">Turorial</a>
-                    </li>
-                    <li>
-                        <a class="nav-link   scrollto" href="/index#demos">Demos</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto" href="/index#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a class="getstarted scrollto" href="/index#about">Get Started</a>
-                    </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-        </div>
-    </header><!-- End Header -->
+    </div>
+    
     <main id="main">
 
         <!-- ======= Breadcrumbs ======= -->
@@ -94,23 +30,126 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="panel-heading">Sections</h3>
+                        <h3 class="panel-heading">Dynamic and Typed Views</h3>
                         <p>
+                            You can pass a Model class containing data to the views as normal:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;ActionResult&nbsp;<span style="color:#dcdcaa;">Typed</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;eve-Typed.LandingPage&quot;</span>,&nbsp;Models<span style="color:#b4b4b4;">.</span>LandingPageModel<span style="color:#b4b4b4;">.</span>GetSample());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+                            <br />
+
+                            When using the resource name as view name, the view engine will not process directly the information passed in the Model.
+                            The reason for this is that in EV5 you have to explicitly opt in for any processing. Opting in happens in the view class, by its definition.
+                            <br />
+                            When using the simplest definition of EmbeddedView
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SimpleHtmlView</span>&nbsp;:&nbsp;EmbeddedView
+</pre>
+                            the passed object will be transformed to <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/using-type-dynamic">dynamic type</a>, essentially it will bypass static type checking.
+
+                            <br />
+                            You can however use the generic version of the class EmbeddedView, to enforce static type checking on the passed Model:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">LandingPageView</span>&nbsp;:&nbsp;EmbeddedView&lt;LandingPageModel&gt;
+</pre>
 
 
                         </p>
 
 
-                        <h3 class="panel-heading">Section related attributes</h3>
+                        <h3 class="panel-heading">Accessing Model from View class</h3>
                         <p>
-                           
+                            You can access the Model data in the view after initialization via the Model property.
+                            <br />
+
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">ProcessView</span>(ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">node</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>Document
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>SelectSingleNode(<span style="color:#d69d85;">&quot;//h1&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;(node&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span>)&nbsp;node<span style="color:#b4b4b4;">.</span>InnerHtml&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;Model<span style="color:#b4b4b4;">.</span>Header<span style="color:#b4b4b4;">.</span>Header1;
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+
+
                         </p>
 
-                        <h3 class="panel-heading">Sections Tutorial </h3>
+                        <h3 class="panel-heading">DataBinding from HTML</h3>
                         <p>
-                           
-                            <a href="/Sample/Typed">Click here to see the view in action.</a>
+                            You can also access the Model's values from the HTML via a the <b>eve-eval</b> attribute
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;col-lg-8&nbsp;align-self-baseline&quot;</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">p</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;text-white-75&nbsp;mb-5&quot;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">eve-eval</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;Header2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span><span style="color:gray;">&gt;</span>Start&nbsp;Bootstrap&nbsp;can&nbsp;help&nbsp;you&nbsp;build&nbsp;better&nbsp;websites&nbsp;using&nbsp;the&nbsp;Bootstrap&nbsp;framework!&nbsp;Just&nbsp;download&nbsp;a&nbsp;theme&nbsp;and&nbsp;start&nbsp;customizing,&nbsp;no&nbsp;strings&nbsp;attached!<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">p</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">a</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;btn&nbsp;btn-primary&nbsp;btn-xl&quot;</span>&nbsp;<span style="color:#9cdcfe;">href</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;#about&quot;</span><span style="color:gray;">&gt;</span>Find&nbsp;Out&nbsp;More<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">a</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+</pre>
+                            <br />
+                            In order to use this feature you have to explictly opt in for processing these attributes in the view class.
+                            One of the ways to do it is to override the BeforeProcessView method, that is called just before the ProcessView method.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">protected</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">BeforeProcessView</span>(ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">base</span><span style="color:#b4b4b4;">.</span>BeforeProcessView(viewContext);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument<span style="color:#b4b4b4;">.</span>Document
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>ProcessEvals(<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>Model);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
 
+                        </p>
+
+                        <h3 class="panel-heading">Models of Partial Views</h3>
+                        <p>
+                            Models can be complex and you can match the Model to the structure of the views if needed. Thus you can have a page model with a header footer and multiple content parts.
+                            For example:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">LandingPageModel</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;Header&nbsp;Header&nbsp;{&nbsp;<span style="color:#569cd6;">get</span>;&nbsp;<span style="color:#569cd6;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;IList&lt;Content&gt;&nbsp;Contents&nbsp;{&nbsp;<span style="color:#569cd6;">get</span>;&nbsp;<span style="color:#569cd6;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">internal</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;LandingPageModel&nbsp;<span style="color:#dcdcaa;">GetSample</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;LandingPageModel()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Header()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header1&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Header&nbsp;1&nbsp;from&nbsp;Model&nbsp;-&nbsp;via&nbsp;view&nbsp;processing&quot;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header2&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Header&nbsp;2&nbsp;from&nbsp;Model&nbsp;-&nbsp;via&nbsp;databinding&quot;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contents&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;List&lt;Content&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Content(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heading&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;1&nbsp;Heading&nbsp;from&nbsp;Model&quot;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;1&nbsp;Lead&nbsp;from&nbsp;Model&quot;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Content(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heading&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;2&nbsp;Heading&nbsp;from&nbsp;Model&quot;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;2&nbsp;Lead&nbsp;from&nbsp;Model&quot;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Content(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heading&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;3&nbsp;Heading&nbsp;from&nbsp;Model&quot;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;::Content&nbsp;3&nbsp;Lead&nbsp;from&nbsp;Model&quot;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+
+                            When defining the partial view, you can also define the part of the model that applies to the partial view via the <b>eve-partialmodel</b> attribute.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">&nbsp;<span style="color:#57a64a;">&lt;!--&nbsp;Masthead--&gt;</span>
+<span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-partial</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;eve-Typed.HeaderPartial&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span>&nbsp;<span style="color:#9cdcfe;">eve-partialmodel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;Header&quot;</span><span style="color:gray;">&gt;</span>
+
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+
+<span style="color:#57a64a;">&lt;!--&nbsp;Content--&gt;</span>
+<span style="color:gray;">&lt;</span><span style="color:#569cd6;">div</span>&nbsp;<span style="color:#9cdcfe;">eve-partial</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;eve-EV5.VE-Assets.Sample.Typed.Content.html&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-renderinstead</span>&nbsp;<span style="color:#9cdcfe;">eve-partialmodel</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;Contents&quot;</span><span style="color:gray;">&gt;</span>
+
+<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">div</span><span style="color:gray;">&gt;</span>
+
+</pre>
+
+
+                            <a href="/Sample/Typed">Click here to see the above in action. Observe the code to see the full example.</a>
                         </p>
                     </div>
                 </div>
@@ -118,63 +157,11 @@
         </section>
 
     </main><!-- End #main -->
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email">
-                            <input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3><strong style="font-family: Klasted"> EV5.Mvc</strong></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container footer-bottom clearfix">
-            <div class="copyright">
-                &copy; Copyright
-                <strong><span>Arsha</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-                Designed by
-                <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
 
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="/vendor/aos/aos.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/vendor/php-email-form/validate.js"></script>
-    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="/vendor/waypoints/noframework.waypoints.js"></script>
+    <div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Footer.html" eve-renderinstead>
 
-    <!-- Template Main JS File -->
-    <script src="/js/main.js"></script>
-
+    </div>
 </body>
 
 </html>

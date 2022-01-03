@@ -18,6 +18,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Assets\Sample\Extensions\About.html" />
+    <None Remove="Assets\Sample\Extensions\Contact.html" />
+    <None Remove="Assets\Sample\Extensions\Content.html" />
+    <None Remove="Assets\Sample\Extensions\Header.html" />
+    <None Remove="Assets\Sample\Extensions\LandingPage.html" />
+    <None Remove="Assets\Sample\Extensions\LandingPageMaster.html" />
+    <None Remove="Assets\Sample\Extensions\Services.html" />
     <None Remove="Assets\Sample\MasterAndPartials\About.html" />
     <None Remove="Assets\Sample\MasterAndPartials\Content.html" />
     <None Remove="Assets\Sample\MasterAndPartials\Header.html" />
@@ -39,20 +46,34 @@
     <None Remove="Assets\Sample\Typed\LandingPage.html" />
     <None Remove="Assets\Sample\Typed\LandingPageMaster.html" />
     <None Remove="Assets\Sample\Typed\Services.html" />
+    <None Remove="Assets\Tutorial\Shared\Footer.html" />
+    <None Remove="Assets\Tutorial\Shared\Head.html" />
+    <None Remove="Assets\Tutorial\Shared\Header.html" />
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Update="L10N\Resources.Designer.cs">
+    <Compile Update="L10N\Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="L10N\Resources - Copy.Designer.cs">
+      <DependentUpon>Resources.ja.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="L10N\Resources.resx">
+    <EmbeddedResource Update="L10N\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="L10N\Resources.ja.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="L10N\Resources.ja.resx">
+      <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
 

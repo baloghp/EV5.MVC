@@ -11,7 +11,7 @@ namespace EV5.Mvc.Processor.Extensions
     /// <summary>
     /// Extension methods for databinding
     /// </summary>
-    public static class DataBindingExtensions
+    public static class DataBinding
     {
 
         public const string EvalAttribute = "eve-eval";

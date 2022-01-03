@@ -4,12 +4,14 @@ using EV5.Mvc.MEF;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EV5.Samples.ViewEngine.Models;
 using EV5.Mvc.Processor.Extensions;
+using EV5.Samples.ViewEngine.L10N;
+using System.Threading;
 
-namespace EV5.Samples.ViewEngine.Views.Typed
+namespace EV5.Samples.ViewEngine.Views.Extensions
 {
-    [MasterView("eve-Typed.LandingPageMaster")]
-    [MarkupName("EV5.VE-Assets.Sample.Typed.LandingPage.html")]
-    [EmbeddedView("Typed.LandingPage")]
+    [MasterView("eve-Extensions.LandingPageMaster")]
+    [MarkupName("EV5.VE-Assets.Sample.Extensions.LandingPage.html")]
+    [EmbeddedView("Extensions.LandingPage")]
     public class LandingPageView : EmbeddedView<LandingPageModel>
     {
         protected override void BeforeProcessView(ViewContext viewContext)
@@ -17,6 +19,10 @@ namespace EV5.Samples.ViewEngine.Views.Typed
             base.BeforeProcessView(viewContext);
             this.HtmlDocument.Document
                 .ProcessEvals(this.Model);
+
+            this.HtmlDocument
+                .ProcessViewBag(viewContext)
+                .ProcessLocals(Resource.ResourceManager,Thread.CurrentThread.CurrentUICulture);
         }
         public override void ProcessView(ViewContext viewContext)
         {

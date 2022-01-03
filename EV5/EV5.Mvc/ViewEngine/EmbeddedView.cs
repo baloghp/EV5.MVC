@@ -183,6 +183,8 @@ namespace EV5.Mvc
 
         public string Path => "";
 
+        public IEmbeddedView Parent { get ; set ; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedView{T}"/> class.
         /// </summary>
@@ -391,6 +393,7 @@ namespace EV5.Mvc
                 using (StreamWriter tw = new StreamWriter(ms))
             {
                 var ev = viewResult.View as IEmbeddedView;
+                    ev.Parent = this;
                     if (model != null)
                     {
                         

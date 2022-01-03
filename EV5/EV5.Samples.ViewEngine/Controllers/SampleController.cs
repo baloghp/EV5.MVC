@@ -45,23 +45,13 @@ namespace EV5.Samples.ViewEngine.Controllers
         {
             return View("eve-Typed.LandingPage", Models.LandingPageModel.GetSample());
         }
-        public ActionResult DataBinding()
+        public ActionResult Extensions()
         {
-            this.ViewBag.Title = "Title comes from viewbag!!!!";
-            return View("eve-Assets.Views.Sample.DataBinding.LandingPage.html", Models.LandingPageModel.GetSample());
-        }
-
-        public ActionResult BundlesInJapan()
-        {
-
+            this.ViewBag.Content = "This content comes from viewbag!!!!";
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ja-JP");
-            return View("eve-Assets.Views.Sample.Bundles.LandingPage.html");
+            return View("eve-Extensions.LandingPage", Models.LandingPageModel.GetSample());
         }
 
-        public ActionResult ShortViewNames()
-        {
-            this.ViewBag.Title = "Title comes from viewbag!!!!";
-            return View("eve-ShortViewNames.LandingPage.html", Models.LandingPageModel.GetSample());
-        }
+        
     }
 }

@@ -1,89 +1,179 @@
-﻿
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVE.Mvc Tutorial 14 - Extending Eve views</title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
+﻿<!DOCTYPE html>
+<html lang="en">
 
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
+<div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Head.html" eve-renderinstead>
 
+</div>
 
-</head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">EVE.Mvc</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
+    <div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Header.html" eve-renderinstead>
 
-                    <li><a href="/Home/Contact">Contact</a></li>
-                </ul>
-
-            </div>
-        </div>
     </div>
-    <div class="container body-content">
 
+    <main id="main">
 
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
 
-        <div class="jumbotron">
-            <br />
-            <p class="lead">Extending Eve views</p>
-        </div>
+                <ol>
+                    <li><a href="/index">Home</a></li>
+                    <li> Typed Views and DataBinding</li>
+                </ol>
+                <h2> Typed Views and DataBinding</h2>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">Extending Eve views</div>
-            <div class="panel-body">
-              Best way to extend view functionality is to add fluent extension methods to IDocumentHelper and allow the actual views to opt in for your actual view processing.
-                <br />
-                See source for examples for this.
-                <br />
-                Here's another example this time for viewbags:
-                <br />
-                <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">namespace</span>&nbsp;EVE<span style="color:#b4b4b4;">.</span>Mvc
-{
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">ViewBag</span>
+            </div>
+        </section>
+        <!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="panel-heading">Extending View Functionality</h3>
+                        <p>
+                            Best way to extend view functionality is to add fluent extension methods to IDocumentHelper or IDocument and allow the actual views to opt in for your actual view processing.
+                            Example of this is how the data-binding is implemented:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;</span><span style="color:#608b4e;">summary</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;Extension&nbsp;methods&nbsp;for&nbsp;databinding</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;/</span><span style="color:#608b4e;">summary</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">DataBindingExtensions</span>
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#569cd6;">string</span>&nbsp;ViewBagAttribute&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;eve-viewbag&quot;</span>;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;<span style="color:#b8d7a3;">IDocumentHelper</span>&nbsp;ProcessViewBag(<span style="color:#569cd6;">this</span>&nbsp;<span style="color:#b8d7a3;">IDocumentHelper</span>&nbsp;documentHelper,&nbsp;<span style="color:#4ec9b0;">ViewContext</span>&nbsp;viewContext)
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#569cd6;">string</span>&nbsp;EvalAttribute&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;eve-eval&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;</span><span style="color:#608b4e;">summary</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;Processes&nbsp;the&nbsp;html&nbsp;document&#39;s&nbsp;tags&nbsp;with&nbsp;EvalAttribute&nbsp;(&quot;eve-eval&quot;),&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;by&nbsp;evaluating&nbsp;the&nbsp;given&nbsp;attribute&nbsp;value&nbsp;on&nbsp;the&nbsp;given&nbsp;Model,&nbsp;and&nbsp;inserting&nbsp;the&nbsp;result&nbsp;into&nbsp;the&nbsp;tag</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;/</span><span style="color:#608b4e;">summary</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;</span><span style="color:#608b4e;">param</span>&nbsp;<span style="color:#c8c8c8;">name</span><span style="color:#608b4e;">=</span><span style="color:#c8c8c8;">&quot;</span>documentHelper<span style="color:#c8c8c8;">&quot;</span><span style="color:#608b4e;">&gt;</span><span style="color:#608b4e;">Document&nbsp;to&nbsp;attach&nbsp;this&nbsp;functionality&nbsp;on</span><span style="color:#608b4e;">&lt;/</span><span style="color:#608b4e;">param</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;</span><span style="color:#608b4e;">param</span>&nbsp;<span style="color:#c8c8c8;">name</span><span style="color:#608b4e;">=</span><span style="color:#c8c8c8;">&quot;</span>Model<span style="color:#c8c8c8;">&quot;</span><span style="color:#608b4e;">&gt;</span><span style="color:#608b4e;">Model&nbsp;on&nbsp;which&nbsp;the&nbsp;evaluation&nbsp;is&nbsp;done</span><span style="color:#608b4e;">&lt;/</span><span style="color:#608b4e;">param</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#608b4e;">///</span><span style="color:#608b4e;">&nbsp;</span><span style="color:#608b4e;">&lt;</span><span style="color:#608b4e;">returns</span><span style="color:#608b4e;">&gt;&lt;/</span><span style="color:#608b4e;">returns</span><span style="color:#608b4e;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;IDocument&nbsp;<span style="color:#dcdcaa;">ProcessEvals</span>(<span style="color:#569cd6;">this</span>&nbsp;IDocument&nbsp;<span style="color:#9cdcfe;">document</span>,&nbsp;<span style="color:#569cd6;">object</span>&nbsp;<span style="color:#9cdcfe;">Model</span>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentHelper<span style="color:#b4b4b4;">.</span>ProcessNodesWithAttributeSequential(ViewBagAttribute,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">Func</span><span style="color:#b4b4b4;">&lt;</span><span style="color:#4ec9b0;">HtmlNode</span>,&nbsp;<span style="color:#569cd6;">string</span><span style="color:#b4b4b4;">&gt;</span>(a&nbsp;<span style="color:#b4b4b4;">=&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;dynaPath&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;a<span style="color:#b4b4b4;">.</span>Attributes[ViewBagAttribute]<span style="color:#b4b4b4;">.</span>Value;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;value&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#4ec9b0;">Dynamic</span><span style="color:#b4b4b4;">.</span>InvokeGet(viewContext<span style="color:#b4b4b4;">.</span>ViewBag,dynaPath);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;value<span style="color:#b4b4b4;">.</span>ToString();
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document<span style="color:#b4b4b4;">.</span>ProcessNodesWithAttribute(EvalAttribute,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Func&lt;IDocumentNode,&nbsp;<span style="color:#569cd6;">string</span>&gt;(<span style="color:#9cdcfe;">a</span>&nbsp;<span style="color:#b4b4b4;">=&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//var&nbsp;evalPath&nbsp;=&nbsp;a.Attributes[EvalAttribute].Value;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">evalPath</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;a<span style="color:#b4b4b4;">.</span>GetAttributeValue(EvalAttribute);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//eval&nbsp;the&nbsp;new&nbsp;value&nbsp;on&nbsp;the&nbsp;current&nbsp;model</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;(Model&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">null</span>&nbsp;<span style="color:#b4b4b4;">&amp;&amp;</span>&nbsp;<span style="color:#b4b4b4;">!</span><span style="color:#569cd6;">string</span><span style="color:#b4b4b4;">.</span>IsNullOrWhiteSpace(evalPath))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">evalValue</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;ViewDataEvaluator<span style="color:#b4b4b4;">.</span>Eval(Model,&nbsp;evalPath<span style="color:#b4b4b4;">.</span>Trim());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;evalValue&nbsp;<span style="color:#b4b4b4;">==</span>&nbsp;<span style="color:#569cd6;">null</span>&nbsp;<span style="color:#b4b4b4;">?</span>&nbsp;<span style="color:#569cd6;">string</span><span style="color:#b4b4b4;">.</span>Empty&nbsp;<span style="color:#b4b4b4;">:</span>&nbsp;evalValue<span style="color:#b4b4b4;">.</span>Value<span style="color:#b4b4b4;">.</span>ToString();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;<span style="color:#569cd6;">null</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;));
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;documentHelper;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;document;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;}
-}</pre>
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+                        </p>
+                        <h3 class="panel-heading">Opt-in processing</h3>
+                        <p>
+                            You have to call these extension methods. This design choice is intentional as you should only process as much of the view as needed, and opt-in for any additional processing.
+                            The EmbeddedView class implements the method BeforeProcessView, which you can override and use to execute any rendering extension you like. This method allows for inheritance, so for example you can create a sub-class of EmbeddedView that uses data-binding by default.
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">abstract</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">DataBindingView</span>&lt;<span style="color:#b8d7a3;">T</span>&gt;&nbsp;:&nbsp;EmbeddedView&lt;T&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">protected</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">BeforeProcessView</span>(ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">base</span><span style="color:#b4b4b4;">.</span>BeforeProcessView(viewContext);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument<span style="color:#b4b4b4;">.</span>Document<span style="color:#b4b4b4;">.</span>ProcessEvals(<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>Model);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+
+                        </p>
+
+                        
+
+                        </p>
+
+                        <h3 class="panel-heading">ViewBag extension</h3>
+                        <p>
+                            Here's another example this time for viewbags, super similar to the data-binding implementation:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#dcdcaa;">ProcessViewBag</span>&lt;<span style="color:#b8d7a3;">T</span>&gt;(<span style="color:#569cd6;">this</span>&nbsp;IDocumentHelper&lt;T&gt;&nbsp;<span style="color:#9cdcfe;">documentHelper</span>,&nbsp;ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)&nbsp;<span style="color:#569cd6;">where</span>&nbsp;T&nbsp;:&nbsp;IDocument
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;(viewContext&nbsp;<span style="color:#b4b4b4;">==</span>&nbsp;<span style="color:#569cd6;">null</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">throw</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;ArgumentNullException(<span style="color:#d69d85;">&quot;viewContext&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">if</span>&nbsp;(viewContext<span style="color:#b4b4b4;">.</span>ViewBag&nbsp;<span style="color:#b4b4b4;">==</span>&nbsp;<span style="color:#569cd6;">null</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">throw</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;ArgumentNullException(<span style="color:#d69d85;">&quot;viewContext.ViewBag&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//Sequential&nbsp;processing&nbsp;is&nbsp;required&nbsp;because&nbsp;the&nbsp;evaluation&nbsp;needs&nbsp;the&nbsp;http&nbsp;context&nbsp;that&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//&nbsp;parallel&nbsp;implementation&nbsp;does&nbsp;not&nbsp;have&nbsp;on&nbsp;all&nbsp;threads</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentHelper<span style="color:#b4b4b4;">.</span>ProcessNodesWithAttributeSequential(ViewBagAttribute,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Func&lt;IDocumentNode,&nbsp;<span style="color:#569cd6;">string</span>&gt;(<span style="color:#9cdcfe;">a</span>&nbsp;<span style="color:#b4b4b4;">=&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">dynaPath</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;a<span style="color:#b4b4b4;">.</span>GetAttributeValue(ViewBagAttribute);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;<span style="color:#9cdcfe;">value</span>&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;GetProperty(viewContext<span style="color:#b4b4b4;">.</span>ViewBag,&nbsp;dynaPath);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//ViewDataEvaluator.Eval(viewContext.ViewBag,&nbsp;dynaPath);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;value<span style="color:#b4b4b4;">?.</span>ToString();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;documentHelper;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+                        </p>
+
+                        <h3 class="panel-heading">Localization Extension</h3>
+                        <p>
+                            Localization is just another extension you can opt in for like databinding previously:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">Localization</span>
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#569cd6;">string</span>&nbsp;LocalAttribute&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;eve-local&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">static</span>&nbsp;<span style="color:#b8d7a3;">IDocumentHelper</span>&nbsp;ProcessLocals(<span style="color:#569cd6;">this</span>&nbsp;<span style="color:#b8d7a3;">IDocumentHelper</span>&nbsp;documentHelper,&nbsp;<span style="color:#4ec9b0;">ResourceManager</span>&nbsp;resourceManager,&nbsp;<span style="color:#4ec9b0;">CultureInfo</span>&nbsp;culture)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentHelper<span style="color:#b4b4b4;">.</span>ProcessNodesWithAttribute(LocalAttribute,&nbsp;<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">Func</span><span style="color:#b4b4b4;">&lt;</span><span style="color:#4ec9b0;">HtmlNode</span>,&nbsp;<span style="color:#569cd6;">string</span><span style="color:#b4b4b4;">&gt;</span>(a&nbsp;<span style="color:#b4b4b4;">=&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">var</span>&nbsp;resourceKey&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;a<span style="color:#b4b4b4;">.</span>Attributes[LocalAttribute]<span style="color:#b4b4b4;">.</span>Value;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;resourceManager<span style="color:#b4b4b4;">.</span>GetString(resourceKey,culture);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;documentHelper;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;}</pre>
+
+                            First create the appropriate resx files with the necessary content. See source for that.
+                            <br />
+                            Then prepare the markups with the localization tag:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:gray;">&lt;</span><span style="color:#569cd6;">h3</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;h4&nbsp;mb-2&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-local</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;localized1&quot;</span><span style="color:gray;">&gt;</span>Sturdy&nbsp;Themes<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">h3</span><span style="color:gray;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:gray;">&lt;</span><span style="color:#569cd6;">p</span>&nbsp;<span style="color:#9cdcfe;">class</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;text-muted&nbsp;mb-0&quot;</span>&nbsp;<span style="color:#9cdcfe;">eve-local</span><span style="color:#b4b4b4;">=</span><span style="color:#c8c8c8;">&quot;localized2&quot;</span><span style="color:gray;">&gt;</span>Our&nbsp;themes&nbsp;are&nbsp;updated&nbsp;regularly&nbsp;to&nbsp;keep&nbsp;them&nbsp;bug&nbsp;free!<span style="color:gray;">&lt;/</span><span style="color:#569cd6;">p</span><span style="color:gray;">&gt;</span>
+</pre>
+                            <br />
+
+                            You should set the locale of you page explicitly based on user input before calling the view:
+                            <br />
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;ActionResult&nbsp;<span style="color:#dcdcaa;">Extensions</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>ViewBag<span style="color:#b4b4b4;">.</span>Content&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#d69d85;">&quot;This&nbsp;content&nbsp;comes&nbsp;from&nbsp;viewbag!!!!&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread<span style="color:#b4b4b4;">.</span>CurrentThread<span style="color:#b4b4b4;">.</span>CurrentUICulture&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;CultureInfo<span style="color:#b4b4b4;">.</span>GetCultureInfo(<span style="color:#d69d85;">&quot;ja-JP&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#d8a0df;">return</span>&nbsp;View(<span style="color:#d69d85;">&quot;eve-Extensions.LandingPage&quot;</span>,&nbsp;Models<span style="color:#b4b4b4;">.</span>LandingPageModel<span style="color:#b4b4b4;">.</span>GetSample());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+                            <br />
+
+                            In you page view code you have to opt in for localization:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">protected</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">BeforeProcessView</span>(ViewContext&nbsp;<span style="color:#9cdcfe;">viewContext</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">base</span><span style="color:#b4b4b4;">.</span>BeforeProcessView(viewContext);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument<span style="color:#b4b4b4;">.</span>Document
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>ProcessEvals(<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>Model);
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>HtmlDocument
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>ProcessViewBag(viewContext)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b4b4b4;">.</span>ProcessLocals(Resource<span style="color:#b4b4b4;">.</span>ResourceManager,Thread<span style="color:#b4b4b4;">.</span>CurrentThread<span style="color:#b4b4b4;">.</span>CurrentUICulture);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+
+                            <a href="/Sample/Extensions">Click here to see the above in action. Observe the code to see the full example.</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <hr />
-        <footer>
-            <p>&copy; 2015 - EVE.Mvc</p>
-        </footer>
+        </section>
+
+    </main><!-- End #main -->
+
+
+    <div eve-partial="eve-EV5.VE-Assets.Tutorial.Shared.Footer.html" eve-renderinstead>
+
     </div>
-
-    <script src="/Scripts/jquery-2.1.4.js"></script>
-
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
-
-
-
 </body>
+
 </html>
+
