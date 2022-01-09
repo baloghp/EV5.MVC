@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AdminLTE\**\*.woff2; AdminLTE\**\*.woff; AdminLTE\**\*.ttf; AdminLTE\**\*.PNG; AdminLTE\**\*.html; AdminLTE\**\*.jpg; AdminLTE\**\*.ico; AdminLTE\**\*.svg; AdminLTE\**\*.css; AdminLTE\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="EV5.Mvc" Version="0.7.0-alpha" />
+  </ItemGroup>
+
+</Project>

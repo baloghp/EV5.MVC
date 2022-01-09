@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EV5RN": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\DEV\\GitHubRepo\\EV5.Examples\\EV5.AdminLTE\\AdminLTE\" -r \"/EV5.ALTE-AdminLTE\" -e true"
+    }
+  }
+}

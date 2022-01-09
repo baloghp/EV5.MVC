@@ -56,7 +56,7 @@ namespace EV5.Mvc.Extensions
             Func<IEnumerable<IEmbeddedPlugin>, IEnumerable<IEmbeddedPlugin>> BeforePluginsInitialized = null
             )
         {
-
+            
             services.AddEV5CompositionServices(hostFactory);
             var plugins = EV5MefCompositionHost.CompositionHost.GetExports<IEmbeddedPlugin>();
             if (BeforePluginsInitialized != null)
@@ -64,6 +64,12 @@ namespace EV5.Mvc.Extensions
             foreach (var p in plugins)
             {
                 services.AddMvcCore().AddApplicationPart(p.WebPartsAssembly);
+                if (p.InsertOwnEmbeddedViewEngine)
+                {
+                    services.AddMvc()
+                        .AddViewOptions(o => o.ViewEngines
+                                              .Insert(0, new EmbeddedViewEngine(p.OwnEmbeddedViewEnginePrefix)));
+                }
             }
 
 

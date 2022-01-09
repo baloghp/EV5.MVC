@@ -24,7 +24,6 @@ namespace EV5.Mvc.Embedded
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
         }
-       
 
         [HttpGet]
         public JsonResult GetContentRootDirectoryContents()
@@ -76,6 +75,11 @@ namespace EV5.Mvc.Embedded
                         r.Value
                     }),
                 }));
+        }
+
+        public ActionResult CallView(string viewname)
+        {
+            return View(viewname);
         }
     }
 }

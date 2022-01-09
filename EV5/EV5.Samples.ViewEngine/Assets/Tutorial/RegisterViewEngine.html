@@ -68,8 +68,17 @@
                             <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#dcdcaa;">Configure</span>(IApplicationBuilder&nbsp;<span style="color:#9cdcfe;">app</span>,&nbsp;IWebHostEnvironment&nbsp;<span style="color:#9cdcfe;">env</span>)
 </pre>
                         </p>
+                        <h3 class="panel-heading">Mapping controllers</h3>
+                        <p>
+                            Finally since EV5 is an MVC engine, you have to make sure that controllers are registered:
+                            <pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;">app<span style="color:#b4b4b4;">.</span>UseEndpoints(<span style="color:#9cdcfe;">endpoints</span>&nbsp;<span style="color:#b4b4b4;">=&gt;</span>
+{
+&nbsp;&nbsp;&nbsp;&nbsp;endpoints<span style="color:#b4b4b4;">.</span>MapRazorPages();
+&nbsp;&nbsp;&nbsp;&nbsp;endpoints<span style="color:#b4b4b4;">.</span>MapControllers();
+&nbsp;&nbsp;&nbsp;&nbsp;endpoints<span style="color:#b4b4b4;">.</span>MapDefaultControllerRoute();
+});</pre>   
+                        </p>
 
-                        
                     </div>
                 </div>
             </div>
