@@ -217,7 +217,7 @@ namespace EV5RN
                                     var contentDir = Path.GetDirectoryName(contentfi.Path);
                                     var calculatedAsserPath = Path.GetFullPath(Path.Combine(contentDir, FileUtilities.FixFilePath(attributePath)));
                                     //check if the url points to the same file as the asset, if so record the needed change
-                                    if (calculatedAsserPath == assetfile.Path)
+                                    if (calculatedAsserPath == Path.GetFullPath(assetfile.Path))
                                         contentfi.Changes.Add(new Change()
                                         {
                                             Line = linecounter,

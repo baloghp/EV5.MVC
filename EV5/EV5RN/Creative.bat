@@ -1,2 +1,2 @@
 ﻿
-EV5RN.exe "C:\Users\peter\source\repos\baloghp\EV5.MVC\EV5\EV5.Creative\Creative" -r "/EV5.CRTV-Creative" - a "*.PNG; *.html; *.jpg; *.ico; *.svg; *.css; *.js; *.woff; *.ttf; *.eot; *.woff2; *.svg" -c "*.html; *.css" -e true
+EV5RN.exe "..\..\..\..\\EV5.Creative\Creative" -r "/EV5.CRTV-Creative" - a "*.PNG; *.html; *.jpg; *.ico; *.svg; *.css; *.js; *.woff; *.ttf; *.eot; *.woff2; *.svg" -c "*.html; *.css" -e true

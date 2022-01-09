@@ -8,18 +8,7 @@
     <EmbeddedResource Include="Creative\**\*.woff2; Creative\**\*.woff; Creative\**\*.ttf; Creative\**\*.PNG; Creative\**\*.html; Creative\**\*.jpg; Creative\**\*.ico; Creative\**\*.svg; Creative\**\*.css; Creative\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Creative\Views\index.html" />
-    <None Remove="Creative\Views\Shared\About.html" />
-    <None Remove="Creative\Views\Shared\Calltoaction.html" />
-    <None Remove="Creative\Views\Shared\Contact.html" />
-    <None Remove="Creative\Views\Shared\Footer.html" />
-    <None Remove="Creative\Views\Shared\Masthead.html" />
-    <None Remove="Creative\Views\Shared\Navigation.html" />
-    <None Remove="Creative\Views\Shared\Portfolio.html" />
-    <None Remove="Creative\Views\Shared\Services.html" />
-  </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
   </ItemGroup>

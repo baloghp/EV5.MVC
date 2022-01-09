@@ -17,40 +17,7 @@
     <EmbeddedResource Include="Assets\**\*.PNG; Assets\**\*.html; Assets\**\*.jpg; Assets\**\*.ico; Assets\**\*.svg; Assets\**\*.css; Assets\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   
-  <ItemGroup>
-    <None Remove="Assets\Sample\Extensions\About.html" />
-    <None Remove="Assets\Sample\Extensions\Contact.html" />
-    <None Remove="Assets\Sample\Extensions\Content.html" />
-    <None Remove="Assets\Sample\Extensions\Header.html" />
-    <None Remove="Assets\Sample\Extensions\LandingPage.html" />
-    <None Remove="Assets\Sample\Extensions\LandingPageMaster.html" />
-    <None Remove="Assets\Sample\Extensions\Services.html" />
-    <None Remove="Assets\Sample\MasterAndPartials\About.html" />
-    <None Remove="Assets\Sample\MasterAndPartials\Content.html" />
-    <None Remove="Assets\Sample\MasterAndPartials\Header.html" />
-    <None Remove="Assets\Sample\MasterAndPartials\LandingPage.html" />
-    <None Remove="Assets\Sample\MasterAndPartials\Services.html" />
-    <None Remove="Assets\Sample\Sections\About.html" />
-    <None Remove="Assets\Sample\Sections\Contact.html" />
-    <None Remove="Assets\Sample\Sections\Content.html" />
-    <None Remove="Assets\Sample\Sections\Header.html" />
-    <None Remove="Assets\Sample\Sections\LandingPage.html" />
-    <None Remove="Assets\Sample\Sections\LandingPageMaster.html" />
-    <None Remove="Assets\Sample\Sections\Services.html" />
-    <None Remove="Assets\Sample\SimpleMaster\LandingPage.html" />
-    <None Remove="Assets\Sample\SimpleMaster\LandingPageMaster.html" />
-    <None Remove="Assets\Sample\Typed\About.html" />
-    <None Remove="Assets\Sample\Typed\Contact.html" />
-    <None Remove="Assets\Sample\Typed\Content.html" />
-    <None Remove="Assets\Sample\Typed\Header.html" />
-    <None Remove="Assets\Sample\Typed\LandingPage.html" />
-    <None Remove="Assets\Sample\Typed\LandingPageMaster.html" />
-    <None Remove="Assets\Sample\Typed\Services.html" />
-    <None Remove="Assets\Tutorial\Shared\Footer.html" />
-    <None Remove="Assets\Tutorial\Shared\Head.html" />
-    <None Remove="Assets\Tutorial\Shared\Header.html" />
-  </ItemGroup>
-  
+
   <ItemGroup>
     <Compile Update="L10N\Resource.Designer.cs">
       <DesignTime>True</DesignTime>

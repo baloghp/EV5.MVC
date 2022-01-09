@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SBAdmin2\**\*.woff2; SBAdmin2\**\*.woff; SBAdmin2\**\*.ttf; SBAdmin2\**\*.PNG; SBAdmin2\**\*.html; SBAdmin2\**\*.jpg; SBAdmin2\**\*.ico; SBAdmin2\**\*.svg; SBAdmin2\**\*.css; SBAdmin2\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="SBAdmin2\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
+  </ItemGroup>
+
+</Project>
