@@ -17,4 +17,7 @@
     <Folder Include="Shop\" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
 </Project>

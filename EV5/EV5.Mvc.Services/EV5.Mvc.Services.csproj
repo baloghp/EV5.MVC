@@ -8,5 +8,8 @@
     <ProjectReference Include="..\EV5.Mvc.Plugin\EV5.Mvc.Plugin.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Shared\EV5.Mvc.Shared.csproj" />
   </ItemGroup>
-
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
+  
 </Project>

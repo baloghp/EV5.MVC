@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <TargetFramework>net5.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>EV5 Mvc is a custom view engine for the latest ASP.NET MVC on .NET Core 5.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -41,5 +41,8 @@
     <ProjectReference Include="..\EV5.Mvc.Services\EV5.Mvc.Services.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Shared\EV5.Mvc.Shared.csproj" />
   </ItemGroup>
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
 
 </Project>

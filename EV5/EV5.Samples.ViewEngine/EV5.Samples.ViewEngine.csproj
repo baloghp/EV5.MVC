@@ -43,5 +43,9 @@
       <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
-
+  
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
+  
 </Project>

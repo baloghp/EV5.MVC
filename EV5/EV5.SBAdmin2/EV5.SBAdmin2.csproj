@@ -16,4 +16,8 @@
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
+  
 </Project>

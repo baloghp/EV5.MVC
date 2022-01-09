@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Build.Shared;
 using System.Linq;
 using CommandLine;
 using System.Threading.Tasks;
@@ -19,13 +18,13 @@ namespace EV5RN
         [Option(shortName: 'r', longName: "rootnamespace", Required = true, HelpText = "Prefix for each of the embedded resource names"
             )]
         //, Default = "")]
-        public string rootnamespace { get; set; }
+        public string Rootnamespace { get; set; }
 
         [Option(shortName: 'a', longName: "assetfilter", Required = false, HelpText = "File filter for which resource files to consider"
           , Default = "*.PNG; *.html; *.jpg; *.ico; *.svg; *.css; *.js; *.woff; *.ttf; *.eot; *.woff2; *.svg")]
         //, Default = "*.woff; *.ttf; *.eot; *.woff2; *.svg")]
         //, Default = "index2.html")]
-        public string assetfilter { get; set; }
+        public string Assetfilter { get; set; }
 
         [Option(shortName: 'c', longName: "contentfilter", Required = false, HelpText = "File filter for which content files to consider"
               , Default = "*.html; *.css")]
@@ -33,10 +32,10 @@ namespace EV5RN
         //, Default = "*.css")]
         //, Default = "all.min.css; brands.min.css")]
         //, Default = "")]
-        public string contentfilter { get; set; }
+        public string Contentfilter { get; set; }
         [Option(shortName: 'e', longName: "execute", Required = false, HelpText = "Execute the file changes calculated."
             , Default = false)]
-        public bool execute { get; set; }
+        public bool Execute { get; set; }
     }
 
     class Program
@@ -44,11 +43,13 @@ namespace EV5RN
         static async Task<int> Main(string[] args)
         {
             return await Parser.Default.ParseArguments<CommandLineOptions>(args)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
                 .MapResult(async (CommandLineOptions opts) =>
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
                 {
                     try
                     {
-                        if (opts.execute)
+                        if (opts.Execute)
                         {
                             //throw a bunch of warnings before accepting to execute the changes
                             Console.Write("Are you sure you want to execute the calculated changes(Y/N)?");
@@ -82,15 +83,17 @@ namespace EV5RN
         {
             //we will discover all the changes needed first and capture it to this object,
             //this will then be serialized into a json file, for observation and validation
+#pragma warning disable IDE0090 // Use 'new(...)'
             EV5RNResult result = new EV5RNResult() { Params = opts, Run = new Run() };
+#pragma warning restore IDE0090 // Use 'new(...)'
 
             Console.WriteLine("Evaluating Files");
             //first we identify each file that can be referenced by the content files,
             //this will include the content files themselves too,
             //we will determine their new url (ManifestPath), the most and the absolute version of the original url (SearchPath)
 
-            var assetfilters = opts.assetfilter.Split(";");
-            Console.WriteLine("Identifying resource files: " + opts.assetfilter);
+            var assetfilters = opts.Assetfilter.Split(";");
+            Console.WriteLine("Identifying resource files: " + opts.Assetfilter);
             result.Run.AssetFileTypes = new List<FileTypeInfo>();
             result.Run.AssetFiles = new List<FileInfo>();
             foreach (var filter in assetfilters)
@@ -108,7 +111,7 @@ namespace EV5RN
                         Path = file,
                         RelativePath = relpath,
                         SearchPath = FileUtilities.SearchFilePath(relpath),
-                        ManifestPath = CreateManifestName(relpath, opts.rootnamespace)
+                        ManifestPath = CreateManifestName(relpath, opts.Rootnamespace)
                     });
                     //Console.WriteLine(relpath);
                 }
@@ -121,8 +124,8 @@ namespace EV5RN
             //calculate the same as above,
             //plus go line by line and see if any of the asset files are referenced.
             //if there is a reference make a change record for this content file.
-            Console.WriteLine("Identifying content files: " + opts.contentfilter);
-            var contentfilters = opts.contentfilter.Split(";");
+            Console.WriteLine("Identifying content files: " + opts.Contentfilter);
+            var contentfilters = opts.Contentfilter.Split(";");
             result.Run.ContentFileTypes = new List<FileTypeInfo>();
             result.Run.ContentFiles = new List<FileInfo>();
             foreach (var contentfilter in contentfilters)
@@ -140,7 +143,7 @@ namespace EV5RN
                         Path = contentfile,
                         RelativePath = relpath,
                         SearchPath = FileUtilities.SearchFilePath(relpath),
-                        ManifestPath = CreateManifestName(relpath, opts.rootnamespace),
+                        ManifestPath = CreateManifestName(relpath, opts.Rootnamespace),
                         Changes = new List<Change>()
                     };
                     result.Run.ContentFiles.Add(contentfi);
@@ -234,13 +237,13 @@ namespace EV5RN
 
                         linecounter++;
                     }
-                    Console.WriteLine(contentfi.Changes.Count() + " Changes found.");
+                    Console.WriteLine(contentfi.Changes.Count + " Changes found.");
                 }
             }
             string filename = string.Format("EV5RN-{0:yyyy-MM-dd_hh-mm-ss-tt}.json",
             DateTime.Now);
             File.WriteAllText(filename, JsonSerializer.Serialize<EV5RNResult>(result, new JsonSerializerOptions() { WriteIndented = true }));
-            if (opts.execute)
+            if (opts.Execute)
             {
                 Console.Write("Calculated changes will now be executed, ABORT (Y/N)?");
                 var a1 = Console.ReadKey();
@@ -248,7 +251,7 @@ namespace EV5RN
 
                 foreach (var contentfile in result.Run.ContentFiles)
                 {
-                    if (contentfile.Changes == null || contentfile.Changes.Count() == 0) continue;
+                    if (contentfile.Changes == null || contentfile.Changes.Count == 0) continue;
                     Console.WriteLine("Writing changes to: " + contentfile.RelativePath);
                     var lines = File.ReadAllLines(contentfile.Path);
                     foreach (var change in contentfile.Changes)
@@ -299,7 +302,7 @@ namespace EV5RN
                     manifestName += rootNamespace + '.';
                 }
 
-                string sourceExtension = Path.GetExtension(embeddedFileName);
+                //string sourceExtension = Path.GetExtension(embeddedFileName);
                 string directoryName = Path.GetDirectoryName(embeddedFileName);
 
                 // append the directory name
@@ -312,8 +315,8 @@ namespace EV5RN
                 manifestName += Path.GetFileName(embeddedFileName);
 
                 // Replace all '\' with '.'
-                manifestName.Replace(Path.DirectorySeparatorChar, '.');
-                manifestName.Replace(Path.AltDirectorySeparatorChar, '.');
+                manifestName = manifestName.Replace(Path.DirectorySeparatorChar, '.');
+                manifestName = manifestName.Replace(Path.AltDirectorySeparatorChar, '.');
             }
 
             return manifestName;
