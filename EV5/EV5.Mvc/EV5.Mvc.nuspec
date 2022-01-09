@@ -3,12 +3,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>EV5.Mvc</id>
-    <version>0.7.0-alpha</version>
+    <version>0.7.3-alpha</version>
     <authors>baloghp321</authors>
     <license type="expression">MIT</license>
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
     <projectUrl>https://github.com/baloghp/EV5.MVC</projectUrl>
-    <description>EV5 Mvc is a custom view engine for the latest ASP.NET MVC on .NET Core 5.</description>
+    <description>EV5 Mvc is a custom view engine for the latest ASP.NET MVC on .NET Core 5. Check out the live demo: https://ev5testwebapp.azurewebsites.net/</description>
     <releaseNotes>Initial Alpha Release based on the first working prototype.</releaseNotes>
     <tags>Embedded, View Engine, MVC, Viewengine, ViewEngine, extensions, view, controller, html, EV5, EVE</tags>
     <repository type="Git" url="https://github.com/baloghp/EV5.MVC" />

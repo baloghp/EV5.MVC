@@ -104,7 +104,7 @@ namespace EV5.Mvc
             IEmbeddedView view = FindEmbeddedViewClass(realViewName);
 
             string markup = FindMarkup(realViewName, view);
-            if (String.IsNullOrEmpty(markup)) throw new ArgumentNullException(viewName, "Could not find markup for given view: " + viewName + "Maybe you want to adjust the MarkupName attribute?");
+            //if (String.IsNullOrEmpty(markup)) throw new ArgumentNullException(viewName, "Could not find markup for given view: " + viewName + "Maybe you want to adjust the MarkupName attribute?");
             if (view != null)
             {
                 view.ViewEngine = this;

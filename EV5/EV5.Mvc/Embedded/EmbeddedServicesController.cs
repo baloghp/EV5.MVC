@@ -12,36 +12,51 @@ using System.Threading.Tasks;
 
 namespace EV5.Mvc.Embedded
 {
-    
+
     public class EmbeddedServicesController : Controller
     {
-        
+
         private readonly IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
         private readonly IWebHostEnvironment _env;
-        public EmbeddedServicesController( IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
+        public EmbeddedServicesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
             IWebHostEnvironment env)
         {
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
         }
 
-        [HttpGet]
-        public JsonResult GetContentRootDirectoryContents()
-        {
-            var contents = _env.ContentRootFileProvider.GetDirectoryContents(string.Empty);
-            return new JsonResult(contents);
-            
-            
-        }
-        public ActionResult<List<IFileInfo>> GetWebRootDirectoryContents()
-        {
-            var contents = this._env.WebRootFileProvider.GetDirectoryContents(string.Empty);
-            return contents.ToList();
 
+        public IActionResult GetContentRootDirectoryContents()
+        {
+            return Ok(_env.ContentRootFileProvider.GetDirectoryContents(string.Empty).Select(a => new
+            {
+                a.Name,
+                a.PhysicalPath,
+                a.Length,
+                a.Exists,
+                a.IsDirectory,
+                a.LastModified
+            }));
+
+
+
+        }
+        public IActionResult GetWebRootDirectoryContents()
+        {
+            return Ok(this._env.WebRootFileProvider.GetDirectoryContents(string.Empty).Select(a => new
+            {
+                a.Name,
+                a.PhysicalPath,
+                a.Length,
+                a.Exists,
+                a.IsDirectory,
+                a.LastModified
+            }));
         }
 
         public IActionResult GetActions()
         {
+
             return Ok(actionDescriptorCollectionProvider
                 .ActionDescriptors
                 .Items
