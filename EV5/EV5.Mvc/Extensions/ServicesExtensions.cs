@@ -31,7 +31,7 @@ namespace EV5.Mvc.Extensions
         public static IViewClassProvider ViewClassProvider { get => ServiceProvider.GetRequiredService<IViewClassProvider>(); }
         public static IHtmlHelper HtmlHelper { get => ServiceProvider.GetService<IHtmlHelper>(); }
         public static IActionDescriptorCollectionProvider ActionDescriptorCollectionProvider { get => ServiceProvider.GetService<IActionDescriptorCollectionProvider>(); }
-        
+
         public static IServiceCollection AddEV5DefaultServices(this IServiceCollection services)
         {
 
@@ -53,10 +53,9 @@ namespace EV5.Mvc.Extensions
 
         public static IServiceCollection UseEmbeddedPlugins(this IServiceCollection services,
             ICompositionHostFactory hostFactory,
-            Func<IEnumerable<IEmbeddedPlugin>, IEnumerable<IEmbeddedPlugin>> BeforePluginsInitialized = null
-            )
+            Func<IEnumerable<IEmbeddedPlugin>, IEnumerable<IEmbeddedPlugin>> BeforePluginsInitialized = null,
+            bool registerPluginViewEngines = false)
         {
-            
             services.AddEV5CompositionServices(hostFactory);
             var plugins = EV5MefCompositionHost.CompositionHost.GetExports<IEmbeddedPlugin>();
             if (BeforePluginsInitialized != null)
@@ -64,7 +63,7 @@ namespace EV5.Mvc.Extensions
             foreach (var p in plugins)
             {
                 services.AddMvcCore().AddApplicationPart(p.WebPartsAssembly);
-                if (p.InsertOwnEmbeddedViewEngine)
+                if (p.InsertOwnEmbeddedViewEngine && registerPluginViewEngines)
                 {
                     services.AddMvc()
                         .AddViewOptions(o => o.ViewEngines
@@ -74,7 +73,7 @@ namespace EV5.Mvc.Extensions
 
 
             ServiceProvider = services.BuildServiceProvider();
-            
+
             return services;
         }
 
@@ -87,7 +86,7 @@ namespace EV5.Mvc.Extensions
             var plugins = EV5MefCompositionHost.CompositionHost.GetExports<IEmbeddedPlugin>();
             if (BeforePluginsInitialized != null)
                 plugins = BeforePluginsInitialized(plugins);
-            
+
             var fileproviders = plugins.Select(p => p.FileProvider).Union(new List<IFileProvider> { env.WebRootFileProvider, env.ContentRootFileProvider });
             CompositeFileProvider compositeProvider = new CompositeFileProvider(fileproviders.ToArray());
             if (OnCompositeFileProviderPrepared != null)

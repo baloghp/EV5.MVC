@@ -16,8 +16,8 @@ namespace EV5.AdminLTE
 
         public IFileProvider FileProvider => new EV5EmbeddedFileProvider(typeof(Plugin).Assembly, "EV5.ALTE-");
 
-        public bool InsertOwnEmbeddedViewEngine => false;
+        public bool InsertOwnEmbeddedViewEngine => true;
 
-        public string OwnEmbeddedViewEnginePrefix => throw new NotImplementedException();
+        public string OwnEmbeddedViewEnginePrefix => "ev5.alte-";
     }
 }

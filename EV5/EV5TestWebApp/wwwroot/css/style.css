@@ -1022,7 +1022,7 @@ section {
 .portfolio .portfolio-item .portfolio-info .preview-link,
 .portfolio .portfolio-item .portfolio-info .details-link {
     position: absolute;
-    right: 40px;
+    right: 50px;
     font-size: 24px;
     top: calc(50% - 18px);
     color: #fff;
@@ -1038,6 +1038,9 @@ section {
     right: 10px;
 }
 
+.details-link2 {
+        right: 30px;
+    }
 .portfolio .portfolio-item:hover .portfolio-img img {
     transform: scale(1.15);
 }

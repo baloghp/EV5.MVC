@@ -7,6 +7,7 @@ using System.Linq;
 using CommandLine;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace EV5RN
 {
@@ -21,14 +22,16 @@ namespace EV5RN
         public string rootnamespace { get; set; }
 
         [Option(shortName: 'a', longName: "assetfilter", Required = false, HelpText = "File filter for which resource files to consider"
-            , Default = "*.PNG; *.html; *.jpg; *.ico; *.svg; *.css; *.js; *.woff; *.ttf")]
-        //, Default = "")]
+          , Default = "*.PNG; *.html; *.jpg; *.ico; *.svg; *.css; *.js; *.woff; *.ttf; *.eot; *.woff2; *.svg")]
+        //, Default = "*.woff; *.ttf; *.eot; *.woff2; *.svg")]
+        //, Default = "index2.html")]
         public string assetfilter { get; set; }
 
         [Option(shortName: 'c', longName: "contentfilter", Required = false, HelpText = "File filter for which content files to consider"
               , Default = "*.html; *.css")]
-              //, Default = "*.html")]
-              //, Default = "*.css")]
+        //, Default = "index.html")]
+        //, Default = "*.css")]
+        //, Default = "all.min.css; brands.min.css")]
         //, Default = "")]
         public string contentfilter { get; set; }
         [Option(shortName: 'e', longName: "execute", Required = false, HelpText = "Execute the file changes calculated."
@@ -47,6 +50,7 @@ namespace EV5RN
                     {
                         if (opts.execute)
                         {
+                            //throw a bunch of warnings before accepting to execute the changes
                             Console.Write("Are you sure you want to execute the calculated changes(Y/N)?");
                             var a1 = Console.ReadKey();
                             if (a1.Key != ConsoleKey.Y) return -1;
@@ -76,8 +80,15 @@ namespace EV5RN
 
         private static int Process(CommandLineOptions opts)
         {
+            //we will discover all the changes needed first and capture it to this object,
+            //this will then be serialized into a json file, for observation and validation
             EV5RNResult result = new EV5RNResult() { Params = opts, Run = new Run() };
+
             Console.WriteLine("Evaluating Files");
+            //first we identify each file that can be referenced by the content files,
+            //this will include the content files themselves too,
+            //we will determine their new url (ManifestPath), the most and the absolute version of the original url (SearchPath)
+
             var assetfilters = opts.assetfilter.Split(";");
             Console.WriteLine("Identifying resource files: " + opts.assetfilter);
             result.Run.AssetFileTypes = new List<FileTypeInfo>();
@@ -106,7 +117,10 @@ namespace EV5RN
             Console.WriteLine("Number of Asset files: " + result.Run.AssetFiles.Count);
 
 
-
+            //we will go through each content file,
+            //calculate the same as above,
+            //plus go line by line and see if any of the asset files are referenced.
+            //if there is a reference make a change record for this content file.
             Console.WriteLine("Identifying content files: " + opts.contentfilter);
             var contentfilters = opts.contentfilter.Split(";");
             result.Run.ContentFileTypes = new List<FileTypeInfo>();
@@ -132,7 +146,7 @@ namespace EV5RN
                     result.Run.ContentFiles.Add(contentfi);
                     Console.WriteLine(relpath);
                     Console.WriteLine("Calculating changes:");
-
+                    //now we go line by line and try to catch any reference to any file
                     var content = File.ReadAllLines(contentfile);
                     int linecounter = 1;
                     foreach (var line in content)
@@ -141,57 +155,79 @@ namespace EV5RN
                         var assetfiles = result.Run.AssetFiles;
                         foreach (var assetfile in assetfiles)
                         {
-                            if (line.Contains(assetfile.SearchPath))
-                            {
-                                var search = assetfile.SearchPath;
+                            //easy case when the asset is referenced by their full url
+                            //if (line.Contains(assetfile.SearchPath))
+                            //{
+                            //    var search = assetfile.SearchPath;
 
-                                if (line.Contains('/' + assetfile.SearchPath)) search = '/' + assetfile.SearchPath;
+                            //    if (line.Contains('/' + assetfile.SearchPath)) search = '/' + assetfile.SearchPath;
 
 
-                                contentfi.Changes.Add(new Change()
-                                {
-                                    Line = linecounter,
-                                    Original = line,
-                                    Search = search,
-                                    Replace = assetfile.ManifestPath,
-                                    Changed = line.Replace(search, assetfile.ManifestPath)
-                                });
-                                Console.Write("Line :" + linecounter + "\r");
-                                continue;
-                            }
+                            //    contentfi.Changes.Add(new Change()
+                            //    {
+                            //        Line = linecounter,
+                            //        Original = line,
+                            //        Search = search,
+                            //        Replace = assetfile.ManifestPath,
+                            //        Changed = line.Replace(search, assetfile.ManifestPath)
+                            //    });
+                            //    Console.Write("Line :" + linecounter + "\r");
+                            //    continue;
+                            //}
+                            //if the filename is mentioned, but not by their full url,
+                            //then most likely it is referenced relatively
+                            //so we try to grab the referenced URL portion,
+                            //calculate the absolute path for both the reference and the asset
+                            //if they match they point to the same file, then we register the needed change
                             if (line.Contains(assetfile.Filename))
                             {
-                                int fnIndex = line.IndexOf(assetfile.Filename);
-                                int counter = fnIndex;
-                                int endMarkIndex = fnIndex + assetfile.Filename.Length;
-                                if (endMarkIndex >= line.Length || line[endMarkIndex] != '"') continue;
-
-                                char currentChar = line[counter];
-                               
-                                if (currentChar == '"') endMarkIndex = counter;
-                                counter = fnIndex;
-                                currentChar = line[counter];
-                                while (counter >= 0 && currentChar != '"')
+                                var matches = Regex.Matches(line, assetfile.Filename);
+                                foreach (Match match in matches)
                                 {
-                                    counter--;
-                                    if (counter >= 0) currentChar = line[counter];
 
-                                }
-                                int startMarkIndex = 0;
-                                if (currentChar == '"') startMarkIndex = counter;
-                                if (endMarkIndex - startMarkIndex - 1 <= 0) continue;
-                                string attributePath = line.Substring(startMarkIndex + 1, endMarkIndex - startMarkIndex - 1);
-                                var contentDir = Path.GetDirectoryName(contentfi.Path);
-                                var calculatedAsserPath = Path.GetFullPath(Path.Combine(contentDir, FileUtilities.FixFilePath(attributePath)));
-                                if (calculatedAsserPath == assetfile.Path)
-                                    contentfi.Changes.Add(new Change()
+                                    //get the index of the first char of the filename
+                                    //int fnIndex = line.IndexOf(assetfile.Filename);
+                                    int fnIndex = match.Index;
+                                    //the end marker of the url should be right after the filename
+                                    int endMarkIndex = fnIndex + assetfile.Filename.Length;
+                                    //if the end marker points outside the line, or it is not how a url reference can end - move on
+                                    if (endMarkIndex >= line.Length || !IsValidEndMarker(line[endMarkIndex])) continue;
+                                    //if we get here we have the end pointer of the url reference, now, let's find the start
+                                    //let's put a pointer to the first char of the filename
+                                    int counter = fnIndex;
+                                    //let's mark the character under our pointer
+                                    char currentChar = line[counter];
+                                    //while we encounter a valid url start marker, or the beginning of the line, let's step the pinter backwards
+                                    while (counter >= 0 && !IsValidStartMarker(currentChar))
                                     {
-                                        Line = linecounter,
-                                        Original = line,
-                                        Search = attributePath,
-                                        Replace = assetfile.ManifestPath,
-                                        Changed = line.Replace(attributePath, assetfile.ManifestPath)
-                                    });
+                                        counter--;
+                                        if (counter >= 0) currentChar = line[counter];
+
+                                    }
+                                    //let's assume the url starts at the first char
+                                    int startMarkIndex = 0;
+                                    //if we stopped at a valid start marker it should be the start marker
+                                    if (IsValidStartMarker(currentChar)) startMarkIndex = counter; else continue;
+                                    //this should never happen but, just in case
+                                    if (endMarkIndex - startMarkIndex - 1 <= 0) continue;
+
+                                    //now we know the start and end of the url, let's grab it
+                                    string attributePath = line.Substring(startMarkIndex + 1, endMarkIndex - startMarkIndex - 1);
+                                    //calculate the absolute path the captured url references.
+                                    var contentDir = Path.GetDirectoryName(contentfi.Path);
+                                    var calculatedAsserPath = Path.GetFullPath(Path.Combine(contentDir, FileUtilities.FixFilePath(attributePath)));
+                                    //check if the url points to the same file as the asset, if so record the needed change
+                                    if (calculatedAsserPath == assetfile.Path)
+                                        contentfi.Changes.Add(new Change()
+                                        {
+                                            Line = linecounter,
+                                            Original = line,
+                                            Search = attributePath,
+                                            Replace = assetfile.ManifestPath,
+                                            Changed = line.Replace(attributePath, assetfile.ManifestPath)
+                                        });
+                                }
+                                
 
                             }
                         }
@@ -223,8 +259,19 @@ namespace EV5RN
                 }
 
             }
+            Console.WriteLine("Finished.");
             Console.ReadLine();
             return 0;
+        }
+
+        private static bool IsValidStartMarker(char currentChar)
+        {
+            return currentChar == '"' || currentChar == '(' || currentChar == '#' || currentChar == '\'';
+        }
+
+        private static bool IsValidEndMarker(char currentChar)
+        {
+            return currentChar == '"' || currentChar == ')' || currentChar == '#' || currentChar == '\'' || currentChar == '?';
         }
 
         internal static string CreateManifestName

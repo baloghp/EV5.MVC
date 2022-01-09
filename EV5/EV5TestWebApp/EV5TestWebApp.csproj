@@ -106,6 +106,9 @@
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EV5.AdminLTE\EV5.AdminLTE.csproj">
+      <Private>true</Private>
+    </ProjectReference>
     <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
     <ProjectReference Include="..\EV5.Samples.Embedded\EV5.Samples.Embedded.csproj">

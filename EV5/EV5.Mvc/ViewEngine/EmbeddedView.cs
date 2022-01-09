@@ -289,7 +289,10 @@ namespace EV5.Mvc
                 var viewData = new ViewDataDictionary(this.ViewData);
                 viewData.Model = partialModel;
                 //get the html for the master view, by calling MVC view resolution
-                partialString = this.Html.Partial(partialName, partialModel, viewData);
+                if (this.Html is IViewContextAware) (this.Html as IViewContextAware).Contextualize(ViewContext);
+                var task = Task.Run(async () => await this.Html.PartialAsync(partialName, partialModel, viewData));
+                task.Wait();
+                partialString = task.Result;
             }
 
             return partialString.ToString();
@@ -357,7 +360,7 @@ namespace EV5.Mvc
             {
                 //get the html for the master view, by calling MVC view resolution
                 //this is not nice as Html.Partial is falling out of favor now, but I could not find better way
-                (this.Html as IViewContextAware).Contextualize(ViewContext);
+               if (this.Html is IViewContextAware) (this.Html as IViewContextAware).Contextualize(ViewContext);
                 var task = Task.Run(async () => await this.Html.PartialAsync(MasterName, Model, this.ViewData));
                 task.Wait();
                 masterString = task.Result;
