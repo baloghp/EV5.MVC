@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Download the latest Nuget from: https://www.nuget.org/downloads-->
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>EV5.AdminLTE</id>
+    <version>0.7.3-alpha</version>
+    <authors>baloghp321</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/baloghp/EV5.MVC</projectUrl>
+    <description>
+      EV5.AdminLTE is the package including AdminLTE packaged as ready to use in an EV5.Mvc project. https://adminlte.io/
+      EV5.Mvc is a custom view engine for the latest ASP.NET MVC on .NET Core 5. Check out the live demo: https://ev5testwebapp.azurewebsites.net/</description>
+    <releaseNotes>Initial Alpha Release based on the first working prototype.</releaseNotes>
+    <tags>AdminLTE, Embedded, View Engine, MVC, Viewengine, ViewEngine, extensions, view, controller, html, EV5, EVE</tags>
+    <repository type="Git" url="https://github.com/baloghp/EV5.MVC" />
+    
+    <dependencies>
+      <group targetFramework="net5.0">
+        <dependency id="EV5.Mvc" version="0.7.3-alpha" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <!-- Include everything in \lib -->
+    <file src="bin\Release\net5.0\EV5.AdminLTE.dll" target="lib\net5.0" />
+
+  </files>
+</package>

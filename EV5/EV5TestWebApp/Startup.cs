@@ -102,18 +102,24 @@ namespace EV5TestWebApp
         {
             if (HybridSupport.IsElectronActive)
             {
-
-                var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+                var options = new BrowserWindowOptions
                 {
                     Width = 1152,
                     Height = 940,
-                    Show = false
-                });
+                    Show = false,
+                    WebPreferences = new WebPreferences()
+                    {
+                        NodeIntegration = false
+                    }
+                };
+                //options.WebPreferences.NodeIntegration = false;
 
+                var browserWindow = await Electron.WindowManager.CreateWindowAsync(options);
+                
                 await browserWindow.WebContents.Session.ClearCacheAsync();
 
                 browserWindow.OnReadyToShow += () => browserWindow.Show();
-                browserWindow.SetTitle("Electron.NET API Demos");
+                browserWindow.SetTitle("EV5.Mvc Electron.NET Version");
             }
         }
     }
