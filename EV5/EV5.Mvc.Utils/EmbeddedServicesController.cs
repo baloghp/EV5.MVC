@@ -9,7 +9,7 @@ using EV5.Mvc.ViewEngine;
 using EV5.Mvc.Plugin;
 using EV5.Mvc.Embedded;
 
-namespace EV5.Mvc.Utils
+namespace EV5.Mvc.DevTools
 {
 
     public class EmbeddedServicesController : Controller
@@ -92,7 +92,7 @@ namespace EV5.Mvc.Utils
                  Type = t,
                  ViewNameAttribute = (EmbeddedViewAttribute)viewNameAttribute,
              };
-            
+
             return Ok(classesAndAttribute.Select(a => new
             {
 

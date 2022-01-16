@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.Shop", "EV5.Shop\EV5.Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EV5.SBAdmin2", "EV5.SBAdmin2\EV5.SBAdmin2.csproj", "{54194B22-0276-41B7-BCB2-EE2E72A98F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.Utils", "EV5.Mvc.Utils\EV5.Mvc.Utils.csproj", "{4760B6A2-E4F1-4448-B02B-78C1C74BA34D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EV5.Mvc.DevTools", "EV5.Mvc.Utils\EV5.Mvc.DevTools.csproj", "{4760B6A2-E4F1-4448-B02B-78C1C74BA34D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

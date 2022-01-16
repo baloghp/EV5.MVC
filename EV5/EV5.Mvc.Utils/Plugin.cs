@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace EV5.Mvc.Utils
+namespace EV5.Mvc.DevTools
 {
     public class Plugin : IEmbeddedPlugin
     {

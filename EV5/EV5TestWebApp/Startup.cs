@@ -50,7 +50,7 @@ namespace EV5TestWebApp
             //This method will discover all exported IEmbeddedPlugins in the provided CompositionHostFactory
             //It will then use the information in these objects to set up the web components and.
             services.UseEmbeddedPlugins(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory,
-                @"EV5.Samples.*.dll; EV5.Mvc.Utils.dll; EV5.AdminLTE.dll; EV5.Creative.dll; EV5.SBAdmin2.dll; EV5.Shop.dll")
+                @"EV5.Samples.*.dll; EV5.Mvc.DevTools.dll; EV5.AdminLTE.dll; EV5.Creative.dll; EV5.SBAdmin2.dll; EV5.Shop.dll")
                                         ,registerPluginViewEngines:true);
 
             

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Download the latest Nuget from: https://www.nuget.org/downloads-->
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>EV5.Mvc.DevTools</id>
+    <version>0.7.3-alpha</version>
+    <authors>baloghp321</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/baloghp/EV5.MVC</projectUrl>
+    <description>
+      EV5.Mvc.DevTools is a library that contians a number of APIs and Views to discover the EV5 internal structure of an MVC application.
+
+      API: Get All available actions in the application : /EmbeddedServices/GetActions
+      API: Get All available EV5 Views in the application : /EmbeddedServices/GetEv5ViewNames
+      API: Get ContentRootFileProvider Files : /EmbeddedServices/GetContentRootDirectoryContents
+      API: Get WebRootFileProvider Files: /EmbeddedServices/GetWebRootDirectoryContents
+      API: Get All EV5 Plugins : /EmbeddedServices/GetAllEV5Plugins
+      API: Call any view or resource by its name: /EmbeddedServices/CallView?viewname={viewname}
+      View: List Available Actions: /EV5.MVC-Assets.AllActions.html
+      View: List Available EV5 Views: /EV5.MVC-Assets.AllEV5Views.html
+      View: List All Directory Content: /EV5.MVC-Assets.DirectoryContents.html
+      View: List All EV5 Plugins: /EV5.MVC-Assets.AllEV5Plugins.html
+
+      EV5.Mvc is a custom view engine for the latest ASP.NET MVC on .NET Core 5. Check out the live demo: https://ev5testwebapp.azurewebsites.net/</description>
+    <releaseNotes>Initial Alpha Release based on the first working prototype.</releaseNotes>
+    <tags>EV5.Mvc, DevTools, Embedded, View Engine, MVC, Viewengine, ViewEngine, extensions, view, controller, html, EV5, EVE</tags>
+    <repository type="Git" url="https://github.com/baloghp/EV5.MVC" />
+    
+    <dependencies>
+      <group targetFramework="net5.0">
+        <dependency id="EV5.Mvc" version="0.7.3-alpha" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <!-- Include everything in \lib -->
+    <file src="bin\Release\net5.0\EV5.Mvc.DevTools.dll" target="lib\net5.0" />
+
+  </files>
+</package>
