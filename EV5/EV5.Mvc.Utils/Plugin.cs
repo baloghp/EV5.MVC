@@ -1,4 +1,5 @@
-﻿using EV5.Mvc.Plugin;
+﻿using EV5.Mvc.Embedded;
+using EV5.Mvc.Plugin;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace EV5.Mvc.Embedded
+namespace EV5.Mvc.Utils
 {
     public class Plugin : IEmbeddedPlugin
     {

@@ -2,18 +2,14 @@
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.FileProviders;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EV5.Mvc.MEF;
 using EV5.Mvc.ViewEngine;
-using System.Composition.Hosting;
-using EV5.Mvc.Extensions;
+using EV5.Mvc.Plugin;
+using EV5.Mvc.Embedded;
 
-namespace EV5.Mvc.Embedded
+namespace EV5.Mvc.Utils
 {
 
     public class EmbeddedServicesController : Controller
@@ -21,12 +17,12 @@ namespace EV5.Mvc.Embedded
 
         private readonly IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
         private readonly IWebHostEnvironment _env;
-        private CompositionHost compositionHost;
         public EmbeddedServicesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
-            IWebHostEnvironment env, CompositionHost compositionHost)
+            IWebHostEnvironment env)
         {
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
+
         }
 
 
@@ -44,7 +40,7 @@ namespace EV5.Mvc.Embedded
         }
         public IActionResult GetWebRootDirectoryContents()
         {
-            return Ok(this._env.WebRootFileProvider.GetDirectoryContents(string.Empty).Select(a => new
+            return Ok(_env.WebRootFileProvider.GetDirectoryContents(string.Empty).Select(a => new
             {
                 a.Name,
                 a.PhysicalPath,
@@ -55,22 +51,51 @@ namespace EV5.Mvc.Embedded
             }));
         }
 
+        public ActionResult GetAllEV5Plugins()
+        {
+            var classesAndImplementation =
+             from a in AppDomain.CurrentDomain.GetAssemblies()
+             from t in a.GetTypes()
+             where typeof(IEmbeddedPlugin).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract
+             let impl = Activator.CreateInstance(t)
+             select new
+             {
+                 Type = t,
+                 Implementation = (IEmbeddedPlugin)impl,
+             };
+
+            return Ok(classesAndImplementation.Select(a => new
+            {
+
+                pluginType = a.Type.FullName,
+                pluginAssembly = a.Type.Assembly.FullName,
+                webpartsAssembly = a.Implementation.WebPartsAssembly.FullName,
+                fileProvider = a.Implementation.FileProvider.GetType().FullName,
+                embeddedfileProviderPrefix = (a.Implementation.FileProvider as EV5EmbeddedFileProvider)?.Prefix,
+                embeddedfileProviderAssembly = (a.Implementation.FileProvider as EV5EmbeddedFileProvider)?.Assembly.FullName,
+                insertOwnEmbeddedViewEngine = a.Implementation.InsertOwnEmbeddedViewEngine,
+                ownEmbeddedViewEnginePrefix = a.Implementation.OwnEmbeddedViewEnginePrefix
+            }));
+        }
+
         public IActionResult GetEv5ViewNames()
         {
-            var classesAndAttributes=
+            var classesAndAttribute =
              from a in AppDomain.CurrentDomain.GetAssemblies()
              from t in a.GetTypes()
              let attributes = t.GetCustomAttributes(typeof(EmbeddedViewAttribute), true)
              where attributes != null && attributes.Length > 0
              let viewNameAttribute = t.GetCustomAttributes(typeof(EmbeddedViewAttribute), true).First()
              where viewNameAttribute != null
-             select new { Type = t, 
-                 ViewNameAttribute = (EmbeddedViewAttribute)viewNameAttribute, 
+             select new
+             {
+                 Type = t,
+                 ViewNameAttribute = (EmbeddedViewAttribute)viewNameAttribute,
              };
-
-            return Ok(classesAndAttributes.Select(a => new
+            
+            return Ok(classesAndAttribute.Select(a => new
             {
-                
+
                 viewName = a.ViewNameAttribute.ContractName,
                 masterName = GetMasterName(a.Type),
                 markupName = GetMarkupName(a.Type),
@@ -79,6 +104,8 @@ namespace EV5.Mvc.Embedded
                 baseType = a.Type.BaseType.FullName
             })); ;
         }
+
+
 
         private object GetModelType(Type type)
         {

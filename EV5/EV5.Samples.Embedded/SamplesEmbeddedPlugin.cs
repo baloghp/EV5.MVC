@@ -18,7 +18,7 @@ namespace EV5.Samples.Embedded
 
         public bool InsertOwnEmbeddedViewEngine => false;
 
-        public string OwnEmbeddedViewEnginePrefix => throw new NotImplementedException();
+        public string OwnEmbeddedViewEnginePrefix => default;
 
         public Assembly WebPartsAssembly => this.GetType().Assembly;
     }

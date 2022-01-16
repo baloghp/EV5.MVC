@@ -16,12 +16,14 @@ namespace EV5.Mvc.Embedded
     {
         private static readonly char[] _invalidFileNameChars = Path.GetInvalidFileNameChars()
             .Where(c => c != '/' && c != '\\').ToArray();
-        
+
         private readonly string _prefix;
         private readonly Assembly _assembly;
         private readonly string _baseNamespace;
         private readonly DateTimeOffset _lastModified;
 
+        public string Prefix { get => _prefix; }
+        public Assembly Assembly{ get => _assembly; }
         public EV5EmbeddedFileProvider(Assembly assembly, string prefix): this(assembly,prefix, assembly?.GetName()?.Name)
         {
         }
