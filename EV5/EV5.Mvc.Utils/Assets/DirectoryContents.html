@@ -3,7 +3,7 @@
 <head>
     <title>Grid Component</title>
     <script src="https://unpkg.com/vue"></script>
-    <link rel="stylesheet" type="text/css" href="/EV5.MVC-Embedded.Assets.Style.css" />
+    <link rel="stylesheet" type="text/css" href="/EV5.MVC-Assets.Style.css" />
 
     <!-- component template -->
     <script type="text/x-template" id="grid-template">
@@ -35,6 +35,8 @@
         <form id="search">
             Search <input name="query" v-model="searchQuery" />
         </form>
+        <button v-on:click="refresh('/EmbeddedServices/GetContentRootDirectoryContents')">Content Directory</button>
+        <button v-on:click="refresh('/EmbeddedServices/GetWebRootDirectoryContents')">Web Directory</button>
         <demo-grid :heroes="gridData"
                    :columns="gridColumns"
                    :filter-key="searchQuery">
@@ -107,29 +109,33 @@
                 searchQuery: "",
                 gridColumns:
                     [
-                        "displayName",
-                        "controllerName",
-                        "actionName",
-                        "attributeRouteTemplate",
-                        "parameters",
-                        "controllerClassName",
-                        "actionMethodName",
-                        "filters",
-                        "constraints",
-                        "routeValues",
+                        "name",
+                        "physicalPath",
+                        "length",
+                        "exists",
+                        "IsDirectory",
+                        "LastModified"
                     ],
                 gridData:
-                []
+                    []
             },
             mounted: function () {
                 var self = this;
-                fetch("/EmbeddedServices/GetActions")
+                fetch("/EmbeddedServices/GetContentRootDirectoryContents")
                     .then(response => response.json())
                     .then(data => self.gridData = data);
-                    
-                  }
-              }
-          );
+
+            },
+            methods: {
+                refresh: function (endpoint) {
+                    var self = this;
+                    //fetch("/EmbeddedServices/GetContentRootDirectoryContents")
+                    fetch(endpoint)
+                        .then(response => response.json())
+                        .then(data => self.gridData = data);
+                }
+            }
+        });
     </script>
 </body>
 </html>

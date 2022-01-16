@@ -8,7 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using EV5.Mvc.MEF;
+using EV5.Mvc.ViewEngine;
+using System.Composition.Hosting;
+using EV5.Mvc.Extensions;
 
 namespace EV5.Mvc.Embedded
 {
@@ -18,8 +21,9 @@ namespace EV5.Mvc.Embedded
 
         private readonly IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
         private readonly IWebHostEnvironment _env;
+        private CompositionHost compositionHost;
         public EmbeddedServicesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
-            IWebHostEnvironment env)
+            IWebHostEnvironment env, CompositionHost compositionHost)
         {
             this.actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _env = env;
@@ -37,9 +41,6 @@ namespace EV5.Mvc.Embedded
                 a.IsDirectory,
                 a.LastModified
             }));
-
-
-
         }
         public IActionResult GetWebRootDirectoryContents()
         {
@@ -52,6 +53,52 @@ namespace EV5.Mvc.Embedded
                 a.IsDirectory,
                 a.LastModified
             }));
+        }
+
+        public IActionResult GetEv5ViewNames()
+        {
+            var classesAndAttributes=
+             from a in AppDomain.CurrentDomain.GetAssemblies()
+             from t in a.GetTypes()
+             let attributes = t.GetCustomAttributes(typeof(EmbeddedViewAttribute), true)
+             where attributes != null && attributes.Length > 0
+             let viewNameAttribute = t.GetCustomAttributes(typeof(EmbeddedViewAttribute), true).First()
+             where viewNameAttribute != null
+             select new { Type = t, 
+                 ViewNameAttribute = (EmbeddedViewAttribute)viewNameAttribute, 
+             };
+
+            return Ok(classesAndAttributes.Select(a => new
+            {
+                
+                viewName = a.ViewNameAttribute.ContractName,
+                masterName = GetMasterName(a.Type),
+                markupName = GetMarkupName(a.Type),
+                modelType = GetModelType(a.Type),
+                viewType = a.Type.FullName,
+                baseType = a.Type.BaseType.FullName
+            })); ;
+        }
+
+        private object GetModelType(Type type)
+        {
+            var gens = type.BaseType.GetGenericArguments();
+            if (gens == null || gens.Length == 0) return default;
+            return gens.First().FullName;
+        }
+
+        private object GetMarkupName(Type type)
+        {
+            var attr = type.GetCustomAttributes(typeof(MarkupNameAttribute), true);
+            if (attr == null || attr.Length == 0) return default;
+            return ((MarkupNameAttribute)attr.First()).MarkupName;
+        }
+
+        private string GetMasterName(Type type)
+        {
+            var attr = type.GetCustomAttributes(typeof(MasterViewAttribute), true);
+            if (attr == null || attr.Length == 0) return default;
+            return ((MasterViewAttribute)attr.First()).MasterViewName;
         }
 
         public IActionResult GetActions()

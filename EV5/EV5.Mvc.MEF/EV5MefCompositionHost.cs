@@ -19,10 +19,9 @@ namespace EV5.Mvc.MEF
         {
            
 
-            //services.AddSingleton<ICompositionHostFactory>(compositionHostFactory);
+            
             CompositionHost = compositionHostFactory.CreateCompositionHost();
             services.AddSingleton<CompositionHost>(CompositionHost);
-            //ServiceProvider = services.BuildServiceProvider();
             return services;
         }
     }

@@ -19,6 +19,7 @@
     </ProjectReference>
     <ProjectReference Include="..\EV5.Creative\EV5.Creative.csproj" />
     <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
+    <ProjectReference Include="..\EV5.Mvc.Utils\EV5.Mvc.Utils.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
     <ProjectReference Include="..\EV5.Samples.Embedded\EV5.Samples.Embedded.csproj">
       <Private>true</Private>

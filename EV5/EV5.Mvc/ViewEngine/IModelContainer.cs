@@ -20,7 +20,5 @@ namespace EV5.Mvc.ViewEngine
         /// </value>
         T Model { get; set; }
 
-        
-
     }
 }

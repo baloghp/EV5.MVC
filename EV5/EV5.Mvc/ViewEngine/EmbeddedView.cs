@@ -51,7 +51,7 @@ namespace EV5.Mvc
             {
                 if (EqualityComparer<T>.Default.Equals(_model, default))
                 {
-                    SetModel(this.ViewData.Model);
+                    if (this.ViewData!=null)  SetModel(this.ViewData.Model);
                     //if (this.ViewData.Model != null && !(this.ViewData.Model is T))
                     //{
                     //    throw new ApplicationException(String.Format("Model passed for this view MUST be of type:{0}, but it is {1}", typeof(T), this.ViewData.Model.GetType()));
@@ -80,6 +80,8 @@ namespace EV5.Mvc
             }
             
         }
+
+
         #endregion
 
         #region markup and internal html doc
@@ -181,7 +183,7 @@ namespace EV5.Mvc
 
         //ViewDataDictionary ViewData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string Path => "";
+        public string Path => ViewName;
 
         public IEmbeddedView Parent { get ; set ; }
 

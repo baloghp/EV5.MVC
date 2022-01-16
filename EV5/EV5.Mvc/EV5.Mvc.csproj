@@ -18,9 +18,7 @@
     <Authors>baloghp321</Authors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Embedded\**\*.woff2; Embedded\**\*.woff; Embedded\**\*.ttf; Embedded\**\*.PNG; Embedded\**\*.html; Embedded\**\*.jpg; Embedded\**\*.ico; Embedded\**\*.svg; Embedded\**\*.css; Embedded\**\*.js" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
-  </ItemGroup>
+
 
   
   
