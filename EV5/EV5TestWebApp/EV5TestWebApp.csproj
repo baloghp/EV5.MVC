@@ -14,10 +14,6 @@
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EV5.AdminLTE\EV5.AdminLTE.csproj">
-      <Private>true</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\EV5.Creative\EV5.Creative.csproj" />
     <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Utils\EV5.Mvc.DevTools.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
@@ -25,8 +21,6 @@
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\EV5.Samples.ViewEngine\EV5.Samples.ViewEngine.csproj" />
-    <ProjectReference Include="..\EV5.SBAdmin2\EV5.SBAdmin2.csproj" />
-    <ProjectReference Include="..\EV5.Shop\EV5.Shop.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">

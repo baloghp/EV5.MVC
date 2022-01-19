@@ -51,7 +51,8 @@ namespace EV5TestWebApp
             //It will then use the information in these objects to set up the web components and.
             services.UseEmbeddedPlugins(new DirCompositionHostFactory(AppDomain.CurrentDomain.BaseDirectory,
                 @"EV5.Samples.*.dll; EV5.Mvc.DevTools.dll; EV5.AdminLTE.dll; EV5.Creative.dll; EV5.SBAdmin2.dll; EV5.Shop.dll")
-                                        ,registerPluginViewEngines:true);
+                                        //@"EV5.Samples.*.dll; EV5.Mvc.DevTools.dll;.\Plugins\EV5*.dll")
+                                        , registerPluginViewEngines:true);
 
             
             //Always call this last. The internal EV5 ServiceProvider will be registered at this point,
