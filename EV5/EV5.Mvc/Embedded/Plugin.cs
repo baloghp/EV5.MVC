@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace EV5.Mvc.Embedded
 {
-    public class Plugin : IEmbeddedPlugin
-    {
-        public Assembly WebPartsAssembly => GetType().Assembly;
+    //public class Plugin : IEmbeddedPlugin
+    //{
+    //    public Assembly WebPartsAssembly => GetType().Assembly;
 
-        public IFileProvider FileProvider => new EV5EmbeddedFileProvider(typeof(Plugin).Assembly, "EV5.MVC-");
+    //    public IFileProvider FileProvider => new EV5EmbeddedFileProvider(typeof(Plugin).Assembly, "EV5.MVC-");
 
-        public bool InsertOwnEmbeddedViewEngine => false;
+    //    public bool InsertOwnEmbeddedViewEngine => false;
 
-        public string OwnEmbeddedViewEnginePrefix => default;
-    }
+    //    public string OwnEmbeddedViewEnginePrefix => default;
+    //}
 }
