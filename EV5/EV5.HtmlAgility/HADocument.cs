@@ -116,7 +116,7 @@ namespace EV5.Mvc.HtmlAgility
 
         public void SetAttributeValue(string attributeName, string attributeValue)
         {
-            throw new NotImplementedException();
+            this.SetAttributeValue(attributeName, attributeValue);
         }
     }
 }

@@ -86,7 +86,12 @@ namespace EV5.Mvc.HtmlAgility
 
         public void SetAttributeValue(string attributeName, string attributeValue)
         {
-            throw new NotImplementedException();
+            if (Node.Attributes.Contains(attributeName))
+            {
+                Node.Attributes[attributeName].Value = attributeValue;
+                return;
+            }
+            Node.Attributes.Add(attributeName, attributeValue);
         }
     }
 }
