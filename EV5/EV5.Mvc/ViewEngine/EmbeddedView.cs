@@ -221,7 +221,7 @@ namespace EV5.Mvc
             this.ViewContext = viewContext;
             this.ViewData = viewContext.ViewData;
             this.Html = ServicesExtensions.HtmlHelper;
-
+            this.SetModel(this.ViewData.Model);
             //if it has a master prepare that
             if (!string.IsNullOrWhiteSpace(MasterName))
             {
