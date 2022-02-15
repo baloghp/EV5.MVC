@@ -21,6 +21,9 @@ jobs:
         with:
           dotnet-version: '5.0.x'
           include-prerelease: true
+          
+      - name: switch to code dir
+        run: cd .\EV5\ 
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
