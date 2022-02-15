@@ -14,6 +14,9 @@
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EV5.AdminLTE\EV5.AdminLTE.csproj" />
+    <ProjectReference Include="..\EV5.Creative\EV5.Creative.csproj" />
+    <ProjectReference Include="..\EV5.HtmlAgility\EV5.HtmlAgility.csproj" />
     <ProjectReference Include="..\EV5.Mvc.MEF\EV5.Mvc.MEF.csproj" />
     <ProjectReference Include="..\EV5.Mvc.Utils\EV5.Mvc.DevTools.csproj" />
     <ProjectReference Include="..\EV5.Mvc\EV5.Mvc.csproj" />
